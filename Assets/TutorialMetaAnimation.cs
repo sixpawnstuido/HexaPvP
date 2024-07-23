@@ -89,8 +89,6 @@ public class TutorialMetaAnimation : MonoBehaviour
         circleDummy.transform.DOMove(circleTarget.transform.position, .7f).OnComplete(delegate { circleTarget.gameObject.SetActive(true); circleDummy.SetActive(false); });
         circleDummy.transform.DOScale(Vector3.one * 1.01f, .7f);
 
-        Meta2DManager.Instance.Meta2DTutorialCompleted = 1;
-
         holder.SetActive(false);
     }
 }

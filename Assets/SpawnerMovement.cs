@@ -35,7 +35,6 @@ public class SpawnerMovement : MonoBehaviour
             cooldownTimer -= Time.deltaTime;
 
 
-        if (MetaWrapper.TouchLock == true) return;
         if (canClick == true) return;
 
         if (Input.touchCount > 0)
@@ -74,8 +73,6 @@ public class SpawnerMovement : MonoBehaviour
     public void OnWatermelonReachedFunc()
     {
         Debug.LogWarning("WatermelonReached");
-        MetaWrapper.TouchLock = true;
-        FruitSpawner.numberOfFruitsToSpawn = 0;
         winPanel.SetActive(true);
         AudioManager.Instance.Play(AudioManager.AudioEnums.LevelEnd, .6f);
         EventHandler.Instance.LogMetaEvents(LevelManager.Instance.LevelCount, LevelManager.Instance.SortedFruitCount, EventHandler.EventStatus.Complete);
@@ -86,10 +83,6 @@ public class SpawnerMovement : MonoBehaviour
     public void OnFailedFunc()
     {
         Debug.LogWarning("OnFailed");
-        FailDetector.isFailed = false;
-
-        MetaWrapper.TouchLock = true;
-        FruitSpawner.numberOfFruitsToSpawn = 0;
         failPanel.SetActive(true);
         AudioManager.Instance.Play(AudioManager.AudioEnums.LevelFail, .6f);
 

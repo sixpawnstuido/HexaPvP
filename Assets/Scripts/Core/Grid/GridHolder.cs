@@ -31,21 +31,6 @@ public class GridHolder : MonoBehaviour
 
     public GameObject gridProjector;
 
-
-
-    #region Save
-    public int CheckIfGridHolderOccupied
-    {
-        get => PlayerPrefs.GetInt(gameObject.name + transform.parent.name, 0);
-        set => PlayerPrefs.SetInt(gameObject.name + transform.parent.name, value);
-    }
-
-    public List<HexagonTypes> hexagonElementSaveList = new();
-
-    #endregion
-
-    private string _saveName;
-
     private Tween slotScaleTween;
 
     private void Awake()
@@ -57,14 +42,12 @@ public class GridHolder : MonoBehaviour
     private void OnEnable()
     {
         OpenCollider += OpenColliderr;
-        EventManager.CoreEvents.GridHolderSave += SaveHexagonHolder;
         EventManager.CoreEvents.GridHolderColliderState += ColliderState;
     }
 
     private void OnDisable()
     {
         OpenCollider -= OpenColliderr;
-        EventManager.CoreEvents.GridHolderSave -= SaveHexagonHolder;
         EventManager.CoreEvents.GridHolderColliderState -= ColliderState;
     }
 
@@ -97,38 +80,12 @@ public class GridHolder : MonoBehaviour
 
     private void Start()
     {
-        _saveName = gameObject.name + LevelManager.Instance.LevelCount + "HexagonElementList";
         GetNeighborGrids();
-
-        if (CheckIfGridHolderOccupied == 1)
-        {
-            var tempList = ES3.Load(_saveName, hexagonElementSaveList);
-            hexagonElementSaveList = tempList;
-            if (!_gridController.CheckIfAllGridHoldersOccupiedSave())
-            {
-                EventManager.SpawnEvents.SpawnHexagonHolderSave(this, hexagonElementSaveList, false);
-            }
-        }
     }
 
     private void OnMouseDown()
     {
         ClearSlotHintState();
-    }
-
-    public void SaveHexagonHolder()
-    {
-        if (!hexagonHolder) return;
-        List<HexagonElement> tempHexagonElementList = new List<HexagonElement>(hexagonHolder.hexagonElements);
-        tempHexagonElementList = tempHexagonElementList.OrderBy(g => g.transform.position.y).ToList();
-        List<HexagonTypes> hexagonTypeList = new();
-
-        for (int i = 0; i < tempHexagonElementList.Count; i++)
-        {
-            hexagonTypeList.Add(tempHexagonElementList[i].hexagonType);
-        }
-
-        ES3.Save(_saveName, hexagonTypeList);
     }
 
     public void ColliderState(bool state, bool isLockOpened = false)
@@ -177,8 +134,6 @@ public class GridHolder : MonoBehaviour
             ColliderState(true);
             hexagonHolder.gridHolder = null;
             hexagonHolder = null;
-            CheckIfGridHolderOccupied = 0;
-            //Destroy(hexagonHolder.gameObject);
         }
     }
 
@@ -299,7 +254,6 @@ public class GridHolder : MonoBehaviour
         hexagonHolder.CanTouchHexagonHolder(false);
         hexagonHolder.gridHolder = null;
         hexagonHolder = null;
-        CheckIfGridHolderOccupied = 0;
     }
 
     IEnumerator HexagonElementClearCor()

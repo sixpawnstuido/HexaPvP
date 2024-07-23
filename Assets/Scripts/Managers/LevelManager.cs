@@ -72,42 +72,6 @@ public class LevelManager : Singleton<LevelManager>
     {
         var levelHolder = ResourceSystem.ReturnLevelData().allLevels[LevelCount];
         _currentLevel = Instantiate(levelHolder);
-        EventHandler.Instance.LevelStart(LevelCount);
-        // EventManager.UIEvents.CanvasSetter(CanvasTypes.LoadingCanvas, false);
-        SpawnTargetUI();
-    }
-
-    // ReSharper disable Unity.PerformanceAnalysis
-    public void SpawnTargetUI()
-    {
-        var targetUI = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.TargetUI]
-            .GetComponent<JuiceTargetUIElement>();
-
-        var levelTargetUIList = ResourceSystem.ReturnLevelInfo().levelInfoValues[LevelCount].targetUITypes;
-
-        var juiceSpriteDict = ResourceSystem.ReturnVisualData().GlassInfos;
-
-        var juiceTargetController = JuiceTargetUIController.Instance;
-        juiceTargetController.ClearTargets();
-       // juiceTargetController.UpdateHorizontalLayoutGroupVariables(levelTargetUIList.Count);
-
-        for (int i = 0; i < levelTargetUIList.Count; i++)
-        {
-            var targetUIInstantiated = Instantiate(targetUI, juiceTargetController.transform);
-            juiceTargetController.AddToTargetUIElementList(targetUIInstantiated);
-            targetUIInstantiated.SetJuiceImage(juiceSpriteDict[levelTargetUIList[i].hexagonType].fruitSprite,
-                juiceSpriteDict[levelTargetUIList[i].hexagonType].color);
-            targetUIInstantiated.SetHexagonType(levelTargetUIList[i].hexagonType);
-            if (targetUIInstantiated.IsJuiceTargetActivated == false)
-            {
-                targetUIInstantiated.IsJuiceTargetActivated = true;
-                targetUIInstantiated.JuiceBoxCount = levelTargetUIList[i].targetAmount;
-            }
-
-            targetUIInstantiated.SetJuiceCountText();
-        }
-
-       
     }
 
     private void DestroyLevel()
@@ -125,7 +89,7 @@ public class LevelManager : Singleton<LevelManager>
         if (LevelCount > 15)
         {
             ClearAllSave();
-            TutorialManager.Instance.TutorialCount = 3;
+          //  TutorialManager.Instance.TutorialCount = 3;
             LevelCount = 2;
             TotalLevelCount = 16;
         }
@@ -174,12 +138,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public void FailedEvent()
     {
-        BlenderController.Instance.ResetBlenders();
         StopAllCoroutines();
         EventManager.CoreEvents.HexagonHolderColliderState(false);
-        if (_currentLevel) _currentLevel.gridController.ResetGridHolderSave();
-        else FindObjectOfType<GridHolderController>().ResetGridHolderSave();
-        EventHandler.Instance.LevelFailed(LevelCount, MoveCount);
     }
 
     public void NextLevelButton()
@@ -198,24 +158,20 @@ public class LevelManager : Singleton<LevelManager>
             SpawnCount = 0;
             AudioManager.Instance.Play(AudioManager.AudioEnums.Button, .6f);
             //ProgressBarController.Instance.ResetProgressBar();
-            BlenderController.Instance.ResetBlenders();
            // yield return new WaitForSeconds(1);
             SpawnLevel();
             MainSceneCamera.Instance.ResetCam();
-            BlenderController.Instance.SetFirstBlender();
             yield return new WaitForEndOfFrame();
             yield return new WaitForSeconds(1.5f);
             JuiceTargetUIController.Instance.TargetUILevelStartAnimation();
             yield return new WaitForEndOfFrame();
             InGameLoading.Instance.CloseHolder();
-            Meta2DManager.Instance.CloseMetaCustom();
             HintsEnable.Instance.OpenHints();
             UIManager.Instance.levelProgressUIController.ChangeLevelProgressText(TotalLevelCount);
            // EventManager.UIEvents.CanvasSetter(CanvasTypes.LoadingCanvas, false);
             isGameOverPanelOpened = false;
             MoveCount = 0;
             SortedFruitLevel++;
-            BlenderController.Instance.isThirdBlenderOpened = false;
             if(LevelCount>1) RestartButton.Instance.HolderSetactiveState(true);
             Timer.Instance.ResetTimer();
             MetaProgress.Instance.ResetProgress();

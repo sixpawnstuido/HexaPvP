@@ -216,7 +216,7 @@ public class HexagonSpawner : MonoBehaviour
         hexagonHolderInstantiated.gridHolder = gridHolder;
         hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
         hexagonHolderInstantiated.GetComponent<Collider>().enabled = false;
-        int loopCount = isFirstSpawn ? 2 : gridHolder.hexagonElementSaveList.Count;
+        int loopCount = 2;
         for (int j = 0; j < loopCount; j++)
         {
             var hexagon = ResourceSystem.ReturnVisualData()

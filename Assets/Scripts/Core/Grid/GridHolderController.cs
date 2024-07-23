@@ -34,24 +34,6 @@ public class GridHolderController : MonoBehaviour
         var globalVariables = ResourceSystem.ReturnGlobalVariablesData();
         _fingerDistance = globalVariables is not null ? globalVariables.hexagonHolderFingerDistance : Vector3.up / 2;
     }
-
-    private void SpawnRandomHexagonHoldersAtStart()
-    {
-        if (CheckIfAllGridHoldersSave() && LevelManager.Instance.LevelCount != 1)
-        {
-            _randomSpawnAmount = UnityEngine.Random.Range(2, 5);
-
-            var tempList = gridHolderDic.Values
-            .Where(x => !x.isLockActive)
-           .OrderBy(g => g.gameObject.name)
-           .Take(_randomSpawnAmount).ToList();
-            for (int i = 0; i < _randomSpawnAmount; i++)
-            {
-                List<HexagonTypes> tempHexagon = new List<HexagonTypes> { HexagonTypes.WATERMELON, HexagonTypes.APPLE, HexagonTypes.ORANGE };
-                EventManager.SpawnEvents.SpawnHexagonHolderSave(tempList[i], tempHexagon, true);
-            }
-        }
-    }
     private void Update()
     {
         GridProjectile();
@@ -69,17 +51,6 @@ public class GridHolderController : MonoBehaviour
     public bool CheckIfAllGridHoldersOccupied()
     {
         bool allGridHoldersOccupied = gridHolderDic.Values.ToList().All(g => g.hexagonHolder != null || g.isLockActive);
-        return allGridHoldersOccupied;
-    }
-    
-    public bool CheckIfAllGridHoldersOccupiedSave()
-    {
-        bool allGridHoldersOccupied = gridHolderDic.Values.ToList().All(g => g.CheckIfGridHolderOccupied==1 || g.isLockActive);
-        return allGridHoldersOccupied;
-    }
-    private bool CheckIfAllGridHoldersSave()
-    {
-        bool allGridHoldersOccupied = gridHolderDic.Values.ToList().All(g => g.CheckIfGridHolderOccupied == 0);
         return allGridHoldersOccupied;
     }
 
@@ -127,15 +98,6 @@ public class GridHolderController : MonoBehaviour
             return hexagonType;
         }
 
-    }
-
-    public void ResetGridHolderSave()
-    {
-        var tempList = gridHolderDic.Values.ToList();
-        for (int i = 0; i < tempList.Count; i++)
-        {
-            tempList[i].CheckIfGridHolderOccupied = 0;
-        }
     }
 
     public bool IsThereAnyGridBouncing()

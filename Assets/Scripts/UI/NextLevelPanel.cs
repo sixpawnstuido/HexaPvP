@@ -21,7 +21,6 @@ public class NextLevelPanel : MonoBehaviour
     {
         _nextLevelButton.onClick.AddListener(()=>
         {
-            Meta2DManager.Instance.OpenMeta();
             LevelManager.IsLevelCompleted = false;
         });
     }

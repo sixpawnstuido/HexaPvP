@@ -31,7 +31,7 @@ public class LevelHolder : MonoBehaviour
 
     private void Start()
     {
-        TutorialManager.Instance.slots = this.slots;
-        TutorialManager.Instance.fullFruitTutorial = this.fullFruitTutorial;
+        //TutorialManager.Instance.slots = this.slots;
+        //TutorialManager.Instance.fullFruitTutorial = this.fullFruitTutorial;
     }
 }

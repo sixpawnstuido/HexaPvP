@@ -7,7 +7,7 @@ public static class RaycastManager
 {
     public static T SendRayFromCameraToMousePos<T>(LayerMask layerMask, bool isOverMouse = false,Vector3 offset=(default))
     {
-        if (Meta2DManager.MetaOpened) return default(T);
+    //    if (Meta2DManager.MetaOpened) return default(T);
 
         Camera camera = Camera.main;
         Vector3 mousePosition = Input.mousePosition;

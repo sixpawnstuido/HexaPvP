@@ -30,7 +30,6 @@ public class CurrencyManager : MonoBehaviour
         GoldAmount += goldAmount;
         GoldPanel.Instance.UpdateGoldText(GoldAmount);
         if (EventManager.CoreEvents.CheckIfGridsUnlockable != null) EventManager.CoreEvents.CheckIfGridsUnlockable();
-        if (BlenderReset.UpdateButton != null) BlenderReset.UpdateButton();
     }
 
     [Button]
@@ -40,6 +39,5 @@ public class CurrencyManager : MonoBehaviour
         GoldAmount =(int) Mathf.Clamp(GoldAmount,0, float.MaxValue);
         GoldPanel.Instance.UpdateGoldText(GoldAmount);
         if (EventManager.CoreEvents.CheckIfGridsUnlockable != null) EventManager.CoreEvents.CheckIfGridsUnlockable();
-        if (BlenderReset.UpdateButton != null) BlenderReset.UpdateButton();
     }
 }

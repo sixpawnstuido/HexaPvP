@@ -29,27 +29,27 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
-    - Assembly-CSharp
-    - LeTai.TrueShadow
     - Assembly-CSharp-firstpass
-    - Adjust
-    - LeTai.TrueShadow.Demo
-    - Lofelt.NiceVibrations.Demo
-    - Lofelt.NiceVibrations
-    - ToonyColorsPro2.Demo
-    - Coffee.UIParticle
-    - ToonyColorsPro.Runtime
-    - Sirenix.OdinInspector.CompatibilityLayer
-    - KinoBloom.Runtime
-    - LeTai.TrueShadow.Editor
-    - ToonyColorsPro.Editor
+    - Assembly-CSharp
     - PPv2URPConverters
+    - Lofelt.NiceVibrations.Demo
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
-    - Coffee.UIParticle.Editor
+    - LeTai.TrueShadow.Demo
+    - ToonyColorsPro.Editor
+    - LeTai.TrueShadow
+    - ToonyColorsPro2.Demo
+    - Adjust
     - AdjustEditor
-    - ToonyColorsPro.Demo.Editor
-    - Sirenix.OdinInspector.Modules.UnityMathematics
     - Lofelt.NiceVibrations.Editor
+    - Sirenix.OdinInspector.CompatibilityLayer
+    - Coffee.UIParticle.Editor
+    - LeTai.TrueShadow.Editor
+    - Coffee.UIParticle
+    - Lofelt.NiceVibrations
+    - ToonyColorsPro.Runtime
+    - ToonyColorsPro.Demo.Editor
+    - KinoBloom.Runtime
+    - Sirenix.OdinInspector.Modules.UnityMathematics
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

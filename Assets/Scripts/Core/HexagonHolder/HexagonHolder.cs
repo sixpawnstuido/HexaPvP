@@ -92,14 +92,12 @@ public class HexagonHolder : MonoBehaviour
         gridHolder.hexagonHolder = this;
         gridHolder.ColliderState(false);
         gridHolder.ScanNeighborGrids();
-        gridHolder.SaveHexagonHolder();
-        gridHolder.CheckIfGridHolderOccupied = 1;
+      //  gridHolder.CheckIfGridHolderOccupied = 1;
         LevelManager.Instance.GameOverCheck();
-        if (!isChangeSlotHint) TutorialManager.Instance.IncreaseTutorialCount();
+      //  if (!isChangeSlotHint) TutorialManager.Instance.IncreaseTutorialCount();
         if (!isChangeSlotHint) LevelManager.Instance.HexagonHolderSpawnCheck();
         if (!isChangeSlotHint) LevelManager.Instance.MoveCount++;
         AudioManager.Instance.PlayHaptic(HapticPatterns.PresetType.LightImpact);
-        BlenderController.Instance.BlenderPopUpCheck();
     }
 
     public void BounceHexagonsToAnotherHolder(HexagonHolder targetHolder)
@@ -153,8 +151,6 @@ public class HexagonHolder : MonoBehaviour
             }
 
             yield return new WaitForSeconds(.4f);
-            if (gridHolder) gridHolder.SaveHexagonHolder();
-            if (targetHolder && targetHolder.gridHolder) targetHolder.gridHolder.SaveHexagonHolder();
             isJumpStopped = true;
             if (hexagonElements.Count == 0)
             {
@@ -211,48 +207,47 @@ public class HexagonHolder : MonoBehaviour
                 tempHexagonElement.transform.DOScale(Vector3.zero, .2f)
                     .OnComplete(() => Destroy(tempHexagonElement.gameObject));
                 if (i % 2 == 0) AudioManager.Instance.Play(AudioManager.AudioEnums.HexagonClear, .5f);
-                hexaCount++;
-                if (hexaCount % 5 == 0)
-                {
-                    if (_targetHexagonTypes.Contains(hexagonType))
-                    {
-                        BlenderElement blenderElement =
-                            BlenderController.Instance.CheckIfBlenderElementAvailable(hexagonType);
-                        if (blenderElement)
-                        {
-                            var fruit = _blenderFruits[hexagonType];
-                            var instantiatedFruit = Instantiate(fruit);
 
-                            Vector3 offset = new Vector3(0, 2.2f, -1.15f) + transform.position;
-                            ComboManager.Instance.IncreaseComboStage(offset);
+                //hexaCount++;
+                //if (hexaCount % 5 == 0)
+                //{
+                //    if (_targetHexagonTypes.Contains(hexagonType))
+                //    {
+                //        BlenderElement blenderElement =
+                //            BlenderController.Instance.CheckIfBlenderElementAvailable(hexagonType);
+                //        if (blenderElement)
+                //        {
+                //            var fruit = _blenderFruits[hexagonType];
+                //            var instantiatedFruit = Instantiate(fruit);
 
-                            if (TutorialManager.TutorialCompleted == 0)
-                            {
-                                instantiatedFruit.gameObject.layer = 10;
-                                instantiatedFruit.transform.GetChild(0).gameObject.layer = 10;
-                            }
+                //            Vector3 offset = new Vector3(0, 2.2f, -1.15f) + transform.position;
+                //            ComboManager.Instance.IncreaseComboStage(offset);
 
-                            instantiatedFruit.transform.position = transform.position;
-                            blenderElement.OnBlendAnimStart(instantiatedFruit.GetComponent<FullFruitElement>());
-                        }
-                    }
-                    else
-                    {
-                        // Vector3 offset = new Vector3(0,2.2f,-1.15f);
-                        // GoldPanel.Instance.ActivateGoldAnim(tempHexagonElement.transform.position+offset);
-                        LevelManager.Instance.SortedFruitCount++;
-                        if (LevelManager.Instance.SortedFruitCount <= 30 && LevelManager.Instance.LevelCount != 1)
-                        {
-                            Vector3 targetPos = transform.position + new Vector3(0, 2.2f, -1.15f);
-                            MetaProgress.Instance.FruitMoveToTarget(targetPos, hexagonType);
-                        }
-                    }
-                }
+                //            if (TutorialManager.TutorialCompleted == 0)
+                //            {
+                //                instantiatedFruit.gameObject.layer = 10;
+                //                instantiatedFruit.transform.GetChild(0).gameObject.layer = 10;
+                //            }
+
+                //            instantiatedFruit.transform.position = transform.position;
+                //            blenderElement.OnBlendAnimStart(instantiatedFruit.GetComponent<FullFruitElement>());
+                //        }
+                //    }
+                //    else
+                //    {
+                //        // Vector3 offset = new Vector3(0,2.2f,-1.15f);
+                //        // GoldPanel.Instance.ActivateGoldAnim(tempHexagonElement.transform.position+offset);
+                //        LevelManager.Instance.SortedFruitCount++;
+                //        if (LevelManager.Instance.SortedFruitCount <= 30 && LevelManager.Instance.LevelCount != 1)
+                //        {
+
+                //        }
+                //    }
+                //}
 
                 yield return new WaitForSeconds(.05f);
             }
 
-            if (gridHolder) gridHolder.SaveHexagonHolder();
             if (hexagonElements.Count > 0)
             {
                 gridHolder.ScanNeighborGrids();

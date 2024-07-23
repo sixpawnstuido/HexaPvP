@@ -95,7 +95,6 @@ public class HexagonMovement : MonoBehaviour
             {
                 _hexagonHolder.gridHolder.hexagonHolder = null;
                 _hexagonHolder.gridHolder.ColliderState(true);
-                _hexagonHolder.gridHolder.SaveHexagonHolder();
                 _changeSlotHint.Unfocus();
                 _changeSlotHint.DecreaseMoveCount();
             }
