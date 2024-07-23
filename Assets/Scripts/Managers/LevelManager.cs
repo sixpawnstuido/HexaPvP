@@ -89,7 +89,6 @@ public class LevelManager : Singleton<LevelManager>
         if (LevelCount > 15)
         {
             ClearAllSave();
-          //  TutorialManager.Instance.TutorialCount = 3;
             LevelCount = 2;
             TotalLevelCount = 16;
         }
@@ -100,13 +99,9 @@ public class LevelManager : Singleton<LevelManager>
 
     private IEnumerator LevelEndPanelCor()
     {
-      
-
 
         EventManager.CoreEvents.HexagonHolderColliderState(false);
         AudioManager.Instance.Play(AudioManager.AudioEnums.LevelEnd2, .6f);
-
-       
 
         levelEndVFX.Play();
 
@@ -117,13 +112,12 @@ public class LevelManager : Singleton<LevelManager>
 
         MainSceneCamera.Instance.CameraLevelEnd();
 
-
         yield return new WaitForSeconds(.9f);
 
-        JuiceTargetUIController.Instance.ClearTargets();
+     //   JuiceTargetUIController.Instance.ClearTargets();
 
         UIManager.Instance.nextLevelPanel.gameObject.SetActive(true);
-      CurrencyManager.Instance.AddGold(10);
+       //CurrencyManager.Instance.AddGold(10);
 
     }
 
@@ -150,33 +144,27 @@ public class LevelManager : Singleton<LevelManager>
         {
             HexagonMovement.HexagonClickBlock = true;
 
-            //EventManager.UIEvents.CanvasSetter(CanvasTypes.LoadingCanvas, true);
             InGameLoading.Instance.OpenHolder();
 
             UIManager.Instance.nextLevelPanel.gameObject.SetActive(false);
             DestroyLevel();
             SpawnCount = 0;
             AudioManager.Instance.Play(AudioManager.AudioEnums.Button, .6f);
-            //ProgressBarController.Instance.ResetProgressBar();
-           // yield return new WaitForSeconds(1);
             SpawnLevel();
             MainSceneCamera.Instance.ResetCam();
             yield return new WaitForEndOfFrame();
             yield return new WaitForSeconds(1.5f);
-            JuiceTargetUIController.Instance.TargetUILevelStartAnimation();
             yield return new WaitForEndOfFrame();
-            InGameLoading.Instance.CloseHolder();
             HintsEnable.Instance.OpenHints();
-            UIManager.Instance.levelProgressUIController.ChangeLevelProgressText(TotalLevelCount);
-           // EventManager.UIEvents.CanvasSetter(CanvasTypes.LoadingCanvas, false);
+            UIManager.Instance.levelProgressUIController.ChangeLevelProgressText(TotalLevelCount);;
             isGameOverPanelOpened = false;
             MoveCount = 0;
             SortedFruitLevel++;
             if(LevelCount>1) RestartButton.Instance.HolderSetactiveState(true);
-            Timer.Instance.ResetTimer();
-            MetaProgress.Instance.ResetProgress();
             AudioManager.LevelEndSoundCheck = false;
             AudioManager.Instance.PlayBGMusic();
+            InGameLoading.Instance.CloseHolder();
+            PvPController.Instance.SelectFirstPlayer();
         }
     }
 
@@ -189,7 +177,7 @@ public class LevelManager : Singleton<LevelManager>
 
         IEnumerator NextLevelButtonCor()
         {
-            Timer.Instance.ResetTimer();
+           // Timer.Instance.ResetTimer();
             InGameLoading.Instance.OpenHolder();
             UIManager.Instance.failedPanel.gameObject.SetActive(false);
             DestroyLevel();
@@ -232,7 +220,7 @@ public class LevelManager : Singleton<LevelManager>
                 {
                     if (isGameOverPanelOpened) yield break;
                     OpenFailedPanel();
-                    Timer.Instance.canUpdate = false;
+                    //Timer.Instance.canUpdate = false;
                 }
             }
         }

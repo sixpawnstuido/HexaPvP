@@ -19,8 +19,11 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitUntil(() => EventManager.SpawnEvents.LoadAllDatas != null);
             EventManager.SpawnEvents.LoadAllDatas();
+            StartLoadingScreen.Instance.StartAnimCor(4);
             yield return new WaitForSeconds(1);
             LevelManager.Instance.SpawnLevel();
+            yield return new WaitForSeconds(3);
+            PvPController.Instance.SelectFirstPlayer();
         }
     }
 

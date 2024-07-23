@@ -19,30 +19,22 @@ public class StartLoadingScreen : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
-
     }
 
-    private void Start()
+    public void StartAnimCor(float offset)
     {
-        if (!justOnce)
-        {
-            justOnce = true;
-
-            StartCoroutine(AnimCorr());
-        }
-        LoadingTextAnim();
+        StartCoroutine(AnimCorr(offset));
     }
 
-    private IEnumerator AnimCorr()
+    private IEnumerator AnimCorr(float offset)
     {
+      //  LoadingTextAnim();
+
         holder.SetActive(true);
 
-        DOVirtual.Float(0, 1, 4, (v) => slicedImage.fillAmount = v);
+        DOVirtual.Float(0, 1, offset, (v) => slicedImage.fillAmount = v);
 
-        yield return new WaitForSeconds(4);
-
-       // JuiceTargetUIController.Instance.TargetUILevelStartAnimation();
+        yield return new WaitForSeconds(offset);
 
         holder.SetActive(false);
     }

@@ -28,8 +28,6 @@ public class HexagonHolder : MonoBehaviour
 
     private HexagonMovement _hexagonMovement;
 
-    private Dictionary<HexagonTypes, GameObject> _blenderFruits;
-
     private LevelHolder _levelHolder;
 
     private List<HexagonTypes> _targetHexagonTypes = new();
@@ -53,7 +51,6 @@ public class HexagonHolder : MonoBehaviour
 
     private void Start()
     {
-        _blenderFruits = ResourceSystem.ReturnVisualData().blenderFruits;
         var levelTargetUIList = ResourceSystem.ReturnLevelInfo().levelInfoValues[LevelManager.Instance.LevelCount]
             .targetUITypes;
         for (int i = 0; i < levelTargetUIList.Count; i++)

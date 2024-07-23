@@ -22,16 +22,4 @@ public class LevelHolder : MonoBehaviour
         hexagonHolderController = GetComponentInChildren<HexagonHolderController>();
         hexagonSpawner = GetComponentInChildren<HexagonSpawner>();
     }
-
-    private void OnEnable()
-    {
-        // bool isLevelCountGreaterThenOne = LevelManager.Instance.LevelCount > 1;
-        // MetaProgress.Instance.HolderState(isLevelCountGreaterThenOne);
-    }
-
-    private void Start()
-    {
-        //TutorialManager.Instance.slots = this.slots;
-        //TutorialManager.Instance.fullFruitTutorial = this.fullFruitTutorial;
-    }
 }
