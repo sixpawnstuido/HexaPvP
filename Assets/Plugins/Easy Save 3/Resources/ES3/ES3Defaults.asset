@@ -33,7 +33,6 @@ MonoBehaviour:
     - Assembly-CSharp
     - PPv2URPConverters
     - Lofelt.NiceVibrations.Demo
-    - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - LeTai.TrueShadow.Demo
     - ToonyColorsPro.Editor
     - LeTai.TrueShadow
@@ -41,15 +40,14 @@ MonoBehaviour:
     - Adjust
     - AdjustEditor
     - Lofelt.NiceVibrations.Editor
-    - Sirenix.OdinInspector.CompatibilityLayer
     - Coffee.UIParticle.Editor
     - LeTai.TrueShadow.Editor
     - Coffee.UIParticle
     - Lofelt.NiceVibrations
     - ToonyColorsPro.Runtime
     - ToonyColorsPro.Demo.Editor
-    - KinoBloom.Runtime
     - Sirenix.OdinInspector.Modules.UnityMathematics
+    - KinoBloom.Runtime
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

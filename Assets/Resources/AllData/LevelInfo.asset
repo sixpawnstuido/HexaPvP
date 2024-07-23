@@ -62,14 +62,27 @@ MonoBehaviour:
     - Name: hexagonElementYOffset
       Entry: 4
       Data: 0.148
-    - Name: hexagonTypeStageCount
-      Entry: 6
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 13
       Data: 
-    - Name: hexagonTypesAtTheBeginning
-      Entry: 6
-      Data: 
-    - Name: hexagonTypesInLine
-      Entry: 6
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8
@@ -85,7 +98,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 3|LevelInfo+LevelInfoValues, Assembly-CSharp
+      Data: 4|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
       Data: 300
@@ -104,14 +117,18 @@ MonoBehaviour:
     - Name: hexagonElementYOffset
       Entry: 4
       Data: 0.148
-    - Name: hexagonTypeStageCount
-      Entry: 6
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
       Data: 
-    - Name: hexagonTypesAtTheBeginning
-      Entry: 6
-      Data: 
-    - Name: hexagonTypesInLine
-      Entry: 6
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8

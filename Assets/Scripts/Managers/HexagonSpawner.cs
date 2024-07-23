@@ -11,7 +11,10 @@ public class HexagonSpawner : MonoBehaviour
     private HexagonHolderController _hexagonHolderController;
 
     [SerializeField] private Transform _hexagonHolderSpawnPos;
+    [SerializeField] private Transform _hexagonHolderSpawnPosOpponent;
 
+    [SerializeField] private List<HexagonSlot> _hexagonSlotList;
+    [SerializeField] private List<HexagonSlot> _hexagonSlotListOpponent;
 
     private int _maxHexagonCountIndividual;
     private int _maxHexagonTypeCountIndividual;
@@ -22,7 +25,7 @@ public class HexagonSpawner : MonoBehaviour
 
     public List<int> _hexagonTypeStageCount;
     private List<HexagonTypes> _hexagonTypesAtTheBeginning;
-    private List<HexagonSlot> _hexagonSlotList;
+
 
     private int _spawnCount;
 
@@ -31,7 +34,6 @@ public class HexagonSpawner : MonoBehaviour
     {
         _gridHolderController = FindObjectOfType<GridHolderController>();
         _hexagonHolderController = FindObjectOfType<HexagonHolderController>();
-        _hexagonSlotList = GetComponentsInChildren<HexagonSlot>(true).ToList();
     }
 
     void Start()
@@ -51,6 +53,26 @@ public class HexagonSpawner : MonoBehaviour
     }
 
     private void SpawnPlayersHexagonHolder()
+    {
+        StartCoroutine(SpawnHexagonHolderCor());
+
+        IEnumerator SpawnHexagonHolderCor()
+        {
+            var hexagonHolder = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.HexagonHolder];
+            int spawnAmount = 3;
+            for (int i = 0; i < spawnAmount; i++)
+            {
+                var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity).GetComponent<HexagonHolder>();
+                hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
+                SpawnHexagonElements(hexagonHolderInstantiated);
+                hexagonHolderInstantiated.Init(AvailableSlot());
+                _spawnCount++;
+                yield return new WaitForSeconds(.1f);
+            }
+        }
+    }
+
+    public void SpawnOpponentHexagonHolder()
     {
         StartCoroutine(SpawnHexagonHolderCor());
 
