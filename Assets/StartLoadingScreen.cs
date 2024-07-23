@@ -42,7 +42,7 @@ public class StartLoadingScreen : MonoBehaviour
 
         yield return new WaitForSeconds(4);
 
-        JuiceTargetUIController.Instance.TargetUILevelStartAnimation();
+       // JuiceTargetUIController.Instance.TargetUILevelStartAnimation();
 
         holder.SetActive(false);
     }

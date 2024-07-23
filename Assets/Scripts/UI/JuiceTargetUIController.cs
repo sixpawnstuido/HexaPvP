@@ -6,8 +6,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class JuiceTargetUIController : Singleton<JuiceTargetUIController>
+public class JuiceTargetUIController : MonoBehaviour
 {
+    public static JuiceTargetUIController Instance;
+
     private List<JuiceTargetUIElement> _targetUIElementList = new();
 
     private HorizontalLayoutGroup _horizontalLayoutGroup;
@@ -21,6 +23,7 @@ public class JuiceTargetUIController : Singleton<JuiceTargetUIController>
 
     private void Awake()
     {
+        Instance = this;
         _horizontalLayoutGroup = GetComponent<HorizontalLayoutGroup>();
     }
 
