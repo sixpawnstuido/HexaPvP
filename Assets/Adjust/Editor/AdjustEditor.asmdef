@@ -1,0 +1,17 @@
+{
+    "name": "AdjustEditor",
+    "references": [
+        "GUID:de3a885c78fc04a50b18d862abf7378e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
