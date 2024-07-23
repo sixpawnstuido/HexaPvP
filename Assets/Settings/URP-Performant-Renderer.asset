@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   shader: {fileID: 4800000, guid: c3dd22b145db8426c8431df2f8e416b1, type: 3}
+  mat: {fileID: 0}
   interleavedRendering: 0
   renderPassEvent: 450
 --- !u!114 &11400000
@@ -33,7 +34,7 @@ MonoBehaviour:
       type: 3}
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
-  - {fileID: -7817201758569537514}
+  - {fileID: 0}
   m_RendererFeatureMap: 1660e7fa6ab88393
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
