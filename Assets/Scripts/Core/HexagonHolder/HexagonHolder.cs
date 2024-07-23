@@ -30,6 +30,8 @@ public class HexagonHolder : MonoBehaviour
 
     private LevelHolder _levelHolder;
 
+    public PlayerType playerType;
+
     private void Awake()
     {
         hexagonCollider = GetComponent<Collider>();
@@ -142,8 +144,6 @@ public class HexagonHolder : MonoBehaviour
         }
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
-    [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
     public void ClearHexagons()
     {
         StartCoroutine(ClearHexagonsCor());
@@ -271,16 +271,6 @@ public class HexagonHolder : MonoBehaviour
             transform.DORotate(new Vector3(0, 360, 0), .75f, RotateMode.LocalAxisAdd)
                 .SetEase(Ease.OutCubic);
             yield return new WaitForSeconds(.65f);
-            // transform.DOScale(Vector3.one * 1.2f, .1f).SetEase(Ease.Flash)
-            //.OnComplete(() => transform.DOScale(Vector3.one, .1f));
         }
     }
-
-    //private void HexagonElementBoneStimulatorState(bool state)
-    //{
-    //    for (int i = 0; i < hexagonElements.Count; i++)
-    //    {
-    //        hexagonElements[i].BoneStimulatorActiveState(state);
-    //    }
-    //}
 }

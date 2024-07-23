@@ -3,14 +3,13 @@ using Lofelt.NiceVibrations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HexagonMovement : MonoBehaviour
 {
     public static bool HexagonClickBlock;
-
-    private float _distance;
 
     private Camera _camera;
 
@@ -46,27 +45,18 @@ public class HexagonMovement : MonoBehaviour
     private void OnMouseDown()
     {
         if (HexagonClickBlock) return;
+        if (_changeSlotHint.isHintActive && _hexagonHolder.gridHolder is null || _clearSlotHint.isHintActive) return;
+        if (_hexagonHolder.playerType == PlayerType.OPPONENT) return; 
 
-        if (_changeSlotHint.isHintActive && _hexagonHolder.gridHolder is null || _clearSlotHint.isHintActive)
-        {
-            return;
-        }
         _canMove = true;
         AudioManager.Instance.Play(AudioManager.AudioEnums.Tap, .3f);
         isMoving = true;
-        //List<HexagonElement> fruits = _hexagonHolder.hexagonElements;
-
-        ////for (int i = 0; i < fruits.Count; i++)
-        ////{
-        ////    fruits[i].StimulatorAmount(.5f);
-        ////    fruits[i].MovementMuscleAmount(.2f);
-        ////    fruits[i].SqueezAmount(0);
-
-        ////}
     }
     private void Update()
     {
         if (!_canMove) return;
+        if (_hexagonHolder.playerType == PlayerType.OPPONENT) return;
+
         Plane plane = new Plane(Vector3.up, Vector3.up * _planeY);
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         float distance=0;
@@ -79,6 +69,8 @@ public class HexagonMovement : MonoBehaviour
     private void OnMouseUp()
     {
         if (!_canMove) return;
+        if (_hexagonHolder.playerType == PlayerType.OPPONENT) return;
+
         OnClickEndState();
         isMoving = false;
     }

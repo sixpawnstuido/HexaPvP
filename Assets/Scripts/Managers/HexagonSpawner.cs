@@ -22,7 +22,6 @@ public class HexagonSpawner : MonoBehaviour
 
     public List<int> _hexagonTypeStageCount;
     private List<HexagonTypes> _hexagonTypesAtTheBeginning;
-    private List<HexagonTypes> _hexagonTypesInLine;
     private List<HexagonSlot> _hexagonSlotList;
 
     private int _spawnCount;
@@ -38,21 +37,20 @@ public class HexagonSpawner : MonoBehaviour
     void Start()
     {
         AssingReferences();
-        SpawnPlayersHexagon();
+        SpawnPlayersHexagonHolder();
     }
 
     private void OnEnable()
     {
-        EventManager.SpawnEvents.SpawnHexagonHolder += SpawnPlayersHexagon;
+        EventManager.SpawnEvents.SpawnHexagonHolder += SpawnPlayersHexagonHolder;
     }
 
     private void OnDisable()
     {
-        EventManager.SpawnEvents.SpawnHexagonHolder -= SpawnPlayersHexagon;
+        EventManager.SpawnEvents.SpawnHexagonHolder -= SpawnPlayersHexagonHolder;
     }
 
-    [Button]
-    private void SpawnPlayersHexagon()
+    private void SpawnPlayersHexagonHolder()
     {
         StartCoroutine(SpawnHexagonHolderCor());
 
@@ -62,9 +60,7 @@ public class HexagonSpawner : MonoBehaviour
             int spawnAmount = 3;
             for (int i = 0; i < spawnAmount; i++)
             {
-                var hexagonHolderInstantiated =
-                    Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity)
-                        .GetComponent<HexagonHolder>();
+                var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity).GetComponent<HexagonHolder>();
                 hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
                 SpawnHexagonElements(hexagonHolderInstantiated);
                 hexagonHolderInstantiated.Init(AvailableSlot());
@@ -76,9 +72,6 @@ public class HexagonSpawner : MonoBehaviour
 
     private void SpawnHexagonElements(HexagonHolder hexagonHolder)
     {
-        float totalGridCount = _gridHolderController.HowManyGridsOccupied().Item1;
-        float occupiedGridCount = _gridHolderController.HowManyGridsOccupied().Item2;
-
         int hexagonTypeCount = 0;
         if (LevelManager.Instance.LevelCount == 1 && _spawnCount <= 5 && TutorialManager.TutorialCompleted == 0)
         {
@@ -89,27 +82,13 @@ public class HexagonSpawner : MonoBehaviour
             hexagonTypeCount = Random.Range(1, _maxHexagonTypeCountIndividual + 1);
         }
 
-
-        for (int i = 0; i < _hexagonTypeStageCount.Count; i++)
-        {
-            if (LevelManager.Instance.CollectedHexagonCount > _hexagonTypeStageCount[i])
-            {
-                var tempHexagonType = _hexagonTypesInLine[i];
-                if (!_hexagonTypesAtTheBeginning.Contains(tempHexagonType))
-                {
-                    _hexagonTypesAtTheBeginning.Add(tempHexagonType);
-                    NewFruitCheck.Instance.UpdateFruitTypeList(tempHexagonType);
-                }
-            }
-        }
-           
         List<HexagonElement> tempHexagons = new();
         for (int i = 0; i < hexagonTypeCount; i++)
         {
             HexagonTypes hexagonType;
             int maxHexagonCountIndividual = 1;
 
-            if (LevelManager.Instance.LevelCount == 1 && _spawnCount <= 5 && TutorialManager.TutorialCompleted == 0)
+            if (LevelManager.Instance.LevelCount == 1 && _spawnCount <= 5 && TutorialManager.TutorialCompleted == 0) //Level 1 Tut
             {
                 switch (_spawnCount)
                 {
@@ -138,20 +117,8 @@ public class HexagonSpawner : MonoBehaviour
             }
             else
             {
-                if (occupiedGridCount / totalGridCount >= .3f)
-                {
-                    var maxHexagonType = _gridHolderController.ReturnHexagonType(true);
-                    if (_hexagonTypesAtTheBeginning.Contains(maxHexagonType))
-                        _hexagonTypesAtTheBeginning.Remove(maxHexagonType);
-                    hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
-                    maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual - 1);
-                    _hexagonTypesAtTheBeginning.Add(maxHexagonType);
-                } 
-                else
-                {
-                    hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
-                    maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
-                }
+                hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
+                maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
             }
 
             NewFruitCheck.Instance.UpdateFruitTypeList(hexagonType);
@@ -199,8 +166,6 @@ public class HexagonSpawner : MonoBehaviour
         _newTypeMinIndex = levelInfo.newTypeMinIndex;
         _hexagonElementFirstLocalPosY = levelInfo.hexagonElementFirstLocalPosY;
         _hexagonElementYOffset = levelInfo.hexagonElementYOffset;
-        _hexagonTypeStageCount = levelInfo.hexagonTypeStageCount;
-        _hexagonTypesAtTheBeginning = new List<HexagonTypes>(levelInfo.hexagonTypesAtTheBeginning);
-        _hexagonTypesInLine = new List<HexagonTypes>(levelInfo.hexagonTypesInLine);
+        _hexagonTypesAtTheBeginning = new List<HexagonTypes>(levelInfo.hexagonTypes);
     }
 }

@@ -25,7 +25,6 @@ public class LevelInfo : SerializedScriptableObject
 
         [Header("HexagonType")]
         public List<int> hexagonTypeStageCount=new();
-        public List<HexagonTypes> hexagonTypesAtTheBeginning=new();
-        public List<HexagonTypes> hexagonTypesInLine=new();
+        public List<HexagonTypes> hexagonTypes=new();
     }
 }
