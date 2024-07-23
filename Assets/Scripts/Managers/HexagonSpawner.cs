@@ -24,7 +24,6 @@ public class HexagonSpawner : MonoBehaviour
     private List<HexagonTypes> _hexagonTypesAtTheBeginning;
     private List<HexagonTypes> _hexagonTypesInLine;
     private List<HexagonSlot> _hexagonSlotList;
-    private List<LevelInfo.LevelInfoValues.TargetUITypes> _targetUITypes;
 
     private int _spawnCount;
 
@@ -38,25 +37,22 @@ public class HexagonSpawner : MonoBehaviour
 
     void Start()
     {
-        // yield return new WaitUntil(() => EventManager.SpawnEvents.LoadAllDatas != null);
         AssingReferences();
-        SpawnHexagonHolder();
+        SpawnPlayersHexagon();
     }
 
     private void OnEnable()
     {
-        EventManager.SpawnEvents.SpawnHexagonHolder += SpawnHexagonHolder;
-        EventManager.SpawnEvents.SpawnHexagonHolderSave += SpawnHexagonSave;
+        EventManager.SpawnEvents.SpawnHexagonHolder += SpawnPlayersHexagon;
     }
 
     private void OnDisable()
     {
-        EventManager.SpawnEvents.SpawnHexagonHolder -= SpawnHexagonHolder;
-        EventManager.SpawnEvents.SpawnHexagonHolderSave -= SpawnHexagonSave;
+        EventManager.SpawnEvents.SpawnHexagonHolder -= SpawnPlayersHexagon;
     }
 
     [Button]
-    private void SpawnHexagonHolder()
+    private void SpawnPlayersHexagon()
     {
         StartCoroutine(SpawnHexagonHolderCor());
 
@@ -151,30 +147,6 @@ public class HexagonSpawner : MonoBehaviour
                     maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual - 1);
                     _hexagonTypesAtTheBeginning.Add(maxHexagonType);
                 } 
-                if (occupiedGridCount / totalGridCount > .75f)
-                {
-                    if (i == hexagonTypeCount - 1)
-                    {
-                        var t = Random.Range(0, 10);
-                        if (t >= 4)
-                        {
-                            hexagonType = _targetUITypes[Random.Range(0,_targetUITypes.Count)].hexagonType;
-                            maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 2);   
-                        }
-                        else
-                        {
-                            hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
-                            maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
-                        }
-                        
-                    }
-                    else
-                    {
-                        hexagonType = i == hexagonTypeCount - 1
-                            ? _gridHolderController.ReturnHexagonType(true)
-                            : _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
-                    }
-                }
                 else
                 {
                     hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
@@ -183,7 +155,6 @@ public class HexagonSpawner : MonoBehaviour
             }
 
             NewFruitCheck.Instance.UpdateFruitTypeList(hexagonType);
-
 
             for (int j = 0; j < maxHexagonCountIndividual; j++)
             {
@@ -200,36 +171,6 @@ public class HexagonSpawner : MonoBehaviour
                         0
                     );
             }
-        }
-    }
-
-    public void SpawnHexagonSave(GridHolder gridHolder, List<HexagonTypes> hexagonTypes, bool isFirstSpawn)
-    {
-        var hexagonHolder = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.HexagonHolder];
-
-        Vector3 gridOffset = new Vector3(0, .05f, 0);
-        var hexagonHolderInstantiated =
-            Instantiate(hexagonHolder, gridHolder.transform.position + gridOffset, Quaternion.identity)
-                .GetComponent<HexagonHolder>();
-        gridHolder.hexagonHolder = hexagonHolderInstantiated;
-        gridHolder.ColliderState(false);
-        hexagonHolderInstantiated.gridHolder = gridHolder;
-        hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
-        hexagonHolderInstantiated.GetComponent<Collider>().enabled = false;
-        int loopCount = 2;
-        for (int j = 0; j < loopCount; j++)
-        {
-            var hexagon = ResourceSystem.ReturnVisualData()
-                .hexagons[isFirstSpawn ? _hexagonTypesAtTheBeginning[Random.Range(0, loopCount)] : hexagonTypes[j]];
-            var hexagonElement = Instantiate(hexagon);
-            hexagonElement.transform.SetParent(hexagonHolderInstantiated.transform);
-            hexagonHolderInstantiated.hexagonElements.Add(hexagonElement);
-            hexagonElement.transform.localPosition =
-                new Vector3(
-                    0,
-                    j == 0 ? _hexagonElementFirstLocalPosY : j * _hexagonElementYOffset,
-                    0
-                );
         }
     }
 
@@ -261,6 +202,5 @@ public class HexagonSpawner : MonoBehaviour
         _hexagonTypeStageCount = levelInfo.hexagonTypeStageCount;
         _hexagonTypesAtTheBeginning = new List<HexagonTypes>(levelInfo.hexagonTypesAtTheBeginning);
         _hexagonTypesInLine = new List<HexagonTypes>(levelInfo.hexagonTypesInLine);
-        _targetUITypes=new List<LevelInfo.LevelInfoValues.TargetUITypes>(levelInfo.targetUITypes);
     }
 }

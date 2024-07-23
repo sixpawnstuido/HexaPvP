@@ -30,8 +30,6 @@ public class HexagonHolder : MonoBehaviour
 
     private LevelHolder _levelHolder;
 
-    private List<HexagonTypes> _targetHexagonTypes = new();
-
     private void Awake()
     {
         hexagonCollider = GetComponent<Collider>();
@@ -47,16 +45,6 @@ public class HexagonHolder : MonoBehaviour
     private void OnDisable()
     {
         EventManager.CoreEvents.HexagonHolderColliderState -= CanTouchHexagonHolder;
-    }
-
-    private void Start()
-    {
-        var levelTargetUIList = ResourceSystem.ReturnLevelInfo().levelInfoValues[LevelManager.Instance.LevelCount]
-            .targetUITypes;
-        for (int i = 0; i < levelTargetUIList.Count; i++)
-        {
-            _targetHexagonTypes.Add(levelTargetUIList[i].hexagonType);
-        }
     }
 
     public void Init(HexagonSlot hexagonSlot)
@@ -89,9 +77,7 @@ public class HexagonHolder : MonoBehaviour
         gridHolder.hexagonHolder = this;
         gridHolder.ColliderState(false);
         gridHolder.ScanNeighborGrids();
-      //  gridHolder.CheckIfGridHolderOccupied = 1;
         LevelManager.Instance.GameOverCheck();
-      //  if (!isChangeSlotHint) TutorialManager.Instance.IncreaseTutorialCount();
         if (!isChangeSlotHint) LevelManager.Instance.HexagonHolderSpawnCheck();
         if (!isChangeSlotHint) LevelManager.Instance.MoveCount++;
         AudioManager.Instance.PlayHaptic(HapticPatterns.PresetType.LightImpact);

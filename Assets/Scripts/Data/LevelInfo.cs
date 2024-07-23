@@ -8,13 +8,10 @@ using UnityEngine;
 public class LevelInfo : SerializedScriptableObject
 {
     public Dictionary<int, LevelInfoValues> levelInfoValues;
-
-    
     public class LevelInfoValues
     {
         [Header("DesiredHexagonAmount")]
         public int desiredHexagonAmount;
-        public List<TargetUITypes> targetUITypes;
 
         [Header("SpawnCount")]
         public int maxHexagonCountIndividual;
@@ -30,12 +27,5 @@ public class LevelInfo : SerializedScriptableObject
         public List<int> hexagonTypeStageCount=new();
         public List<HexagonTypes> hexagonTypesAtTheBeginning=new();
         public List<HexagonTypes> hexagonTypesInLine=new();
-
-        [Serializable]
-        public class TargetUITypes
-        {
-            public HexagonTypes hexagonType;
-            public int targetAmount;
-        }
     }
 }
