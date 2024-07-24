@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ComboManager : MonoBehaviour
@@ -45,6 +46,7 @@ public class ComboManager : MonoBehaviour
         }
     }
 
+    [Button]
     public void ComboState(Vector3 hexagonHolderPos)
     {
         var comboElement = ReturnComboElement();
