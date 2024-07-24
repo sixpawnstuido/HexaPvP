@@ -52,6 +52,7 @@ public class HexagonSpawner : MonoBehaviour
         EventManager.SpawnEvents.SpawnHexagonHolder -= SpawnPlayersHexagonHolder;
     }
 
+    [Button]
     private void SpawnPlayersHexagonHolder()
     {
         StartCoroutine(SpawnHexagonHolderCor());
@@ -65,13 +66,15 @@ public class HexagonSpawner : MonoBehaviour
                 var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity).GetComponent<HexagonHolder>();
                 hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
                 SpawnHexagonElements(hexagonHolderInstantiated);
-                hexagonHolderInstantiated.Init(AvailableSlot());
+                hexagonHolderInstantiated.Init(AvailableSlot(PlayerType.PLAYER));
+                hexagonHolderInstantiated.playerType = PlayerType.PLAYER;
                 _spawnCount++;
                 yield return new WaitForSeconds(.1f);
             }
         }
     }
 
+    [Button]
     public void SpawnOpponentHexagonHolder()
     {
         StartCoroutine(SpawnHexagonHolderCor());
@@ -82,10 +85,11 @@ public class HexagonSpawner : MonoBehaviour
             int spawnAmount = 3;
             for (int i = 0; i < spawnAmount; i++)
             {
-                var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity).GetComponent<HexagonHolder>();
+                var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPosOpponent.position, Quaternion.identity).GetComponent<HexagonHolder>();
                 hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
                 SpawnHexagonElements(hexagonHolderInstantiated);
-                hexagonHolderInstantiated.Init(AvailableSlot());
+                hexagonHolderInstantiated.Init(AvailableSlot(PlayerType.OPPONENT));
+                hexagonHolderInstantiated.playerType = PlayerType.OPPONENT;
                 _spawnCount++;
                 yield return new WaitForSeconds(.1f);
             }
@@ -163,9 +167,10 @@ public class HexagonSpawner : MonoBehaviour
         }
     }
 
-    private HexagonSlot AvailableSlot()
+    private HexagonSlot AvailableSlot(PlayerType playerType)
     {
-        var availableHexagonSlot = _hexagonSlotList
+        var hexagonSlotList = playerType == PlayerType.PLAYER ? _hexagonSlotList : _hexagonSlotListOpponent;
+        var availableHexagonSlot = hexagonSlotList
             .Where(g => g.hexagonHolder == null)
             .OrderBy(g => g.transform.position.x).FirstOrDefault();
 
