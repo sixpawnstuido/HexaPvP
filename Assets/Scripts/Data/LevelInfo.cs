@@ -8,6 +8,9 @@ using UnityEngine;
 public class LevelInfo : SerializedScriptableObject
 {
     public Dictionary<int, LevelInfoValues> levelInfoValues;
+    
+    [Header("HexagonType")]
+    public int spawnAmount;
     public class LevelInfoValues
     {
         [Header("DesiredHexagonAmount")]
@@ -25,5 +28,9 @@ public class LevelInfo : SerializedScriptableObject
 
         [Header("HexagonType")]
         public List<HexagonTypes> hexagonTypes=new();
+
+
+        [Header("Number Of HexagonHolders To Delete")]
+        public int numberOfHexagonHoldersToDelete;
     }
 }

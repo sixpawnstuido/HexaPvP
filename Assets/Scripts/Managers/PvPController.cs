@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,11 +10,6 @@ public enum PlayerType
     PLAYER,
     OPPONENT
 }
-
-public enum PlayOrderState
-{
-
-}
 public class PvPController : MonoBehaviour
 {
     public static PvPController Instance;
@@ -21,6 +17,8 @@ public class PvPController : MonoBehaviour
     private ArrowRotator _arrowRotator;
 
     public PlayerType playerType;
+
+    [SerializeField] private HandHolder handHolder;
 
     private void Awake()
     {
@@ -36,12 +34,14 @@ public class PvPController : MonoBehaviour
 
         _arrowRotator= GetComponentInChildren<ArrowRotator>();
     }
+    
+    [Button]
     public void SelectFirstPlayer()
     {
         StartCoroutine(SelectFirstPlayerCor());
         IEnumerator SelectFirstPlayerCor()
         {
-            EventManager.CoreEvents.HexagonHolderColliderState(false);
+            if(EventManager.CoreEvents.HexagonHolderColliderState is not null) EventManager.CoreEvents.HexagonHolderColliderState(false);
             _arrowRotator.ActivateArrow();
             yield return new WaitUntil(()=> _arrowRotator.isRotating);
             if (_arrowRotator.ReturnPlayerType()==PlayerType.PLAYER)
@@ -57,13 +57,68 @@ public class PvPController : MonoBehaviour
 
     private void OpponentState()
     {
-        playerType = PlayerType.OPPONENT;
-        EventManager.CoreEvents.HexagonHolderColliderState(false);
+        StartCoroutine(OpponentStateCor());
+        IEnumerator OpponentStateCor()
+        {
+            LevelManager.Instance.ReturnHexagonSpawner().SpawnOpponentHexagonHolder();
+            playerType = PlayerType.OPPONENT;
+            if (EventManager.CoreEvents.HexagonHolderColliderState is not null)
+                EventManager.CoreEvents.HexagonHolderColliderState(false);
+            
+            yield return new WaitForSeconds(0.2f);
+            
+            var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
+            var hexagonSlotList = hexagonSpawner.hexagonSlotListOpponent;
+            handHolder.StartPosToHexagonHolder(hexagonSlotList[0]);
+            yield return new WaitForSeconds(handHolder.startPosToHexagonDuration+.2f);
+            
+            if (EventManager.SpawnEvents.CheckIfAllGridsOccupied is null) yield break;
+            bool isAllGridsOccupied = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
+            if (isAllGridsOccupied)
+            {
+                var gridController = LevelManager.Instance.ReturnGridHolderController();
+                yield return new WaitUntil(()=>!gridController.IsThereAnyGridBouncing());
+                bool isAllGridsOccupiedStill = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
+                if (isAllGridsOccupiedStill)
+                {
+                    LevelManager.Instance.ReturnGridHolderController().ClearRandomGrids();
+                }
+            }
+            
+            
+            
+        }
+        
     }
 
     private void PlayerState()
     {
         playerType= PlayerType.PLAYER;
-        EventManager.CoreEvents.HexagonHolderColliderState(true);
+        if(EventManager.CoreEvents.HexagonHolderColliderState is not null) EventManager.CoreEvents.HexagonHolderColliderState(true);
+    }
+    
+    
+    public void GameOverCheck()
+    {
+        StartCoroutine(GameOverCheckCor());
+
+        IEnumerator GameOverCheckCor()
+        {
+            if (EventManager.SpawnEvents.CheckIfAllGridsOccupied is null) yield break;
+            bool isAllGridsOccupied = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
+            if (isAllGridsOccupied)
+            {
+                var gridController = LevelManager.Instance.ReturnGridHolderController();
+                if (gridController.IsThereAnyGridBouncing())
+                {
+                    yield return new WaitForSeconds(2);
+                    GameOverCheck();
+                }
+                else
+                {
+                  LevelManager.Instance.ReturnGridHolderController().ClearRandomGrids();
+                }
+            }
+        }
     }
 }

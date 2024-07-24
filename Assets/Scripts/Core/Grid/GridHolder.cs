@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class GridHolder : MonoBehaviour
 {
-
     public static Action OpenCollider;
 
     private Collider _collider;

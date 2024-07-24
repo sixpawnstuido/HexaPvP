@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Unity.VisualScripting;
 
@@ -29,8 +30,6 @@ public class GridHolderController : MonoBehaviour
     }
     private void Start()
     {
-        //SpawnRandomHexagonHoldersAtStart();
-
         var globalVariables = ResourceSystem.ReturnGlobalVariablesData();
         _fingerDistance = globalVariables is not null ? globalVariables.hexagonHolderFingerDistance : Vector3.up / 2;
     }
@@ -147,6 +146,47 @@ public class GridHolderController : MonoBehaviour
                     }
                     _justOnce = false;
                 }
+            }
+        }
+    }
+
+
+    [Button]
+    public void ClearRandomGrids()
+    {
+        StartCoroutine(ClearRandomGridsCor());
+        IEnumerator ClearRandomGridsCor()
+        {
+            int numberOfGridHoldersToDelete =
+                ResourceSystem
+                    .ReturnLevelInfo()
+                    .levelInfoValues[LevelManager.Instance.LevelCount]
+                    .numberOfHexagonHoldersToDelete;
+
+            var gridHolderList = gridHolderDic.Values.ToList();
+            var gridsToDelete = gridHolderList
+                .Where(g
+                    => g.transform.localPosition.x == 0.8f
+                       || g.transform.localPosition.x == -0.8f
+                       || g.transform.localPosition.x == 0f)
+                .Take(numberOfGridHoldersToDelete)
+                .ToList();
+        
+        
+            for (int i = 0; i < gridsToDelete.Count; i++)
+            {
+                if (gridHolderList[i].isLockActive) continue;
+                if (gridHolderList[i].hexagonHolder is null) continue;
+                var hexagonHolder = gridsToDelete[i].hexagonHolder;
+                hexagonHolder.transform
+                    .DOScale(0, .2f)
+                    .SetEase(Ease.InBack)
+                    .OnComplete(() =>
+                    {
+                        Destroy(hexagonHolder.gameObject);
+                    });
+                gridHolderList[i].hexagonHolder = null;
+               yield return new WaitForSeconds(0.1f);
             }
         }
     }

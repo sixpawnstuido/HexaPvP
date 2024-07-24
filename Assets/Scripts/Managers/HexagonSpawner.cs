@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class HexagonSpawner : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class HexagonSpawner : MonoBehaviour
     [SerializeField] private Transform _hexagonHolderSpawnPos;
     [SerializeField] private Transform _hexagonHolderSpawnPosOpponent;
 
-    [SerializeField] private List<HexagonSlot> _hexagonSlotList;
-    [SerializeField] private List<HexagonSlot> _hexagonSlotListOpponent;
+    [FormerlySerializedAs("_hexagonSlotList")] public List<HexagonSlot> hexagonSlotList;
+    [FormerlySerializedAs("_hexagonSlotListOpponent")] public List<HexagonSlot> hexagonSlotListOpponent;
 
     private int _maxHexagonCountIndividual;
     private int _maxHexagonTypeCountIndividual;
@@ -28,7 +29,6 @@ public class HexagonSpawner : MonoBehaviour
 
 
     private int _spawnCount;
-
 
     private void Awake()
     {
@@ -56,11 +56,10 @@ public class HexagonSpawner : MonoBehaviour
     private void SpawnPlayersHexagonHolder()
     {
         StartCoroutine(SpawnHexagonHolderCor());
-
         IEnumerator SpawnHexagonHolderCor()
         {
             var hexagonHolder = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.HexagonHolder];
-            int spawnAmount = 3;
+            int spawnAmount = ResourceSystem.ReturnLevelInfo().spawnAmount;
             for (int i = 0; i < spawnAmount; i++)
             {
                 var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity).GetComponent<HexagonHolder>();
@@ -82,7 +81,7 @@ public class HexagonSpawner : MonoBehaviour
         IEnumerator SpawnHexagonHolderCor()
         {
             var hexagonHolder = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.HexagonHolder];
-            int spawnAmount = 3;
+            int spawnAmount = ResourceSystem.ReturnLevelInfo().spawnAmount;
             for (int i = 0; i < spawnAmount; i++)
             {
                 var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPosOpponent.position, Quaternion.identity).GetComponent<HexagonHolder>();
@@ -169,7 +168,7 @@ public class HexagonSpawner : MonoBehaviour
 
     private HexagonSlot AvailableSlot(PlayerType playerType)
     {
-        var hexagonSlotList = playerType == PlayerType.PLAYER ? _hexagonSlotList : _hexagonSlotListOpponent;
+        var hexagonSlotList = playerType == PlayerType.PLAYER ? this.hexagonSlotList : hexagonSlotListOpponent;
         var availableHexagonSlot = hexagonSlotList
             .Where(g => g.hexagonHolder == null)
             .OrderBy(g => g.transform.position.x).FirstOrDefault();

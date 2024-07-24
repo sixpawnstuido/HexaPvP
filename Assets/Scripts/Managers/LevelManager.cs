@@ -7,6 +7,7 @@ using static LevelInfo;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    private LevelInfo _levelInfo;
     private Dictionary<int, LevelInfoValues> _levelInfoValues;
 
     private LevelHolder _currentLevel;
@@ -66,6 +67,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         yield return new WaitUntil(() => EventManager.SpawnEvents.LoadAllDatas != null);
         _levelInfoValues = ResourceSystem.ReturnLevelInfo().levelInfoValues;
+        _levelInfo = ResourceSystem.ReturnLevelInfo();
     }
 
     public void SpawnLevel()
@@ -88,7 +90,6 @@ public class LevelManager : Singleton<LevelManager>
         TotalLevelCount++;
         if (LevelCount > 15)
         {
-            ClearAllSave();
             LevelCount = 2;
             TotalLevelCount = 16;
         }
@@ -219,8 +220,7 @@ public class LevelManager : Singleton<LevelManager>
                 else
                 {
                     if (isGameOverPanelOpened) yield break;
-                    OpenFailedPanel();
-                    //Timer.Instance.canUpdate = false;
+                   ClearBoard();
                 }
             }
         }
@@ -229,7 +229,7 @@ public class LevelManager : Singleton<LevelManager>
     public void HexagonHolderSpawnCheck()
     {
         SpawnCount++;
-        if (SpawnCount % 3 == 0)
+        if (SpawnCount % _levelInfo.spawnAmount == 0)
         {
             EventManager.SpawnEvents.SpawnHexagonHolder();
         }
@@ -247,10 +247,8 @@ public class LevelManager : Singleton<LevelManager>
         return hexagonSpawner;
     }
 
-    [Button]
-    private void ClearAllSave()
+    public void ClearBoard()
     {
-        ES3.DeleteFile();
-        PlayerPrefs.DeleteAll();
+        _currentLevel.gridController.ClearRandomGrids();
     }
 }
