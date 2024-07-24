@@ -71,7 +71,7 @@ public class HexagonHolder : MonoBehaviour
         }
     }
 
-    public void HexagonPlacedState(GridHolder gridHolder, bool isChangeSlotHint = false)
+    public void HexagonPlacedState(GridHolder gridHolder, bool isChangeSlotHint = false,bool isOpponent=false)
     {
         this.gridHolder = gridHolder;
         if (_hexagonSlot && _hexagonSlot.hexagonHolder) _hexagonSlot.hexagonHolder = null;
@@ -80,8 +80,9 @@ public class HexagonHolder : MonoBehaviour
         gridHolder.ColliderState(false);
         gridHolder.ScanNeighborGrids();
         LevelManager.Instance.GameOverCheck();
-        if (!isChangeSlotHint) LevelManager.Instance.HexagonHolderSpawnCheck();
-        if (!isChangeSlotHint) LevelManager.Instance.MoveCount++;
+      //  if (!isChangeSlotHint) LevelManager.Instance.HexagonHolderSpawnCheck();
+        if (!isChangeSlotHint && isOpponent) LevelManager.Instance.MoveCount++;
+        PvPController.Instance.OrderChecker();
         AudioManager.Instance.PlayHaptic(HapticPatterns.PresetType.LightImpact);
     }
 

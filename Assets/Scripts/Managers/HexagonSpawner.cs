@@ -39,17 +39,23 @@ public class HexagonSpawner : MonoBehaviour
     void Start()
     {
         AssingReferences();
-        SpawnPlayersHexagonHolder();
+        SpawnHexagons();
     }
 
     private void OnEnable()
     {
-        EventManager.SpawnEvents.SpawnHexagonHolder += SpawnPlayersHexagonHolder;
+        EventManager.SpawnEvents.SpawnHexagonHolder += SpawnHexagons;
     }
 
     private void OnDisable()
     {
-        EventManager.SpawnEvents.SpawnHexagonHolder -= SpawnPlayersHexagonHolder;
+        EventManager.SpawnEvents.SpawnHexagonHolder -= SpawnHexagons;
+    }
+
+    public void SpawnHexagons()
+    {
+        SpawnPlayersHexagonHolder();
+        SpawnOpponentHexagonHolder();
     }
 
     [Button]

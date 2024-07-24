@@ -190,4 +190,10 @@ public class GridHolderController : MonoBehaviour
             }
         }
     }
+
+    public GridHolder ReturnAvailableGridHolder()
+    {
+        var gridHolder = gridHolderDic.Values.FirstOrDefault(grid=>!grid.isLockActive && grid.hexagonHolder is null);
+        return gridHolder;
+    }
 }

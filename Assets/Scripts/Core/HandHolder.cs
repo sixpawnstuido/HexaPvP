@@ -21,8 +21,12 @@ public class HandHolder : MonoBehaviour
     public float startPosToHexagonDuration;
     public float hexagonToGridDuration;
     public float gridToHexagonDuration;
+    public float hexagonHolderJumpDuration;
+    public float goBackToStartPosDuration;
 
     public HandState handState;
+
+    [SerializeField] private Transform handVisual;
 
     private void Awake()
     {
@@ -39,22 +43,33 @@ public class HandHolder : MonoBehaviour
         Vector3 hexagonPos = hexagonSlot.transform.position + Vector3.up;
         transform.DOMove(hexagonPos,startPosToHexagonDuration);
         yield return new WaitForSeconds(startPosToHexagonDuration);
-        transform
+        hexagonSlot.hexagonHolder.transform.SetParent(transform);
+    }
+
+
+    public void HexagonToGridHolder(GridHolder gridHolder=null,HexagonHolder hexagonHolder=null)
+    {
+        StartCoroutine(HexagonToGridHolderCor(gridHolder,hexagonHolder));
+    }
+
+    IEnumerator HexagonToGridHolderCor(GridHolder gridHolder=null,HexagonHolder hexagonHolder=null)
+    {
+        handVisual
             .DOScale(handSelectScale, .1f)
             .SetEase(Ease.OutBack);
-    }
-
-
-    public void HexagonToGridHolder(GridHolder gridHolder=null)
-    {
-        StartCoroutine(HexagonToGridHolderCor(gridHolder));
-    }
-
-    IEnumerator HexagonToGridHolderCor(GridHolder gridHolder=null)
-    {
+        hexagonHolder.transform.SetParent(transform);
         Vector3 hexagonPos = gridHolder.transform.position + Vector3.up;
         transform.DOMove(hexagonPos,hexagonToGridDuration);
         yield return new WaitForSeconds(hexagonToGridDuration);
+        hexagonHolder.transform.SetParent(null);
+        hexagonHolder.hexagonCollider.enabled = false;
+        Vector3 gridOffset = new Vector3(0, 0.05f, 0);
+        hexagonHolder.transform.DOMove(gridHolder.transform.position + gridOffset,hexagonHolderJumpDuration);
+        handVisual
+            .DOScale(1, .1f)
+            .SetEase(Ease.OutBack);
+        yield return new WaitForSeconds(hexagonHolderJumpDuration);
+        hexagonHolder.HexagonPlacedState(gridHolder,false,true);
     }
     
     
@@ -69,5 +84,11 @@ public class HandHolder : MonoBehaviour
         Vector3 hexagonPos = hexagonHolder.transform.position + Vector3.up;
         transform.DOMove(hexagonPos,gridToHexagonDuration);
         yield return new WaitForSeconds(gridToHexagonDuration);
+    }
+
+
+    public void GoBackToStartPos()
+    {
+        transform.DOMove(_firstPos, goBackToStartPosDuration);
     }
 }

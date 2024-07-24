@@ -9,8 +9,6 @@ using UnityEngine.UI;
 
 public class HexagonMovement : MonoBehaviour
 {
-    public static bool HexagonClickBlock;
-
     private Camera _camera;
 
     private Vector3 _fingerDistance;
@@ -24,9 +22,11 @@ public class HexagonMovement : MonoBehaviour
     private ClearSlotHint _clearSlotHint;
 
     [SerializeField] private float _planeY = 2;
+    
     public bool _canMove;
-
     public static bool isMoving;
+    public static bool HexagonClickBlock;
+    public static bool PvPBlock;
     private void Awake()
     {
         _camera = FindObjectOfType<MainSceneCamera>(true).GetComponent<Camera>();
@@ -45,6 +45,7 @@ public class HexagonMovement : MonoBehaviour
     private void OnMouseDown()
     {
         if (HexagonClickBlock) return;
+        if (PvPBlock) return;
         if (_changeSlotHint.isHintActive && _hexagonHolder.gridHolder is null || _clearSlotHint.isHintActive) return;
         if (_hexagonHolder.playerType == PlayerType.OPPONENT) return; 
 
@@ -55,6 +56,7 @@ public class HexagonMovement : MonoBehaviour
     private void Update()
     {
         if (!_canMove) return;
+        if (PvPBlock) return;
         if (_hexagonHolder.playerType == PlayerType.OPPONENT) return;
 
         Plane plane = new Plane(Vector3.up, Vector3.up * _planeY);
@@ -69,6 +71,7 @@ public class HexagonMovement : MonoBehaviour
     private void OnMouseUp()
     {
         if (!_canMove) return;
+        if (PvPBlock) return;
         if (_hexagonHolder.playerType == PlayerType.OPPONENT) return;
 
         OnClickEndState();

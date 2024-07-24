@@ -171,11 +171,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public void RestartLevel()
     {
-
         FailedEvent();
-
         StartCoroutine(NextLevelButtonCor());
-
         IEnumerator NextLevelButtonCor()
         {
            // Timer.Instance.ResetTimer();
@@ -228,9 +225,10 @@ public class LevelManager : Singleton<LevelManager>
 
     public void HexagonHolderSpawnCheck()
     {
-        SpawnCount++;
-        if (SpawnCount % _levelInfo.spawnAmount == 0)
+        //SpawnCount++;
+        if (SpawnCount % (_levelInfo.spawnAmount*2) == 0)
         {
+            Debug.Log("Spawnnn");
             EventManager.SpawnEvents.SpawnHexagonHolder();
         }
     }
