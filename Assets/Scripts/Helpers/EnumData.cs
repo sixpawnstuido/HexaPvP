@@ -51,6 +51,10 @@ public enum HexagonTypes
     POMEGRANTE=13,
     STRAWBERRY=14,
     TOMATO=15,
+    
+    
+    
+    
 }
 
 
