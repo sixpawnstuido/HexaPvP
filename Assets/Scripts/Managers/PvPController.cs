@@ -72,6 +72,8 @@ public class PvPController : SerializedMonoBehaviour
             HexagonMovement.PvPBlock = true;
 
             yield return new WaitForSeconds(0.2f);
+            avatarDict[PlayerType.PLAYER].SetColor(true);
+            avatarDict[PlayerType.OPPONENT].SetColor(false);
             
             // START POS TO HEXAGON
             var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
@@ -160,7 +162,8 @@ public class PvPController : SerializedMonoBehaviour
     private void PlayerState()
     {
         playerType= PlayerType.PLAYER;
-
+       avatarDict[PlayerType.PLAYER].SetColor(false);
+       avatarDict[PlayerType.OPPONENT].SetColor(true);
         HexagonMovement.PvPBlock = false;
     }
 

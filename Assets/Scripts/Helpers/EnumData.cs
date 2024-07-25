@@ -36,25 +36,11 @@ public enum LevelTypes
 public enum HexagonTypes
 {
     NONE=0,
-    WATERMELON=1,
-    LEMON=2,
-    ORANGE=3,
-    KIWII=4,
-    COCONUT=5,
-    APPLE=6,
-    AVACADO=7,
-    BROCCOLI=8,
-    GRAPEFRUIT=9,
-    PEACH=10,
-    PEAR=11,
-    PEPPER=12,
-    POMEGRANTE=13,
-    STRAWBERRY=14,
-    TOMATO=15,
-    
-    
-    
-    
+    FLOWER1,
+    FLOWER2,
+    FLOWER3,
+    FLOWER4,
+    FLOWER5,
 }
 
 

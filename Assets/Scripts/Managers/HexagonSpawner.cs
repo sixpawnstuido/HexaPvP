@@ -152,7 +152,7 @@ public class HexagonSpawner : MonoBehaviour
                 maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
            // }
 
-            NewFruitCheck.Instance.UpdateFruitTypeList(hexagonType);
+           // NewFruitCheck.Instance.UpdateFruitTypeList(hexagonType);
 
             for (int j = 0; j < maxHexagonCountIndividual; j++)
             {

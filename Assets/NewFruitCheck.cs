@@ -23,14 +23,14 @@ public class NewFruitCheck : MonoBehaviour
 
    public void UpdateFruitTypeList(HexagonTypes fruitType)
    {
-
-      if (fruitType == HexagonTypes.AVACADO || fruitType == HexagonTypes.ORANGE ||
-          fruitType == HexagonTypes.LEMON) return;
-      
-      if (!fruitTypeList.Contains(fruitType))
-      {
-         fruitTypeList.Add(fruitType);
-         ES3.Save("FruitTypeList",fruitTypeList);  
-      }
+      //
+      // if (fruitType == HexagonTypes.AVACADO || fruitType == HexagonTypes.ORANGE ||
+      //     fruitType == HexagonTypes.LEMON) return;
+      //
+      // if (!fruitTypeList.Contains(fruitType))
+      // {
+      //    fruitTypeList.Add(fruitType);
+      //    ES3.Save("FruitTypeList",fruitTypeList);  
+      // }
    }
 }

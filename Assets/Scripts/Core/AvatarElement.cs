@@ -18,6 +18,9 @@ public class AvatarElement : MonoBehaviour
 
     [ReadOnly] public int currentHealth;
     [ReadOnly] public int totalHealth;
+
+    [SerializeField] private Color32 greyColor;
+    [SerializeField] private Color32 originalColor;
     
 
     public void DecreaseHealth()
@@ -46,6 +49,18 @@ public class AvatarElement : MonoBehaviour
     }
 
     public void SetHealthText() => healthText.SetText($"{currentHealth}");
+
+    public void SetColor(bool isGrey)
+    {
+        if (isGrey)
+        {
+            heartImage.color=greyColor;
+        }
+        else
+        {
+            heartImage.color=originalColor;
+        }
+    }
 
 
     private void FailState()
