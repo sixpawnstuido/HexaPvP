@@ -61,7 +61,7 @@ MonoBehaviour:
       Data: 0.087
     - Name: hexagonElementYOffset
       Entry: 4
-      Data: 0.148
+      Data: 0.11
     - Name: hexagonTypes
       Entry: 7
       Data: 3|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],

@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4481705866774578012}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.32, y: 0.5, z: -3.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4481705866774578002
 BoxCollider:
@@ -42,9 +42,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4481705866774578012}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 0
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1, y: 0.7650182, z: 1}
   m_Center: {x: 0, y: 0.33870208, z: 0}
 --- !u!114 &4481705866774578013
@@ -59,10 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b2144e253c6d142bac9fd7a3bc1386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hexagonCollider: {fileID: 0}
   hexagonElements: []
   gridHolder: {fileID: 0}
   isJumpStopped: 0
-  _jumpOffet: {x: 0, y: 0.148, z: 0}
+  _jumpOffet: {x: 0, y: 0.11, z: 0}
+  playerType: 0
 --- !u!114 &4481705866774578000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,5 +85,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281e8a6b04a3cd141879351e9117d53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fingerDistance: {x: 0, y: 0.8, z: 0}
   _planeY: 2
+  _canMove: 0

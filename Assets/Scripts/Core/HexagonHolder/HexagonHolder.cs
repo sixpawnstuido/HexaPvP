@@ -123,9 +123,9 @@ public class HexagonHolder : MonoBehaviour
             for (int i = 0; i < upperHexagonElementList.Count; i++)
             {
                 var hexagonElement = upperHexagonElementList[i];
-                hexagonElement.StimulatorAmount(1);
+               // hexagonElement.StimulatorAmount(1);
                 //hexagonElement.RotationAmount(.5f);
-                hexagonElement.MovementMuscleAmount(.13f);
+               // hexagonElement.MovementMuscleAmount(.13f);
                 hexagonElement.transform.DOLocalJump(jumpPos.localPosition + new Vector3(0, _jumpOffet.y * (i + 1), 0),
                         .75f, 1, .4f)
                     .OnComplete(() => { });
