@@ -119,38 +119,38 @@ public class HexagonSpawner : MonoBehaviour
             HexagonTypes hexagonType;
             int maxHexagonCountIndividual = 1;
 
-            if (LevelManager.Instance.LevelCount == 1 && _spawnCount <= 5 && TutorialManager.TutorialCompleted == 0) //Level 1 Tut
-            {
-                switch (_spawnCount)
-                {
-                    case 0:
-                        hexagonType = HexagonTypes.ORANGE;
-                        break;
-                    case 1:
-                        hexagonType = HexagonTypes.AVACADO;
-                        break;
-                    case 2:
-                        hexagonType = HexagonTypes.LEMON;
-                        break;
-                    case 3:
-                        hexagonType = HexagonTypes.AVACADO;
-                        break;
-                    case 4:
-                        hexagonType = HexagonTypes.AVACADO;
-                        break;
-                    case 5:
-                        hexagonType = HexagonTypes.ORANGE;
-                        break;
-                    default:
-                        hexagonType = HexagonTypes.LEMON;
-                        break;
-                }
-            }
-            else
-            {
+            // if (LevelManager.Instance.LevelCount == 1 && _spawnCount <= 5 && TutorialManager.TutorialCompleted == 0) //Level 1 Tut
+            // {
+            //     switch (_spawnCount)
+            //     {
+            //         case 0:
+            //             hexagonType = HexagonTypes.ORANGE;
+            //             break;
+            //         case 1:
+            //             hexagonType = HexagonTypes.AVACADO;
+            //             break;
+            //         case 2:
+            //             hexagonType = HexagonTypes.LEMON;
+            //             break;
+            //         case 3:
+            //             hexagonType = HexagonTypes.AVACADO;
+            //             break;
+            //         case 4:
+            //             hexagonType = HexagonTypes.AVACADO;
+            //             break;
+            //         case 5:
+            //             hexagonType = HexagonTypes.ORANGE;
+            //             break;
+            //         default:
+            //             hexagonType = HexagonTypes.LEMON;
+            //             break;
+            //     }
+            // }
+            // else
+           // {
                 hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
                 maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
-            }
+           // }
 
             NewFruitCheck.Instance.UpdateFruitTypeList(hexagonType);
 
