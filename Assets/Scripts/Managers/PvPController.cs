@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +26,10 @@ public class PvPController : SerializedMonoBehaviour
 
     public int orderIndex;
 
+    private LevelInfo _levelInfo;
+
+    public int targetAmount;
+
     private void Awake()
     {
         if (Instance == null)
@@ -39,7 +44,12 @@ public class PvPController : SerializedMonoBehaviour
 
         _arrowRotator= GetComponentInChildren<ArrowRotator>();
     }
-    
+
+    private void Start()
+    {
+        _levelInfo = ResourceSystem.ReturnLevelInfo();
+    }
+
     [Button]
     public void SelectFirstPlayer()
     {
@@ -200,7 +210,7 @@ public class PvPController : SerializedMonoBehaviour
                 var gridController = LevelManager.Instance.ReturnGridHolderController();
                 yield return new WaitUntil(()=>!gridController.IsThereAnyGridBouncing());
                 LevelManager.Instance.HexagonHolderSpawnCheck();
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.5f);
                 if (playerType==PlayerType.PLAYER)
                 {
                     OpponentState();
@@ -211,7 +221,11 @@ public class PvPController : SerializedMonoBehaviour
                 }
             }
         }
-       
+    }
 
+
+    public void SetTargetAmount(int targetAmount)
+    {
+        this.targetAmount = targetAmount;
     }
 }
