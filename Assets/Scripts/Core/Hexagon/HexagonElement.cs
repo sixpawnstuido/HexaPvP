@@ -21,6 +21,8 @@ public class HexagonElement : MonoBehaviour
 
     private Collider _hexagonElementCollider;
 
+    [SerializeField] private SpriteRenderer icon;
+
     private void Awake()
     {
         _boneStimulators = GetComponentsInChildren<BonesStimulator>();
