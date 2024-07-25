@@ -1,31 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class AvatarElement : MonoBehaviour
 {
     public PlayerType playerType;
 
-    [SerializeField] private Image avatarImage;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI nameText;
 
-    [SerializeField] private TextMeshProUGUI collectedHexagonAmountText;
-    [SerializeField] private TextMeshProUGUI targetAmountText;
+    [SerializeField] private Image heartImage;
 
-    public void AvatarImageColor(Color32 color32)
+    [ReadOnly] public int currentHealth;
+    [ReadOnly] public int totalHealth;
+    
+
+    public void DecreaseHealth()
     {
-        avatarImage.color=color32;
+        currentHealth--;
+        SetFillAmount();
+        SetHealthText();
+        if (currentHealth <= 0)
+        {
+            FailState();
+        }
     }
 
-
-    public void SetCollectedHexagonText()
+    [Button]
+    public void SetFillAmount()
     {
-      //  collectedHexagonAmountText.SetText();
+        var targetFillAmount = Mathf.InverseLerp(0, totalHealth, currentHealth);
+        
+        heartImage.fillAmount = targetFillAmount;
     }
 
-    public void SetTargetAmountText(int target)
+    public void SetTargetAmount(int goal)
     {
-        targetAmountText.SetText($"{target}");
+        totalHealth = goal;
+        currentHealth = totalHealth;
+    }
+
+    public void SetHealthText() => healthText.SetText($"{currentHealth}");
+
+
+    private void FailState()
+    {
+        if (playerType == PlayerType.PLAYER)
+        {
+            
+        }
+        else
+        {
+            
+        }
     }
 }

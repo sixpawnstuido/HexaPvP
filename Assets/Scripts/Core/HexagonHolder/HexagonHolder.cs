@@ -188,47 +188,11 @@ public class HexagonHolder : MonoBehaviour
 
                 tempHexagonElement.fruitSmashVFX.gameObject.SetActive(true);
                 tempHexagonElement.fruitSmashVFX.transform.SetParent(null);
-                tempHexagonElement.transform.DOScale(Vector3.zero, .2f)
+                tempHexagonElement.transform
+                    .DOScale(Vector3.zero, .2f)
                     .OnComplete(() => Destroy(tempHexagonElement.gameObject));
                 if (i % 2 == 0) AudioManager.Instance.Play(AudioManager.AudioEnums.HexagonClear, .5f);
-
-                //hexaCount++;
-                //if (hexaCount % 5 == 0)
-                //{
-                //    if (_targetHexagonTypes.Contains(hexagonType))
-                //    {
-                //        BlenderElement blenderElement =
-                //            BlenderController.Instance.CheckIfBlenderElementAvailable(hexagonType);
-                //        if (blenderElement)
-                //        {
-                //            var fruit = _blenderFruits[hexagonType];
-                //            var instantiatedFruit = Instantiate(fruit);
-
-                //            Vector3 offset = new Vector3(0, 2.2f, -1.15f) + transform.position;
-                //            ComboManager.Instance.IncreaseComboStage(offset);
-
-                //            if (TutorialManager.TutorialCompleted == 0)
-                //            {
-                //                instantiatedFruit.gameObject.layer = 10;
-                //                instantiatedFruit.transform.GetChild(0).gameObject.layer = 10;
-                //            }
-
-                //            instantiatedFruit.transform.position = transform.position;
-                //            blenderElement.OnBlendAnimStart(instantiatedFruit.GetComponent<FullFruitElement>());
-                //        }
-                //    }
-                //    else
-                //    {
-                //        // Vector3 offset = new Vector3(0,2.2f,-1.15f);
-                //        // GoldPanel.Instance.ActivateGoldAnim(tempHexagonElement.transform.position+offset);
-                //        LevelManager.Instance.SortedFruitCount++;
-                //        if (LevelManager.Instance.SortedFruitCount <= 30 && LevelManager.Instance.LevelCount != 1)
-                //        {
-
-                //        }
-                //    }
-                //}
-
+                PvPController.Instance.DecreaseHealth();
                 yield return new WaitForSeconds(.05f);
             }
 

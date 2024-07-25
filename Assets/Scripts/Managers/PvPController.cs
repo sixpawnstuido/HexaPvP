@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEditor;
 using UnityEngine;
 
@@ -24,11 +25,8 @@ public class PvPController : SerializedMonoBehaviour
 
     [SerializeField] private Dictionary<PlayerType, AvatarElement> avatarDict;
 
-    public int orderIndex;
-
-    private LevelInfo _levelInfo;
-
-    public int targetAmount;
+    [ReadOnly] public int orderIndex;
+    [ReadOnly] public int targetAmount;
 
     private void Awake()
     {
@@ -43,11 +41,6 @@ public class PvPController : SerializedMonoBehaviour
         }
 
         _arrowRotator= GetComponentInChildren<ArrowRotator>();
-    }
-
-    private void Start()
-    {
-        _levelInfo = ResourceSystem.ReturnLevelInfo();
     }
 
     [Button]
@@ -77,8 +70,7 @@ public class PvPController : SerializedMonoBehaviour
         {
             playerType = PlayerType.OPPONENT;
             HexagonMovement.PvPBlock = true;
-            avatarDict[PlayerType.OPPONENT].AvatarImageColor(Color.green);
-            avatarDict[PlayerType.PLAYER].AvatarImageColor(Color.white);
+
             yield return new WaitForSeconds(0.2f);
             
             // START POS TO HEXAGON
@@ -168,35 +160,9 @@ public class PvPController : SerializedMonoBehaviour
     private void PlayerState()
     {
         playerType= PlayerType.PLAYER;
-        avatarDict[PlayerType.PLAYER].AvatarImageColor(Color.green);
-        avatarDict[PlayerType.OPPONENT].AvatarImageColor(Color.white);
+
         HexagonMovement.PvPBlock = false;
     }
-    
-    
-    public void GameOverCheck()
-    {
-        StartCoroutine(GameOverCheckCor());
-        IEnumerator GameOverCheckCor()
-        {
-            if (EventManager.SpawnEvents.CheckIfAllGridsOccupied is null) yield break;
-            bool isAllGridsOccupied = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
-            if (isAllGridsOccupied)
-            {
-                var gridController = LevelManager.Instance.ReturnGridHolderController();
-                if (gridController.IsThereAnyGridBouncing())
-                {
-                    yield return new WaitForSeconds(2);
-                    GameOverCheck();
-                }
-                else
-                {
-                  LevelManager.Instance.ReturnGridHolderController().ClearRandomGrids();
-                }
-            }
-        }
-    }
-
 
     public void OrderChecker()
     {
@@ -224,8 +190,19 @@ public class PvPController : SerializedMonoBehaviour
     }
 
 
-    public void SetTargetAmount(int targetAmount)
+    public void SetTargetAmount()
     {
-        this.targetAmount = targetAmount;
+        var levelInfo = ResourceSystem.ReturnLevelInfo();
+        targetAmount = levelInfo.levelInfoValues[LevelManager.Instance.LevelCount].desiredHexagonAmount;
+        avatarDict.ForEach(avatar=>avatar.Value.SetTargetAmount(targetAmount));
+        avatarDict.ForEach(avatar=>avatar.Value.SetFillAmount());
+        avatarDict.ForEach(avatar=>avatar.Value.SetHealthText());
     }
+
+    public void DecreaseHealth()
+    {
+        var playerTheDecreaseHealth = playerType == PlayerType.PLAYER ? PlayerType.OPPONENT : PlayerType.PLAYER; 
+        avatarDict[playerTheDecreaseHealth].DecreaseHealth();
+    }
+    
 }

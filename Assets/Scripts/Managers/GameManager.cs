@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
             StartLoadingScreen.Instance.StartAnimCor(4);
             yield return new WaitForSeconds(1);
             LevelManager.Instance.SpawnLevel();
+            PvPController.Instance.SetTargetAmount();
             yield return new WaitForSeconds(3);
             PvPController.Instance.SelectFirstPlayer();
         }
