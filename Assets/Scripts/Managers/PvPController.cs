@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -27,6 +26,9 @@ public class PvPController : SerializedMonoBehaviour
 
     [ReadOnly] public int orderIndex;
     [ReadOnly] public int targetAmount;
+
+
+    [ReadOnly] public bool isLevelEnd;
 
     private void Awake()
     {
@@ -193,7 +195,7 @@ public class PvPController : SerializedMonoBehaviour
     }
 
 
-    public void SetTargetAmount()
+    public void ResetAvatars()
     {
         var levelInfo = ResourceSystem.ReturnLevelInfo();
         targetAmount = levelInfo.levelInfoValues[LevelManager.Instance.LevelCount].desiredHexagonAmount;
@@ -204,8 +206,33 @@ public class PvPController : SerializedMonoBehaviour
 
     public void DecreaseHealth()
     {
+        if (isLevelEnd) return;
         var playerTheDecreaseHealth = playerType == PlayerType.PLAYER ? PlayerType.OPPONENT : PlayerType.PLAYER; 
         avatarDict[playerTheDecreaseHealth].DecreaseHealth();
+    }
+
+
+    public void LevelCompleted()
+    {
+        if(isLevelEnd) return;
+        isLevelEnd = true;
+        if (playerType == PlayerType.PLAYER)
+        {
+            SuccessState();
+        }
+        else
+        {
+            FailState();
+        }
+    }
+    public void SuccessState()
+    {
+        LevelManager.Instance.OpenNextLevelPanel();    
+    }
+
+    public void FailState()
+    {
+        LevelManager.Instance.OpenFailedPanel();
     }
     
 }

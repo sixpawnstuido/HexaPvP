@@ -21,16 +21,23 @@ public class AvatarElement : MonoBehaviour
 
     [SerializeField] private Color32 greyColor;
     [SerializeField] private Color32 originalColor;
-    
+
+    private PvPController _pvPController;
+
+    private void Awake()
+    {
+        _pvPController = GetComponentInParent<PvPController>();
+    }
 
     public void DecreaseHealth()
     {
         currentHealth--;
+        currentHealth = Mathf.Max(currentHealth, 0);
         SetFillAmount();
         SetHealthText();
-        if (currentHealth <= 0)
+        if (currentHealth == 0)
         {
-            FailState();
+            _pvPController.LevelCompleted();
         }
     }
 
@@ -59,19 +66,6 @@ public class AvatarElement : MonoBehaviour
         else
         {
             heartImage.color=originalColor;
-        }
-    }
-
-
-    private void FailState()
-    {
-        if (playerType == PlayerType.PLAYER)
-        {
-            
-        }
-        else
-        {
-            
         }
     }
 }

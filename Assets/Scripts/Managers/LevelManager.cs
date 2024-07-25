@@ -85,7 +85,6 @@ public class LevelManager : Singleton<LevelManager>
     public void OpenNextLevelPanel()
     {
         if (UIManager.Instance.failedPanel.gameObject.activeInHierarchy) return;
-        EventHandler.Instance.LevelComplete(LevelCount, MoveCount);
         LevelCount++;
         TotalLevelCount++;
         if (LevelCount > 15)
@@ -94,7 +93,6 @@ public class LevelManager : Singleton<LevelManager>
             TotalLevelCount = 16;
         }
         StopAllCoroutines();
-
         StartCoroutine(LevelEndPanelCor());
     }
 
@@ -115,10 +113,7 @@ public class LevelManager : Singleton<LevelManager>
 
         yield return new WaitForSeconds(.9f);
 
-     //   JuiceTargetUIController.Instance.ClearTargets();
-
         UIManager.Instance.nextLevelPanel.gameObject.SetActive(true);
-       //CurrencyManager.Instance.AddGold(10);
 
     }
 
@@ -134,7 +129,6 @@ public class LevelManager : Singleton<LevelManager>
     public void FailedEvent()
     {
         StopAllCoroutines();
-        EventManager.CoreEvents.HexagonHolderColliderState(false);
     }
 
     public void NextLevelButton()
@@ -175,19 +169,17 @@ public class LevelManager : Singleton<LevelManager>
         StartCoroutine(NextLevelButtonCor());
         IEnumerator NextLevelButtonCor()
         {
-           // Timer.Instance.ResetTimer();
             InGameLoading.Instance.OpenHolder();
             UIManager.Instance.failedPanel.gameObject.SetActive(false);
             DestroyLevel();
             SpawnCount = 0;
             CollectedHexagonCount = 0;
-            JuiceTargetUIController.Instance.ResetTargets();
             AudioManager.Instance.Play(AudioManager.AudioEnums.Button, .6f);
             yield return new WaitForSeconds(2);
             SpawnLevel();
+            PvPController.Instance.ResetAvatars();
             yield return new WaitForEndOfFrame();
             InGameLoading.Instance.CloseHolder();
-            //MetaProgress.Instance.ResetProgress();
             isGameOverPanelOpened = false;
             MoveCount = 0;
         }
