@@ -22,6 +22,7 @@ public class NextLevelPanel : MonoBehaviour
         _nextLevelButton.onClick.AddListener(()=>
         {
             LevelManager.IsLevelCompleted = false;
+            LevelManager.Instance.NextLevelButton();
         });
     }
 

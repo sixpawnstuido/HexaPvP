@@ -10,6 +10,7 @@ public class LevelManager : Singleton<LevelManager>
     private LevelInfo _levelInfo;
     private Dictionary<int, LevelInfoValues> _levelInfoValues;
 
+    public LevelHolder CurrentLevel => _currentLevel;
     private LevelHolder _currentLevel;
 
     public bool isGameOverPanelOpened;
@@ -150,16 +151,20 @@ public class LevelManager : Singleton<LevelManager>
             yield return new WaitForEndOfFrame();
             yield return new WaitForSeconds(1.5f);
             yield return new WaitForEndOfFrame();
-            HintsEnable.Instance.OpenHints();
+           // HintsEnable.Instance.OpenHints();
             UIManager.Instance.levelProgressUIController.ChangeLevelProgressText(TotalLevelCount);;
             isGameOverPanelOpened = false;
             MoveCount = 0;
             SortedFruitLevel++;
-            if(LevelCount>1) RestartButton.Instance.HolderSetactiveState(true);
+          //  if(LevelCount>1) RestartButton.Instance.HolderSetactiveState(true);
             AudioManager.LevelEndSoundCheck = false;
             AudioManager.Instance.PlayBGMusic();
             InGameLoading.Instance.CloseHolder();
+            PvPController.Instance.ResetAvatars();
             PvPController.Instance.SelectFirstPlayer();
+            PvPController.Instance.isLevelEnd = false;
+            
+            HexagonMovement.HexagonClickBlock = false;
         }
     }
 
@@ -178,6 +183,7 @@ public class LevelManager : Singleton<LevelManager>
             yield return new WaitForSeconds(2);
             SpawnLevel();
             PvPController.Instance.ResetAvatars();
+            PvPController.Instance.isLevelEnd = false;
             yield return new WaitForEndOfFrame();
             InGameLoading.Instance.CloseHolder();
             isGameOverPanelOpened = false;
