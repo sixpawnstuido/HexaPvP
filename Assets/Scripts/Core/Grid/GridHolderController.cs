@@ -99,7 +99,7 @@ public class GridHolderController : MonoBehaviour
 
     }
 
-    public bool IsThereAnyGridBouncing()
+    public bool AreThereAnyHexagonBouncing()
     {
         bool isAllBouncing = gridHolderDic.Values.Any(g => g.isBouncing);
         return isAllBouncing;

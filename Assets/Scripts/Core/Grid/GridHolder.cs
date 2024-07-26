@@ -234,7 +234,7 @@ public class GridHolder : MonoBehaviour
     public void ClearSlotHintState()
     {
         ClearSlotHint clearSlotHint = UIManager.Instance.clearSlotHint;
-        if (_gridController.IsThereAnyGridBouncing()
+        if (_gridController.AreThereAnyHexagonBouncing()
             || !UIManager.Instance.clearSlotHint.isHintActive
             || hexagonHolder is null) return;
 

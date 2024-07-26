@@ -435,6 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4134ffb528dba554e9f8166020928a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hexagonHolders: []
 --- !u!1 &3586976273892456817
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +885,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

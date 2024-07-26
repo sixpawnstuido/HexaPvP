@@ -14,8 +14,11 @@ public class HexagonSpawner : MonoBehaviour
     [SerializeField] private Transform _hexagonHolderSpawnPos;
     [SerializeField] private Transform _hexagonHolderSpawnPosOpponent;
 
-    [FormerlySerializedAs("_hexagonSlotList")] public List<HexagonSlot> hexagonSlotList;
-    [FormerlySerializedAs("_hexagonSlotListOpponent")] public List<HexagonSlot> hexagonSlotListOpponent;
+    [FormerlySerializedAs("_hexagonSlotList")]
+    public List<HexagonSlot> hexagonSlotList;
+
+    [FormerlySerializedAs("_hexagonSlotListOpponent")]
+    public List<HexagonSlot> hexagonSlotListOpponent;
 
     private int _maxHexagonCountIndividual;
     private int _maxHexagonTypeCountIndividual;
@@ -62,18 +65,22 @@ public class HexagonSpawner : MonoBehaviour
     private void SpawnPlayersHexagonHolder()
     {
         StartCoroutine(SpawnHexagonHolderCor());
+
         IEnumerator SpawnHexagonHolderCor()
         {
             var hexagonHolder = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.HexagonHolder];
             int spawnAmount = ResourceSystem.ReturnLevelInfo().spawnAmount;
             for (int i = 0; i < spawnAmount; i++)
             {
-                var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity).GetComponent<HexagonHolder>();
+                var hexagonHolderInstantiated =
+                    Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity)
+                        .GetComponent<HexagonHolder>();
                 hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
                 SpawnHexagonElements(hexagonHolderInstantiated);
                 hexagonHolderInstantiated.Init(AvailableSlot(PlayerType.PLAYER));
                 hexagonHolderInstantiated.playerType = PlayerType.PLAYER;
                 _spawnCount++;
+                _hexagonHolderController.hexagonHolders.Add(hexagonHolderInstantiated);
                 yield return new WaitForSeconds(.1f);
             }
         }
@@ -90,11 +97,14 @@ public class HexagonSpawner : MonoBehaviour
             int spawnAmount = ResourceSystem.ReturnLevelInfo().spawnAmount;
             for (int i = 0; i < spawnAmount; i++)
             {
-                var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPosOpponent.position, Quaternion.identity).GetComponent<HexagonHolder>();
+                var hexagonHolderInstantiated =
+                    Instantiate(hexagonHolder, _hexagonHolderSpawnPosOpponent.position, Quaternion.identity)
+                        .GetComponent<HexagonHolder>();
                 hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
                 SpawnHexagonElements(hexagonHolderInstantiated);
                 hexagonHolderInstantiated.Init(AvailableSlot(PlayerType.OPPONENT));
                 hexagonHolderInstantiated.playerType = PlayerType.OPPONENT;
+                _hexagonHolderController.hexagonHolders.Add(hexagonHolderInstantiated);
                 _spawnCount++;
                 yield return new WaitForSeconds(.1f);
             }
@@ -119,41 +129,9 @@ public class HexagonSpawner : MonoBehaviour
             HexagonTypes hexagonType;
             int maxHexagonCountIndividual = 1;
 
-            // if (LevelManager.Instance.LevelCount == 1 && _spawnCount <= 5 && TutorialManager.TutorialCompleted == 0) //Level 1 Tut
-            // {
-            //     switch (_spawnCount)
-            //     {
-            //         case 0:
-            //             hexagonType = HexagonTypes.ORANGE;
-            //             break;
-            //         case 1:
-            //             hexagonType = HexagonTypes.AVACADO;
-            //             break;
-            //         case 2:
-            //             hexagonType = HexagonTypes.LEMON;
-            //             break;
-            //         case 3:
-            //             hexagonType = HexagonTypes.AVACADO;
-            //             break;
-            //         case 4:
-            //             hexagonType = HexagonTypes.AVACADO;
-            //             break;
-            //         case 5:
-            //             hexagonType = HexagonTypes.ORANGE;
-            //             break;
-            //         default:
-            //             hexagonType = HexagonTypes.LEMON;
-            //             break;
-            //     }
-            // }
-            // else
-           // {
-                hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
-                maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
-           // }
-
-           // NewFruitCheck.Instance.UpdateFruitTypeList(hexagonType);
-
+            hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
+            maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
+            
             for (int j = 0; j < maxHexagonCountIndividual; j++)
             {
                 var hexagon = ResourceSystem.ReturnVisualData().hexagons[hexagonType];

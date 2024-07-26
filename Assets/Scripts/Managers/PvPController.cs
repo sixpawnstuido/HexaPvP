@@ -79,8 +79,8 @@ public class PvPController : SerializedMonoBehaviour
         HexagonMovement.PvPBlock = true;
 
         yield return new WaitForSeconds(0.2f);
-        avatarDict[PlayerType.PLAYER].SetColor(true);
-        avatarDict[PlayerType.OPPONENT].SetColor(false);
+        // avatarDict[PlayerType.PLAYER].SetColor(true);
+        // avatarDict[PlayerType.OPPONENT].SetColor(false);
 
         // START POS TO HEXAGON
         var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
@@ -96,7 +96,7 @@ public class PvPController : SerializedMonoBehaviour
         if (isAllGridsOccupied)
         {
             var gridController = LevelManager.Instance.ReturnGridHolderController();
-            yield return new WaitUntil(() => !gridController.IsThereAnyGridBouncing());
+            yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
             bool isAllGridsOccupiedStill = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
             if (isAllGridsOccupiedStill)
             {
@@ -134,7 +134,7 @@ public class PvPController : SerializedMonoBehaviour
         if (isAllGridsOccupied2)
         {
             var gridController = LevelManager.Instance.ReturnGridHolderController();
-            yield return new WaitUntil(() => !gridController.IsThereAnyGridBouncing());
+            yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
             bool isAllGridsOccupiedStill = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
             if (isAllGridsOccupiedStill)
             {
@@ -172,8 +172,8 @@ public class PvPController : SerializedMonoBehaviour
     private void PlayerState()
     {
         playerType = PlayerType.PLAYER;
-        avatarDict[PlayerType.PLAYER].SetColor(false);
-        avatarDict[PlayerType.OPPONENT].SetColor(true);
+        // avatarDict[PlayerType.PLAYER].SetColor(false);
+        // avatarDict[PlayerType.OPPONENT].SetColor(true);
         HexagonMovement.PvPBlock = false;
     }
 
@@ -187,10 +187,18 @@ public class PvPController : SerializedMonoBehaviour
             LevelManager.Instance.SpawnCount++;
             if (orderIndex % 2 == 0)
             {
+                yield return new WaitForSeconds(0.1f);
                 var gridController = LevelManager.Instance.ReturnGridHolderController();
-                yield return new WaitUntil(() => !gridController.IsThereAnyGridBouncing());
+                var hexagonHolderController = LevelManager.Instance.ReturnHexagonSpawnerHexagonHolderController();
+                yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
+                yield return new WaitForSeconds(0.1f);
+                for (int i = 0; i < 5; i++)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitUntil(() => !hexagonHolderController.CheckHexagonClearState());
+                    yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
+                }
                 LevelManager.Instance.HexagonHolderSpawnCheck();
-                yield return new WaitForSeconds(0.5f);
                 if (playerType == PlayerType.PLAYER)
                 {
                     OpponentState();
@@ -213,11 +221,11 @@ public class PvPController : SerializedMonoBehaviour
         avatarDict.ForEach(avatar => avatar.Value.SetHealthText());
     }
 
-    public void DecreaseHealth()
+    public void DecreaseHealth(PlayerType playerType)
     {
         if (isLevelEnd) return;
-        var playerTheDecreaseHealth = playerType == PlayerType.PLAYER ? PlayerType.OPPONENT : PlayerType.PLAYER;
-        avatarDict[playerTheDecreaseHealth].DecreaseHealth();
+        var playerTypeTemp = playerType == PlayerType.PLAYER ? PlayerType.OPPONENT : PlayerType.PLAYER;
+        avatarDict[playerTypeTemp].DecreaseHealth();
     }
 
 
@@ -244,5 +252,14 @@ public class PvPController : SerializedMonoBehaviour
     public void FailState()
     {
         LevelManager.Instance.OpenFailedPanel();
+    }
+
+
+    public AvatarElement ReturnTarget()
+    {
+        var avatarElement = playerType == PlayerType.PLAYER
+            ? avatarDict[PlayerType.OPPONENT]
+            : avatarDict[PlayerType.PLAYER];
+        return avatarElement;
     }
 }

@@ -14,6 +14,7 @@ public class AvatarElement : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI nameText;
 
+    public Image HeartImage => heartImage;
     [SerializeField] private Image heartImage;
 
     [ReadOnly] public int currentHealth;

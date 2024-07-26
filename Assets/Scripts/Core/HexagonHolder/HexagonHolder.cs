@@ -22,6 +22,7 @@ public class HexagonHolder : MonoBehaviour
     [ReadOnly] public GridHolder gridHolder;
 
     [ReadOnly] public bool isJumpStopped;
+    public bool isClearHappening;
 
     [SerializeField] private Vector3 _jumpOffet;
 
@@ -152,6 +153,9 @@ public class HexagonHolder : MonoBehaviour
 
         IEnumerator ClearHexagonsCor()
         {
+
+            var playerTypeAtStart = PvPController.Instance.playerType;
+            
             //To find hexagons at the top
             var hexagonType = ReturnLastHexagonsType();
             List<HexagonElement> upperHexagonElementList = new();
@@ -173,12 +177,11 @@ public class HexagonHolder : MonoBehaviour
             if (hexagonElements.Count == 0 && gridHolder) gridHolder.CheckIfGridHolderEmpty();
 
             int hexaCount = 0;
+            isClearHappening = true;
             //Clear Hexagon Anim
             for (int i = 0; i < upperHexagonElementList.Count; i++)
             {
                 LevelManager.Instance.CollectedHexagonCount++;
-                //  ProgressBarController.Instance.UpdateProgressBar();
-                // if (EventManager.CoreEvents.CheckIfLockUnlocked != null) EventManager.CoreEvents.CheckIfLockUnlocked();
                 var tempHexagonElement = upperHexagonElementList[i];
                 if (i < upperHexagonElementList.Count - 1)
                 {
@@ -193,10 +196,11 @@ public class HexagonHolder : MonoBehaviour
                     .DOScale(Vector3.zero, .2f)
                     .OnComplete(() => Destroy(tempHexagonElement.gameObject));
                 if (i % 2 == 0) AudioManager.Instance.Play(AudioManager.AudioEnums.HexagonClear, .5f);
-                PvPController.Instance.DecreaseHealth();
+                PvPController.Instance.DecreaseHealth(playerTypeAtStart);
+                tempHexagonElement.ActivateTrail();
                 yield return new WaitForSeconds(.05f);
             }
-
+            isClearHappening = false;
             if (hexagonElements.Count > 0)
             {
                 gridHolder.ScanNeighborGrids();

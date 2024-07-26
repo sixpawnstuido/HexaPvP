@@ -208,7 +208,7 @@ public class LevelManager : Singleton<LevelManager>
             {
                 var gridController =
                     _currentLevel ? _currentLevel.gridController : FindObjectOfType<GridHolderController>();
-                if (gridController.IsThereAnyGridBouncing())
+                if (gridController.AreThereAnyHexagonBouncing())
                 {
                     yield return new WaitForSeconds(2);
                     GameOverCheck();
@@ -242,6 +242,12 @@ public class LevelManager : Singleton<LevelManager>
     {
         var hexagonSpawner = _currentLevel.hexagonSpawner;
         return hexagonSpawner;
+    }
+    
+    public HexagonHolderController ReturnHexagonSpawnerHexagonHolderController()
+    {
+        var hexagonHolderController = _currentLevel.hexagonHolderController;
+        return hexagonHolderController;
     }
 
     public void ClearBoard()
