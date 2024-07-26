@@ -255,9 +255,9 @@ public class PvPController : SerializedMonoBehaviour
     }
 
 
-    public AvatarElement ReturnTarget()
+    public AvatarElement ReturnAvatarElement(PlayerType player)
     {
-        var avatarElement = playerType == PlayerType.PLAYER
+        var avatarElement = player == PlayerType.PLAYER
             ? avatarDict[PlayerType.OPPONENT]
             : avatarDict[PlayerType.PLAYER];
         return avatarElement;

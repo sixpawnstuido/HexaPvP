@@ -11,19 +11,12 @@ public class TrailVFX : MonoBehaviour
     
     [SerializeField] private AnimationCurve trailMotionCurve;
     [SerializeField] private List<AnimationCurve> trailMotionCurveList;
+    
 
-
-
-    public void Init()
-    {
-        
-    }
-
-    [Button]
-    public void TrailMotion()
+    public void TrailMotion(PlayerType playerType)
     {
         float time = 0;
-        var avatarElement = PvPController.Instance.ReturnTarget();
+        var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
         var avatarTarget = avatarElement.HeartImage;
         trailVFX.transform.DOMove(avatarTarget.transform.position, .45f)
             .OnUpdate(() =>

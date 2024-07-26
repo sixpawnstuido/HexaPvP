@@ -22,9 +22,6 @@ public class HexagonElement : MonoBehaviour
     private Collider _hexagonElementCollider;
 
     [SerializeField] private SpriteRenderer icon;
-
-    [SerializeField] private TrailVFX trailVFX;
-
     private void Awake()
     {
         _boneStimulators = GetComponentsInChildren<BonesStimulator>();
@@ -97,12 +94,5 @@ public class HexagonElement : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             Destroy(gameObject);
         }
-    }
-
-    public void ActivateTrail()
-    {
-        trailVFX.gameObject.SetActive(true);
-        trailVFX.transform.SetParent(null);
-        trailVFX.TrailMotion();
     }
 }
