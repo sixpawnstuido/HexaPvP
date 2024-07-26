@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[SelectionBase]
 public class GridHolder : MonoBehaviour
 {
     public static Action OpenCollider;

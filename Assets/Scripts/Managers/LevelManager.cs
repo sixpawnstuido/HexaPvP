@@ -184,6 +184,7 @@ public class LevelManager : Singleton<LevelManager>
             SpawnLevel();
             PvPController.Instance.ResetAvatars();
             PvPController.Instance.isLevelEnd = false;
+            PvPController.Instance.SelectFirstPlayer();
             yield return new WaitForEndOfFrame();
             InGameLoading.Instance.CloseHolder();
             isGameOverPanelOpened = false;

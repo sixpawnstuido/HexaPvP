@@ -12,6 +12,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[SelectionBase]
 public class HexagonHolder : MonoBehaviour
 {
     [HideInInspector] public Collider hexagonCollider;
