@@ -32,7 +32,6 @@ public class HandHolder : MonoBehaviour
     public HandState handState;
 
     [SerializeField] private Transform handVisual;
-
     private void Awake()
     {
         _firstPos = transform.position;
@@ -65,7 +64,8 @@ public class HandHolder : MonoBehaviour
             .DOScale(handSelectScale, .1f)
             .SetEase(Ease.OutBack);
         hexagonHolder.transform.SetParent(transform);
-        Vector3 hexagonPos = gridHolder.transform.position + Vector3.up;
+     //   hexagonHolder.transform.position = new Vector3(hexagonHolder.transform.position.x,hexagonHolder.transform.position.y+1.5f,hexagonHolder.transform.position.z-.86f);
+        Vector3 hexagonPos = gridHolder.transform.position +new Vector3(0,1.5f,-.86f);
         transform
             .DOMove(hexagonPos,hexagonToGridDuration)
             .SetEase(hexagonToGridEase);
