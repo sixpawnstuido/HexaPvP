@@ -33,7 +33,7 @@ public class TrailVFX : MonoBehaviour
             .OnComplete(() =>
             {
                 avatarElement.TrailArrivedState();
-                DOVirtual.DelayedCall(0.5f, () => gameObject.SetActive(false));
+                DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
             });
     }
 

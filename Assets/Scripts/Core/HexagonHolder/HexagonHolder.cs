@@ -34,6 +34,12 @@ public class HexagonHolder : MonoBehaviour
 
     public PlayerType playerType;
 
+    public LayerMask SecondCamLayerMask => secondCamLayerMask;
+    private LayerMask secondCamLayerMask=1<<10;
+    
+    public LayerMask HexagonHolderLayerMask => hexagonHolderLayerMask;
+    private LayerMask hexagonHolderLayerMask=1<<7;
+
     private void Awake()
     {
         hexagonCollider = GetComponent<Collider>();
@@ -256,5 +262,15 @@ public class HexagonHolder : MonoBehaviour
         trailVFX.gameObject.SetActive(true);
         trailVFX.transform.position=trailPos;
         trailVFX.TrailMotion(playerType);
+    }
+    
+    
+    public void SetLayerRecursively(GameObject obj, LayerMask layerMask)
+    {
+        obj.layer = Mathf.RoundToInt(Mathf.Log(layerMask.value, 2));
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layerMask);
+        }
     }
 }

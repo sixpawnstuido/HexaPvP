@@ -6,9 +6,10 @@ using System.Security.Cryptography;
 using Sirenix.OdinInspector;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HexagonMovement : MonoBehaviour
+public class HexagonMovement : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
     private Camera _camera;
 
@@ -44,8 +45,8 @@ public class HexagonMovement : MonoBehaviour
         var globalVariables = ResourceSystem.ReturnGlobalVariablesData();
         _fingerDistance = globalVariables is not null ? globalVariables.hexagonHolderFingerDistance : Vector3.up / 2;
     }
-
-    private void OnMouseDown()
+    
+    public void OnPointerDown(PointerEventData eventData)
     {
         if (HexagonClickBlock) return;
         if (PvPBlock) return;
@@ -72,8 +73,8 @@ public class HexagonMovement : MonoBehaviour
             transform.position = ray.GetPoint(distance) + _fingerDistance;
         }
     }
-
-    private void OnMouseUp()
+    
+    public void OnPointerUp(PointerEventData eventData)
     {
         if (!_canMove) return;
         if (PvPBlock) return;
@@ -117,4 +118,6 @@ public class HexagonMovement : MonoBehaviour
     {
         _firstPos = target.position;
     }
+
+
 }
