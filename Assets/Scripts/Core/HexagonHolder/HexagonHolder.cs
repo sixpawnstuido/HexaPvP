@@ -33,9 +33,6 @@ public class HexagonHolder : MonoBehaviour
     private LevelHolder _levelHolder;
 
     public PlayerType playerType;
-    
-    [SerializeField] private TrailVFX trailVFX;
-
 
     private void Awake()
     {
@@ -199,11 +196,13 @@ public class HexagonHolder : MonoBehaviour
                     .DOScale(Vector3.zero, .2f)
                     .OnComplete(() => Destroy(tempHexagonElement.gameObject));
                 if (i % 2 == 0) AudioManager.Instance.Play(AudioManager.AudioEnums.HexagonClear, .5f);
-                PvPController.Instance.DecreaseHealth(playerTypeAtStart);
+            //    PvPController.Instance.DecreaseHealth(playerTypeAtStart);
                 if (i == upperHexagonElementList.Count - 1)
                 {
+                    int hexagonElementAmount = upperHexagonElementList.Count;
                     Vector3 trailPos = tempHexagonElement.transform.position;
-                    ActivateTrail(playerTypeAtStart, trailPos);
+                    var trail = TrailVFXPool.Instance.GetParticle();
+                    ActivateTrail(playerTypeAtStart, trailPos,trail,hexagonElementAmount);
                 }
                 yield return new WaitForSeconds(.05f);
             }
@@ -252,10 +251,9 @@ public class HexagonHolder : MonoBehaviour
     }
     
     
-    public void ActivateTrail(PlayerType playerTyp,Vector3 trailPos)
+    public void ActivateTrail(PlayerType playerTyp,Vector3 trailPos,TrailVFX trailVFX,int hexagonElementAmount)
     {
         trailVFX.gameObject.SetActive(true);
-        trailVFX.transform.SetParent(null);
         trailVFX.transform.position=trailPos;
         trailVFX.TrailMotion(playerType);
     }

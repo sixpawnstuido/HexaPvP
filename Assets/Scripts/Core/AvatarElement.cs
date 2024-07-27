@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class AvatarElement : MonoBehaviour
     public Image HeartImage => heartImage;
     [SerializeField] private Image heartImage;
 
+    [SerializeField] private Transform heartParent;
+
     [ReadOnly] public int currentHealth;
     [ReadOnly] public int totalHealth;
 
@@ -25,6 +28,7 @@ public class AvatarElement : MonoBehaviour
 
     private PvPController _pvPController;
 
+    [SerializeField] private ParticleSystem trailArrivedVFX;
     private void Awake()
     {
         _pvPController = GetComponentInParent<PvPController>();
@@ -67,6 +71,28 @@ public class AvatarElement : MonoBehaviour
         else
         {
             heartImage.color=originalColor;
+        }
+    }
+
+
+    public void TrailArrivedState()
+    {
+        trailArrivedVFX.Stop();
+        trailArrivedVFX.Play();
+        if (!DOTween.IsTweening(transform.GetHashCode()))
+        {
+            heartParent
+                .DOPunchScale(new Vector3(-.1f, 0.1f, 0), .3f, 10) 
+                .SetId(transform.GetHashCode());
+        }
+
+        if (playerType==PlayerType.OPPONENT)
+        {
+            AudioManager.Instance.Play(AudioManager.AudioEnums.TargetCompleted);
+        }
+        else
+        {
+            AudioManager.Instance.Play(AudioManager.AudioEnums.Cut3);
         }
     }
 }

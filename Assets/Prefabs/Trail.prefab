@@ -145,6 +145,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  blueColor:
+    serializedVersion: 2
+    rgba: 4293366658
+  redColor:
+    serializedVersion: 2
+    rgba: 4283582956
 --- !u!1001 &945528661749519087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,6 +222,26 @@ PrefabInstance:
     - target: {fileID: 400826, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19834036, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19834036, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.32013428
+      objectReference: {fileID: 0}
+    - target: {fileID: 19834036, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.28782475
+      objectReference: {fileID: 0}
+    - target: {fileID: 19834036, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.9245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 19896864, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19950544, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
       propertyPath: m_Materials.Array.data[0]

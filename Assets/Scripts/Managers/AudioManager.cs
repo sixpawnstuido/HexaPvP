@@ -115,6 +115,7 @@ public class AudioManager : SerializedMonoBehaviour
         BlenderReset,
         Combo,
         MetaProgress,
-        FingerTap
+        FingerTap,
+        Cut3,
     }
 }

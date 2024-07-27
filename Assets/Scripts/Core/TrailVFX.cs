@@ -9,8 +9,10 @@ public class TrailVFX : MonoBehaviour
 
     [SerializeField] private ParticleSystem trailVFX;
     
-    [SerializeField] private AnimationCurve trailMotionCurve;
     [SerializeField] private List<AnimationCurve> trailMotionCurveList;
+    
+    [SerializeField] private Color32 blueColor;
+    [SerializeField] private Color32 redColor;
     
 
     public void TrailMotion(PlayerType playerType)
@@ -18,23 +20,29 @@ public class TrailVFX : MonoBehaviour
         float time = 0;
         var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
         var avatarTarget = avatarElement.HeartImage;
+        trailVFX.transform.localPosition = Vector3.zero;
+        ChangeColor(playerType);
+        var animationCurve = trailMotionCurveList[Random.Range(0, trailMotionCurveList.Count)];
         trailVFX.transform.DOMove(avatarTarget.transform.position, .45f)
             .OnUpdate(() =>
             {
                 time += Time.deltaTime * (1 / .45f);
-                float xOffset = trailMotionCurve.Evaluate(time);
+                float xOffset = animationCurve.Evaluate(time);
                 trailVFX.transform.position = new Vector3(trailVFX.transform.position.x - xOffset, trailVFX.transform.position.y, trailVFX.transform.position.z);
             })
             .OnComplete(() =>
             {
-                if (!DOTween.IsTweening(avatarTarget.transform.GetHashCode()))
-                {
-                  avatarTarget.transform
-                      .DOPunchScale(new Vector3(-.15f, 0.15f, 0), .3f, 10) 
-                      .SetId(avatarTarget.transform.GetHashCode());
-                }
-                gameObject.SetActive(false);
-                //DOVirtual.DelayedCall(0.5f, () => gameObject.SetActive(false));
+                avatarElement.TrailArrivedState();
+                DOVirtual.DelayedCall(0.5f, () => gameObject.SetActive(false));
             });
+    }
+
+
+
+    public void ChangeColor(PlayerType playerType)
+    {
+        var mainModule = trailVFX.main;
+        Color newColor = playerType==PlayerType.OPPONENT ? redColor : blueColor;
+        mainModule.startColor = newColor;
     }
 }
