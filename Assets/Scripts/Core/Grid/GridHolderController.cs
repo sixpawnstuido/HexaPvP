@@ -171,10 +171,12 @@ public class GridHolderController : MonoBehaviour
                        || g.transform.localPosition.x == 0f)
                 .Take(numberOfGridHoldersToDelete)
                 .ToList();
-        
-        
+       
+                Debug.Log(gridsToDelete.Count);
+
             for (int i = 0; i < gridsToDelete.Count; i++)
             {
+                Debug.Log(gridsToDelete[i].name);
                 if (gridHolderList[i].isLockActive) continue;
                 if (gridHolderList[i].hexagonHolder is null) continue;
                 var hexagonHolder = gridsToDelete[i].hexagonHolder;
@@ -186,6 +188,7 @@ public class GridHolderController : MonoBehaviour
                         Destroy(hexagonHolder.gameObject);
                     });
                 gridHolderList[i].hexagonHolder = null;
+                gridHolderList[i].GridCollider.enabled=true;
                yield return new WaitForSeconds(0.1f);
             }
         }

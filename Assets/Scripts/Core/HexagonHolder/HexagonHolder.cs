@@ -40,6 +40,8 @@ public class HexagonHolder : MonoBehaviour
     public LayerMask HexagonHolderLayerMask => hexagonHolderLayerMask;
     private LayerMask hexagonHolderLayerMask=1<<7;
 
+    public static PlayerType PlayerTypeGlobal;
+
     private void Awake()
     {
         hexagonCollider = GetComponent<Collider>();
@@ -92,6 +94,7 @@ public class HexagonHolder : MonoBehaviour
         if (!isChangeSlotHint && isOpponent) LevelManager.Instance.MoveCount++;
         PvPController.Instance.OrderChecker();
         AudioManager.Instance.PlayHaptic(HapticPatterns.PresetType.LightImpact);
+        PlayerTypeGlobal = PvPController.Instance.playerType;
     }
 
     public void BounceHexagonsToAnotherHolder(HexagonHolder targetHolder)
@@ -159,9 +162,6 @@ public class HexagonHolder : MonoBehaviour
 
         IEnumerator ClearHexagonsCor()
         {
-
-            var playerTypeAtStart = PvPController.Instance.playerType;
-            
             //To find hexagons at the top
             var hexagonType = ReturnLastHexagonsType();
             List<HexagonElement> upperHexagonElementList = new();
@@ -182,8 +182,8 @@ public class HexagonHolder : MonoBehaviour
             //Check if hexagon holder has hexagon element still
             if (hexagonElements.Count == 0 && gridHolder) gridHolder.CheckIfGridHolderEmpty();
 
-            int hexaCount = 0;
             isClearHappening = true;
+            var playerTypeAtStart = PvPController.Instance.playerType;
             //Clear Hexagon Anim
             for (int i = 0; i < upperHexagonElementList.Count; i++)
             {
@@ -208,10 +208,11 @@ public class HexagonHolder : MonoBehaviour
                     int hexagonElementAmount = upperHexagonElementList.Count;
                     Vector3 trailPos = tempHexagonElement.transform.position;
                     var trail = TrailVFXPool.Instance.GetParticle();
-                    ActivateTrail(playerTypeAtStart, trailPos,trail,hexagonElementAmount);
+                    ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount);
                 }
                 yield return new WaitForSeconds(.05f);
             }
+            yield return new WaitForSeconds(.05f);
             isClearHappening = false;
             if (hexagonElements.Count > 0)
             {
@@ -261,7 +262,7 @@ public class HexagonHolder : MonoBehaviour
     {
         trailVFX.gameObject.SetActive(true);
         trailVFX.transform.position=trailPos;
-        trailVFX.TrailMotion(playerType);
+        trailVFX.TrailMotion(playerTyp,hexagonElementAmount);
     }
     
     

@@ -34,9 +34,9 @@ public class AvatarElement : MonoBehaviour
         _pvPController = GetComponentInParent<PvPController>();
     }
 
-    public void DecreaseHealth()
+    public void DecreaseHealth(int hexagonElementAmount)
     {
-        currentHealth--;
+        currentHealth-= hexagonElementAmount;
         currentHealth = Mathf.Max(currentHealth, 0);
         SetFillAmount();
         SetHealthText();

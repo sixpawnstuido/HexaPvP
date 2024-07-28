@@ -11,6 +11,7 @@ public class GridHolder : MonoBehaviour
 {
     public static Action OpenCollider;
 
+    public Collider GridCollider => _collider;
     private Collider _collider;
 
     private GridHolderController _gridController;

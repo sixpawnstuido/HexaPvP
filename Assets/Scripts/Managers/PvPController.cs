@@ -190,14 +190,19 @@ public class PvPController : SerializedMonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 var gridController = LevelManager.Instance.ReturnGridHolderController();
                 var hexagonHolderController = LevelManager.Instance.ReturnHexagonSpawnerHexagonHolderController();
+
                 yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
+                yield return new WaitUntil(() => !hexagonHolderController.CheckHexagonClearState());
+
                 yield return new WaitForSeconds(0.1f);
                 for (int i = 0; i < 5; i++)
                 {
-                    yield return new WaitForSeconds(0.1f);
-                    yield return new WaitUntil(() => !hexagonHolderController.CheckHexagonClearState());
+                    yield return new WaitForSeconds(0.05f);
                     yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
+                    yield return new WaitForSeconds(0.05f);
+                    yield return new WaitUntil(() => !hexagonHolderController.CheckHexagonClearState());
                 }
+              
                 LevelManager.Instance.HexagonHolderSpawnCheck();
                 if (playerType == PlayerType.PLAYER)
                 {
@@ -221,11 +226,11 @@ public class PvPController : SerializedMonoBehaviour
         avatarDict.ForEach(avatar => avatar.Value.SetHealthText());
     }
 
-    public void DecreaseHealth(PlayerType playerType)
+    public void DecreaseHealth(PlayerType playerType,int hexagonElementAmount)
     {
         if (isLevelEnd) return;
         var playerTypeTemp = playerType == PlayerType.PLAYER ? PlayerType.OPPONENT : PlayerType.PLAYER;
-        avatarDict[playerTypeTemp].DecreaseHealth();
+        avatarDict[playerTypeTemp].DecreaseHealth(hexagonElementAmount);
     }
 
 
