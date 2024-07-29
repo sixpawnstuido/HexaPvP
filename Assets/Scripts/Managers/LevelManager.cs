@@ -206,9 +206,9 @@ public class LevelManager : Singleton<LevelManager>
             bool isAllGridsOccupied = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
             if (isAllGridsOccupied)
             {
-                var gridController =
-                    _currentLevel ? _currentLevel.gridController : FindObjectOfType<GridHolderController>();
-                if (gridController.AreThereAnyHexagonBouncing())
+                var gridController = _currentLevel ? _currentLevel.gridController : FindObjectOfType<GridHolderController>();
+                var hexagonHolderController = _currentLevel ? _currentLevel.hexagonHolderController : FindObjectOfType<HexagonHolderController>();
+                if (gridController.AreThereAnyHexagonBouncing() || hexagonHolderController.CheckHexagonClearState())
                 {
                     yield return new WaitForSeconds(2);
                     GameOverCheck();

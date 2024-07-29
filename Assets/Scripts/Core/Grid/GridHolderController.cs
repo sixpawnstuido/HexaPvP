@@ -172,11 +172,9 @@ public class GridHolderController : MonoBehaviour
                 .Take(numberOfGridHoldersToDelete)
                 .ToList();
        
-                Debug.Log(gridsToDelete.Count);
 
             for (int i = 0; i < gridsToDelete.Count; i++)
             {
-                Debug.Log(gridsToDelete[i].name);
                 if (gridHolderList[i].isLockActive) continue;
                 if (gridHolderList[i].hexagonHolder is null) continue;
                 var hexagonHolder = gridsToDelete[i].hexagonHolder;
