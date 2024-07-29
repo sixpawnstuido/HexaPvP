@@ -42,7 +42,7 @@ public class AvatarElement : MonoBehaviour
         SetHealthText();
         if (currentHealth == 0)
         {
-            _pvPController.LevelCompleted();
+            _pvPController.LevelCompleted(playerType);
         }
     }
 

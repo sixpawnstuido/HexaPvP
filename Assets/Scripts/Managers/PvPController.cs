@@ -77,6 +77,19 @@ public class PvPController : SerializedMonoBehaviour
         if (isLevelEnd) yield break;
         playerType = PlayerType.OPPONENT;
         HexagonMovement.PvPBlock = true;
+        
+        if (EventManager.SpawnEvents.CheckIfAllGridsOccupied is null) yield break;
+        bool isAllGridsOccupied = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
+        if (isAllGridsOccupied)
+        {
+            var gridController = LevelManager.Instance.ReturnGridHolderController();
+            yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
+            bool isAllGridsOccupiedStill = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
+            if (isAllGridsOccupiedStill)
+            {
+                LevelManager.Instance.ReturnGridHolderController().ClearRandomGrids();
+            }
+        }
 
         yield return new WaitForSeconds(0.2f);
         // avatarDict[PlayerType.PLAYER].SetColor(true);
@@ -90,19 +103,7 @@ public class PvPController : SerializedMonoBehaviour
         yield return new WaitForSeconds(handHolder.startPosToHexagonDuration + .2f);
 
         // HEXAGON TO GRID
-
-        if (EventManager.SpawnEvents.CheckIfAllGridsOccupied is null) yield break;
-        bool isAllGridsOccupied = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
-        if (isAllGridsOccupied)
-        {
-            var gridController = LevelManager.Instance.ReturnGridHolderController();
-            yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
-            bool isAllGridsOccupiedStill = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
-            if (isAllGridsOccupiedStill)
-            {
-                LevelManager.Instance.ReturnGridHolderController().ClearRandomGrids();
-            }
-        }
+        
 
         var gridHolder = LevelManager.Instance.ReturnGridHolderController().ReturnAvailableGridHolder();
         if (gridHolder)
@@ -234,18 +235,18 @@ public class PvPController : SerializedMonoBehaviour
     }
 
 
-    public void LevelCompleted()
+    public void LevelCompleted(PlayerType playerTypeCurrent)
     {
         if (isLevelEnd) return;
         isLevelEnd = true;
-        if (playerType == PlayerType.PLAYER)
+        if (playerTypeCurrent == PlayerType.PLAYER)
         {
-            SuccessState();
-            StopOpponentStateCor();
+            FailState();
         }
         else
         {
-            FailState();
+            SuccessState();
+            StopOpponentStateCor();
         }
     }
 

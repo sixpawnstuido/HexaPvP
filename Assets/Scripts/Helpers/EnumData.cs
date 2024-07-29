@@ -36,11 +36,14 @@ public enum LevelTypes
 public enum HexagonTypes
 {
     NONE=0,
-    FLOWER1,
-    FLOWER2,
-    FLOWER3,
-    FLOWER4,
-    FLOWER5,
+    FLOWER1=1,
+    FLOWER2=2,
+    FLOWER3=3,
+    FLOWER4=4,
+    FLOWER5=5,
+    FLOWER6=6,
+    FLOWER7=7,
+    FLOWER8=8,
 }
 
 

@@ -227,7 +227,8 @@ public class LevelManager : Singleton<LevelManager>
         //SpawnCount++;
         if (SpawnCount % (_levelInfo.spawnAmount*2) == 0)
         {
-            EventManager.SpawnEvents.SpawnHexagonHolder();
+           if(  EventManager.SpawnEvents.SpawnHexagonHolder is not null) EventManager.SpawnEvents.SpawnHexagonHolder();
+           else Debug.LogError("Spawn event is null");
         }
     }
 
