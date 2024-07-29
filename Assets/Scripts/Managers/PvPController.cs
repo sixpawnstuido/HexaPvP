@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -31,6 +32,8 @@ public class PvPController : SerializedMonoBehaviour
 
     [ReadOnly] public bool isLevelEnd;
 
+    private IEnumerator _opponentStateCor;
+
     private void Awake()
     {
         if (Instance == null)
@@ -46,6 +49,11 @@ public class PvPController : SerializedMonoBehaviour
         _arrowRotator = GetComponentInChildren<ArrowRotator>();
     }
 
+    private void Start()
+    {
+        _opponentStateCor = OpponentStateCor();
+    }
+
     [Button]
     public void SelectFirstPlayer()
     {
@@ -53,6 +61,7 @@ public class PvPController : SerializedMonoBehaviour
 
         IEnumerator SelectFirstPlayerCor()
         {
+            handHolder.gameObject.SetActive(true);
             HexagonMovement.PvPBlock = true;
             _arrowRotator.ActivateArrow();
             yield return new WaitUntil(() => _arrowRotator.isRotating);
@@ -77,19 +86,6 @@ public class PvPController : SerializedMonoBehaviour
         if (isLevelEnd) yield break;
         playerType = PlayerType.OPPONENT;
         HexagonMovement.PvPBlock = true;
-        
-        if (EventManager.SpawnEvents.CheckIfAllGridsOccupied is null) yield break;
-        bool isAllGridsOccupied = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
-        if (isAllGridsOccupied)
-        {
-            var gridController = LevelManager.Instance.ReturnGridHolderController();
-            yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
-            bool isAllGridsOccupiedStill = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
-            if (isAllGridsOccupiedStill)
-            {
-                LevelManager.Instance.ReturnGridHolderController().ClearRandomGrids();
-            }
-        }
 
         yield return new WaitForSeconds(0.2f);
         // avatarDict[PlayerType.PLAYER].SetColor(true);
@@ -104,7 +100,8 @@ public class PvPController : SerializedMonoBehaviour
 
         // HEXAGON TO GRID
         
-
+        if (isLevelEnd) yield break;
+        
         var gridHolder = LevelManager.Instance.ReturnGridHolderController().ReturnAvailableGridHolder();
         if (gridHolder)
         {
@@ -123,13 +120,17 @@ public class PvPController : SerializedMonoBehaviour
 
         yield return new WaitForSeconds(handHolder.hexagonToGridDuration + handHolder.hexagonHolderJumpDuration);
 
+        
+        if (isLevelEnd) yield break;
+        
         //GRID TO HEXAGON
         handHolder.GridToHexagonHolder(hexagonSlotList[1].hexagonHolder);
 
         yield return new WaitForSeconds(handHolder.gridToHexagonDuration);
 
         // HEXAGON TO GRID
-
+        if (isLevelEnd) yield break;
+        
         if (EventManager.SpawnEvents.CheckIfAllGridsOccupied is null) yield break;
         bool isAllGridsOccupied2 = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
         if (isAllGridsOccupied2)
@@ -166,8 +167,16 @@ public class PvPController : SerializedMonoBehaviour
 
     public void StopOpponentStateCor()
     {
-        StopCoroutine(OpponentStateCor());
+        Debug.Log("StopCor");
+        StopCoroutine(_opponentStateCor);
+        handHolder.DOKill();
         handHolder.GoBackToStartPos();
+        handHolder.gameObject.SetActive(false);
+        var hexaHolder = handHolder.transform.GetComponentInChildren<HexagonHolder>();
+        if (hexaHolder is not null)
+        {
+            Destroy(hexaHolder.gameObject);
+        }
     }
 
     private void PlayerState()
@@ -204,6 +213,20 @@ public class PvPController : SerializedMonoBehaviour
                     yield return new WaitUntil(() => !hexagonHolderController.CheckHexagonClearState());
                 }
               
+                //If all grids occupied check
+                if (EventManager.SpawnEvents.CheckIfAllGridsOccupied is null) yield break;
+                bool isAllGridsOccupied = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
+                if (isAllGridsOccupied)
+                {
+                    yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
+                    bool isAllGridsOccupiedStill = EventManager.SpawnEvents.CheckIfAllGridsOccupied();
+                    if (isAllGridsOccupiedStill)
+                    {
+                        LevelManager.Instance.ReturnGridHolderController().ClearRandomGrids();
+                        yield return new WaitForSeconds(2);
+                    }
+                }
+                
                 LevelManager.Instance.HexagonHolderSpawnCheck();
                 if (playerType == PlayerType.PLAYER)
                 {
@@ -239,6 +262,7 @@ public class PvPController : SerializedMonoBehaviour
     {
         if (isLevelEnd) return;
         isLevelEnd = true;
+        StopOpponentStateCor();
         if (playerTypeCurrent == PlayerType.PLAYER)
         {
             FailState();
@@ -246,7 +270,6 @@ public class PvPController : SerializedMonoBehaviour
         else
         {
             SuccessState();
-            StopOpponentStateCor();
         }
     }
 

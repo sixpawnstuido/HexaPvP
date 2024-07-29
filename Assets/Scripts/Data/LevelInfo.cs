@@ -11,6 +11,9 @@ public class LevelInfo : SerializedScriptableObject
     
     [Header("HexagonType")]
     public int spawnAmount;
+    
+    [Header("HexagonType")]
+    public int hexagonClearAmount;
     public class LevelInfoValues
     {
         [Header("DesiredHexagonAmount")]

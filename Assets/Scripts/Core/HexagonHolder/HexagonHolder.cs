@@ -42,6 +42,8 @@ public class HexagonHolder : MonoBehaviour
 
     public static PlayerType PlayerTypeGlobal;
 
+    private LevelInfo _levelInfo;
+
     private void Awake()
     {
         hexagonCollider = GetComponent<Collider>();
@@ -57,6 +59,11 @@ public class HexagonHolder : MonoBehaviour
     private void OnDisable()
     {
         EventManager.CoreEvents.HexagonHolderColliderState -= CanTouchHexagonHolder;
+    }
+
+    private void Start()
+    {
+        _levelInfo = ResourceSystem.ReturnLevelInfo();
     }
 
     public void Init(HexagonSlot hexagonSlot)
@@ -89,8 +96,10 @@ public class HexagonHolder : MonoBehaviour
         gridHolder.hexagonHolder = this;
         gridHolder.ColliderState(false);
         gridHolder.ScanNeighborGrids();
-        LevelManager.Instance.GameOverCheck();
-      //  if (!isChangeSlotHint) LevelManager.Instance.HexagonHolderSpawnCheck();
+        if (PvPController.Instance.orderIndex%2!=0 && PvPController.Instance.playerType==PlayerType.PLAYER)
+        {
+            LevelManager.Instance.GameOverCheck();    
+        }
         if (!isChangeSlotHint && isOpponent) LevelManager.Instance.MoveCount++;
         PvPController.Instance.OrderChecker();
         AudioManager.Instance.PlayHaptic(HapticPatterns.PresetType.LightImpact);
@@ -171,7 +180,7 @@ public class HexagonHolder : MonoBehaviour
                 upperHexagonElementList.Add(hexagonElements[i]);
             }
 
-            if (upperHexagonElementList.Count < 5) yield break;
+            if (upperHexagonElementList.Count < _levelInfo.hexagonClearAmount) yield break;
 
             // RemoveFromList
             for (int i = 0; i < upperHexagonElementList.Count; i++)
@@ -236,7 +245,6 @@ public class HexagonHolder : MonoBehaviour
         hexagonElements = hexagonElements.OrderBy(g => g.transform.position.y).ToList();
     }
 
-    [Button]
     private bool IsObjectOnRight(Vector3 target, Transform main)
     {
         return target.x > main.transform.position.x;
@@ -248,6 +256,7 @@ public class HexagonHolder : MonoBehaviour
 
         IEnumerator SlideAnimAtStartCor(HexagonSlot hexagonSlot)
         {
+            if(transform is null) yield break;
             transform.DOMove(hexagonSlot.transform.position, .75f)
                 .SetEase(Ease.OutCubic)
                 .OnComplete(() => CanTouchHexagonHolder(true));

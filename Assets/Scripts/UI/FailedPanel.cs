@@ -59,7 +59,7 @@ public class FailedPanel : MonoBehaviour
         LevelManager.Instance.isGameOverPanelOpened = false;
         gameObject.SetActive(false);
         if(!_isTimerFail) hint.FailedClick();
-        EventHandler.Instance.LogEconomyEvent(revivePrice, 0, "Revive");
+        //EventHandler.Instance.LogEconomyEvent(revivePrice, 0, "Revive");
         if (_isTimerFail)
         {
             Timer.Instance.AddTime(_extraTime);
@@ -72,7 +72,7 @@ public class FailedPanel : MonoBehaviour
         LevelManager.Instance.isGameOverPanelOpened = false;
         gameObject.SetActive(false);
         if(!_isTimerFail) hint.FailedClick();
-        EventHandler.Instance.LogEconomyEvent(revivePrice, 0, "Revive");
+    //    EventHandler.Instance.LogEconomyEvent(revivePrice, 0, "Revive");
         if (_isTimerFail)
         {
             Timer.Instance.AddTime(_extraTime);

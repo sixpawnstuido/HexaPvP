@@ -251,7 +251,7 @@ MonoBehaviour:
       Data: 
     - Name: numberOfHexagonHoldersToDelete
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -312,7 +312,7 @@ MonoBehaviour:
       Data: 
     - Name: numberOfHexagonHoldersToDelete
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -373,7 +373,7 @@ MonoBehaviour:
       Data: 
     - Name: numberOfHexagonHoldersToDelete
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -437,7 +437,7 @@ MonoBehaviour:
       Data: 
     - Name: numberOfHexagonHoldersToDelete
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -501,7 +501,7 @@ MonoBehaviour:
       Data: 
     - Name: numberOfHexagonHoldersToDelete
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -556,7 +556,7 @@ MonoBehaviour:
       Data: 
     - Name: numberOfHexagonHoldersToDelete
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -614,7 +614,7 @@ MonoBehaviour:
       Data: 
     - Name: numberOfHexagonHoldersToDelete
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -628,3 +628,4 @@ MonoBehaviour:
       Entry: 8
       Data: 
   spawnAmount: 2
+  hexagonClearAmount: 5

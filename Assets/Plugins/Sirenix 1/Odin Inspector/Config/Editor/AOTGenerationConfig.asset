@@ -16,42 +16,100 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 638572558986265284
+  lastScan: 638578660806887103
   supportSerializedTypes:
-  - TypeName: System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Collections.Generic.Dictionary`2[[VehicleTypes,
-      Assembly-CSharp],[System.Int32, mscorlib]], mscorlib]], mscorlib
+  - TypeName: UnityEngine.AudioClip, UnityEngine.AudioModule
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[UnityEngine.GameObject,
+  - TypeName: AudioManager+AudioEnums, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: AvatarElement, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Byte, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: CanvasTypes, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.Color32, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[AudioManager+AudioEnums, Assembly-CSharp],[UnityEngine.AudioClip,
+      UnityEngine.AudioModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[CanvasTypes, Assembly-CSharp],[UnityEngine.GameObject,
       UnityEngine.CoreModule]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[UpgradeTypes, Assembly-CSharp],[LevelData+UpgradePanelInfos,
+  - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[UnityEngine.GameObject,
+      UnityEngine.CoreModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[HexagonElement,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[UpgradeTypes, Assembly-CSharp],[UpgradeElement,
+  - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[JuiceTargetUIElement+GlassInfo,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[VehicleTypes, Assembly-CSharp],[System.Int32,
-      mscorlib]], mscorlib
+  - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[UnityEngine.Material,
+      UnityEngine.CoreModule]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[VehicleTypes, Assembly-CSharp],[LevelData+CarInfos,
+  - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[UnityEngine.Sprite,
+      UnityEngine.CoreModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[LevelHolder,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[VehicleTypes, Assembly-CSharp],[System.Collections.Generic.List`1[[VehicleHolder,
-      Assembly-CSharp]], mscorlib]], mscorlib
+  - TypeName: System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[LevelInfo+LevelInfoValues,
+      Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[UpgradeTypes, Assembly-CSharp]],
+  - TypeName: System.Collections.Generic.Dictionary`2[[PlayerType, Assembly-CSharp],[AvatarElement,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[VisualData+PrefabType, Assembly-CSharp],[UnityEngine.GameObject,
+      UnityEngine.CoreModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[VisualData+VFXType, Assembly-CSharp],[UnityEngine.GameObject,
+      UnityEngine.CoreModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[AudioManager+AudioEnums,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[CanvasTypes, Assembly-CSharp]],
       mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[VehicleTypes, Assembly-CSharp]],
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[HexagonTypes, Assembly-CSharp]],
       mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[PlayerType, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[VisualData+PrefabType,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[VisualData+VFXType,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Unity.VisualScripting.FlexibleDictionary`2[[HexagonTypes, Assembly-CSharp],[JuiceTargetUIElement+GlassInfo,
+      Assembly-CSharp]], Unity.VisualScripting.Core
     IsCustom: 0
     Emit: 1
   - TypeName: System.Single, mscorlib
@@ -64,51 +122,68 @@ MonoBehaviour:
       mscorlib]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-      mscorlib]], mscorlib
+  - TypeName: HexagonElement, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: HexagonTypes, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[AudioManager+AudioEnums,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[CanvasTypes, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[HexagonTypes, Assembly-CSharp]],
+      mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.IEqualityComparer`1[[System.Int32, mscorlib]],
       mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.IEqualityComparer`1[[System.String, mscorlib]],
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[PlayerType, Assembly-CSharp]],
       mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.IEqualityComparer`1[[UpgradeTypes, Assembly-CSharp]],
-      mscorlib
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[VisualData+PrefabType,
+      Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.IEqualityComparer`1[[VehicleTypes, Assembly-CSharp]],
-      mscorlib
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[VisualData+VFXType,
+      Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Int32, mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: LevelData+CarInfos, Assembly-CSharp
+  - TypeName: JuiceTargetUIElement+GlassInfo, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: LevelData+UpgradePanelInfos, Assembly-CSharp
+  - TypeName: LevelHolder, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.List`1[[VehicleHolder, Assembly-CSharp]],
+  - TypeName: LevelInfo+LevelInfoValues, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
       mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.String, mscorlib
+  - TypeName: UnityEngine.Material, UnityEngine.CoreModule
     IsCustom: 0
     Emit: 1
-  - TypeName: UpgradeElement, Assembly-CSharp
+  - TypeName: PlayerType, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: UpgradeTypes, Assembly-CSharp
+  - TypeName: UnityEngine.Sprite, UnityEngine.CoreModule
     IsCustom: 0
     Emit: 1
-  - TypeName: VehicleHolder, Assembly-CSharp
+  - TypeName: VisualData+PrefabType, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: VehicleTypes, Assembly-CSharp
+  - TypeName: VisualData+VFXType, Assembly-CSharp
     IsCustom: 0
     Emit: 1

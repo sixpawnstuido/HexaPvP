@@ -2,7 +2,6 @@ using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using DG.Tweening;
-using GameAnalyticsSDK.Setup;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

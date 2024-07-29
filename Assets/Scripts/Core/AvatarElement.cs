@@ -29,9 +29,14 @@ public class AvatarElement : MonoBehaviour
     private PvPController _pvPController;
 
     [SerializeField] private ParticleSystem trailArrivedVFX;
+
+    private MinusTextPool _minusTextPool;
+
+    [SerializeField] private Transform minusTextStartPos;
     private void Awake()
     {
         _pvPController = GetComponentInParent<PvPController>();
+        _minusTextPool = GetComponentInChildren<MinusTextPool>();
     }
 
     public void DecreaseHealth(int hexagonElementAmount)
@@ -75,14 +80,18 @@ public class AvatarElement : MonoBehaviour
     }
 
 
-    public void TrailArrivedState()
+    public void TrailArrivedState(int amount)
     {
+        if (currentHealth <= 0) return;
         trailArrivedVFX.Stop();
         trailArrivedVFX.Play();
+        var minusText = _minusTextPool.GetParticle();
+        minusText.Init(amount,minusTextStartPos.position);
         if (!DOTween.IsTweening(transform.GetHashCode()))
         {
-            heartParent
-                .DOPunchScale(new Vector3(-.1f, 0.1f, 0), .3f, 10) 
+            int multiplier = Mathf.Min(amount,10);
+            heartParent 
+                .DOPunchPosition(new Vector3(0f, (2f*multiplier), 0), .3f, 10) 
                 .SetId(transform.GetHashCode());
         }
 

@@ -32,9 +32,9 @@ public class TrailVFX : MonoBehaviour
             })
             .OnComplete(() =>
             {
-                avatarElement.TrailArrivedState();
-                DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
+                avatarElement.TrailArrivedState(hexagonElementAmount);
                 PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount);
+                DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
             });
     }
 

@@ -75,7 +75,7 @@ public class SpawnerMovement : MonoBehaviour
         Debug.LogWarning("WatermelonReached");
         winPanel.SetActive(true);
         AudioManager.Instance.Play(AudioManager.AudioEnums.LevelEnd, .6f);
-        EventHandler.Instance.LogMetaEvents(LevelManager.Instance.LevelCount, LevelManager.Instance.SortedFruitCount, EventHandler.EventStatus.Complete);
+        //EventHandler.Instance.LogMetaEvents(LevelManager.Instance.LevelCount, LevelManager.Instance.SortedFruitCount, EventHandler.EventStatus.Complete);
 
     }
 

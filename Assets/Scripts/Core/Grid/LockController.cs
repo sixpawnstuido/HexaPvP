@@ -103,7 +103,7 @@ public class LockController : MonoBehaviour
             _gridHolder.isLockActive=false;
             LockUnlockedAnim();
             CurrencyManager.Instance.TakeGold(_lockUnlockAmount);
-            EventHandler.Instance.LogEconomyEvent(_lockUnlockAmount, 0, "SlotUnlocked");
+          //  EventHandler.Instance.LogEconomyEvent(_lockUnlockAmount, 0, "SlotUnlocked");
         }
         else
         {

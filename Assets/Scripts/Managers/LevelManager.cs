@@ -151,18 +151,17 @@ public class LevelManager : Singleton<LevelManager>
             yield return new WaitForEndOfFrame();
             yield return new WaitForSeconds(1.5f);
             yield return new WaitForEndOfFrame();
-           // HintsEnable.Instance.OpenHints();
             UIManager.Instance.levelProgressUIController.ChangeLevelProgressText(TotalLevelCount);;
             isGameOverPanelOpened = false;
             MoveCount = 0;
             SortedFruitLevel++;
-          //  if(LevelCount>1) RestartButton.Instance.HolderSetactiveState(true);
             AudioManager.LevelEndSoundCheck = false;
             AudioManager.Instance.PlayBGMusic();
             InGameLoading.Instance.CloseHolder();
             PvPController.Instance.ResetAvatars();
             PvPController.Instance.SelectFirstPlayer();
             PvPController.Instance.isLevelEnd = false;
+            PvPController.Instance.orderIndex =0;
             
             HexagonMovement.HexagonClickBlock = false;
         }
@@ -188,6 +187,7 @@ public class LevelManager : Singleton<LevelManager>
             yield return new WaitForEndOfFrame();
             InGameLoading.Instance.CloseHolder();
             isGameOverPanelOpened = false;
+            PvPController.Instance.orderIndex =0;
             MoveCount = 0;
         }
     }

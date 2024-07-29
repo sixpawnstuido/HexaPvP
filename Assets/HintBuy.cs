@@ -49,13 +49,13 @@ public class HintBuy : MonoBehaviour
         CurrencyManager.Instance.TakeGold((int)hintPrice);
         HintBuyAnim.PlayAnim();
         gameObject.SetActive(false);
-        EventHandler.Instance.LogEconomyEvent((int)hintPrice, 0, HintBase.hintType.ToString());
+     //   EventHandler.Instance.LogEconomyEvent((int)hintPrice, 0, HintBase.hintType.ToString());
     }
 
     private void OnRwButtonClicked()
     {
         HintBuyAnim.PlayAnim();
         gameObject.SetActive(false);
-        EventHandler.Instance.LogEconomyEvent((int)hintPrice, 0, HintBase.hintType.ToString());
+       // EventHandler.Instance.LogEconomyEvent((int)hintPrice, 0, HintBase.hintType.ToString());
     }
 }
