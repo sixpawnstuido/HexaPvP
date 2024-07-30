@@ -22,6 +22,6 @@ public class OrderOfPlayPanel : SerializedMonoBehaviour
     {
        var panel=panels[playerType];
        panel.SetActive(true);
-       DOVirtual.DelayedCall(1.5f, ()=>panel.SetActive(false));
+       DOVirtual.DelayedCall(1f, ()=>panel.SetActive(false));
     }
 }
