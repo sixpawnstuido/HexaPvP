@@ -9,10 +9,10 @@ public class ComboManager : MonoBehaviour
 {
     public static ComboManager Instance;
 
-    private float _comboTimer = 3f;
+   [SerializeField] private float _comboTimer = 3f;
     private float _comboTimerConstant;
 
-    public int comboStage;
+   [ReadOnly] public int comboStage;
 
     private bool _canUpdate;
 
@@ -46,7 +46,6 @@ public class ComboManager : MonoBehaviour
         }
     }
 
-    [Button]
     public void ComboState(Vector3 hexagonHolderPos)
     {
         var comboElement = ReturnComboElement();
@@ -68,5 +67,12 @@ public class ComboManager : MonoBehaviour
             _comboElementList.Add(tempComboElement);
             return tempComboElement;
         }
+    }
+
+    public void ResetComboStage()
+    {
+        _comboTimer = 0;
+        comboStage = 0;
+        _canUpdate = false;
     }
 }

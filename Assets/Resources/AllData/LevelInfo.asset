@@ -269,7 +269,7 @@ MonoBehaviour:
       Data: 10|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
-      Data: 100
+      Data: 200
     - Name: maxHexagonCountIndividual
       Entry: 3
       Data: 4

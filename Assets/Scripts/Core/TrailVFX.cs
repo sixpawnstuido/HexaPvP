@@ -15,7 +15,7 @@ public class TrailVFX : MonoBehaviour
     [SerializeField] private Color32 redColor;
     
 
-    public void TrailMotion(PlayerType playerType,int hexagonElementAmount)
+    public void TrailMotion(PlayerType playerType,int hexagonElementAmount,int comboStage=1)
     {
         float time = 0;
         var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
@@ -32,8 +32,8 @@ public class TrailVFX : MonoBehaviour
             })
             .OnComplete(() =>
             {
-                avatarElement.TrailArrivedState(hexagonElementAmount);
-                PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount);
+                avatarElement.TrailArrivedState(hexagonElementAmount,comboStage);
+                PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount,comboStage);
                 DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
             });
     }

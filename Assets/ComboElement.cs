@@ -60,7 +60,7 @@ public class ComboElement : MonoBehaviour
         {
             _VFX.Stop();
             _VFX.Play();
-            GoldPanel.Instance.ActivateGoldAnim(_VFX.transform.position - Vector3.up*1.5f, comboStage + 2);
+           // GoldPanel.Instance.ActivateGoldAnim(_VFX.transform.position - Vector3.up*1.5f, comboStage + 2);
         });
     }
 }

@@ -217,7 +217,11 @@ public class HexagonHolder : MonoBehaviour
                     int hexagonElementAmount = upperHexagonElementList.Count;
                     Vector3 trailPos = tempHexagonElement.transform.position;
                     var trail = TrailVFXPool.Instance.GetParticle();
-                    ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount);
+                    
+                    Vector3 offset = new Vector3(0, 2.2f, -1.15f) + trailPos;
+                    ComboManager.Instance.IncreaseComboStage(offset);
+                    int comboStage = ComboManager.Instance.comboStage;
+                    ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount,comboStage);
                 }
                 yield return new WaitForSeconds(.05f);
             }
@@ -267,13 +271,12 @@ public class HexagonHolder : MonoBehaviour
     }
     
     
-    public void ActivateTrail(PlayerType playerTyp,Vector3 trailPos,TrailVFX trailVFX,int hexagonElementAmount)
+    public void ActivateTrail(PlayerType playerTyp,Vector3 trailPos,TrailVFX trailVFX,int hexagonElementAmount,int comboStage=1)
     {
         trailVFX.gameObject.SetActive(true);
         trailVFX.transform.position=trailPos;
-        trailVFX.TrailMotion(playerTyp,hexagonElementAmount);
+        trailVFX.TrailMotion(playerTyp,hexagonElementAmount,comboStage);
     }
-    
     
     public void SetLayerRecursively(GameObject obj, LayerMask layerMask)
     {

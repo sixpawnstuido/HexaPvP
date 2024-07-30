@@ -166,7 +166,6 @@ public class PvPController : SerializedMonoBehaviour
 
     public void StopOpponentStateCor()
     {
-        Debug.Log("StopCor");
         StopCoroutine(_opponentStateCor);
         handHolder.DOKill();
         handHolder.GoBackToStartPos();
@@ -226,6 +225,7 @@ public class PvPController : SerializedMonoBehaviour
                 }
                 
                 LevelManager.Instance.HexagonHolderSpawnCheck();
+                ComboManager.Instance.ResetComboStage();
                 if (playerType == PlayerType.PLAYER)
                 {
                     OpponentState();
@@ -248,11 +248,11 @@ public class PvPController : SerializedMonoBehaviour
         avatarDict.ForEach(avatar => avatar.Value.SetHealthText());
     }
 
-    public void DecreaseHealth(PlayerType playerType,int hexagonElementAmount)
+    public void DecreaseHealth(PlayerType playerType,int hexagonElementAmount,int comboStage=1)
     {
         if (isLevelEnd) return;
         var playerTypeTemp = playerType == PlayerType.PLAYER ? PlayerType.OPPONENT : PlayerType.PLAYER;
-        avatarDict[playerTypeTemp].DecreaseHealth(hexagonElementAmount);
+        avatarDict[playerTypeTemp].DecreaseHealth(hexagonElementAmount,comboStage);
     }
 
 

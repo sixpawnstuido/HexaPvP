@@ -39,9 +39,10 @@ public class AvatarElement : MonoBehaviour
         _minusTextPool = GetComponentInChildren<MinusTextPool>();
     }
 
-    public void DecreaseHealth(int hexagonElementAmount)
+    public void DecreaseHealth(int hexagonElementAmount,int comboStage=1)
     {
-        currentHealth-= hexagonElementAmount;
+        comboStage = Mathf.Max(comboStage, 1);
+        currentHealth-= hexagonElementAmount*comboStage;
         currentHealth = Mathf.Max(currentHealth, 0);
         SetFillAmount();
         SetHealthText();
@@ -80,13 +81,13 @@ public class AvatarElement : MonoBehaviour
     }
 
 
-    public void TrailArrivedState(int amount)
+    public void TrailArrivedState(int amount,int comboStage=1)
     {
         if (currentHealth <= 0) return;
         trailArrivedVFX.Stop();
         trailArrivedVFX.Play();
         var minusText = _minusTextPool.GetParticle();
-        minusText.Init(amount,minusTextStartPos.position);
+        minusText.Init(amount,minusTextStartPos.position,comboStage);
         if (!DOTween.IsTweening(transform.GetHashCode()))
         {
             int multiplier = Mathf.Min(amount,10);
