@@ -41,7 +41,7 @@ public class HandHolder : MonoBehaviour
 
     public void StartPosToHexagonHolder(HexagonSlot hexagonSlot = null)
     {
-        StartCoroutine(StartPosToHexagonHolderCor(hexagonSlot));
+       if(gameObject.activeInHierarchy) StartCoroutine(StartPosToHexagonHolderCor(hexagonSlot));
     }
 
     IEnumerator StartPosToHexagonHolderCor(HexagonSlot hexagonSlot = null)
