@@ -86,10 +86,9 @@ public class PvPController : SerializedMonoBehaviour
         if (isLevelEnd) yield break;
         playerType = PlayerType.OPPONENT;
         HexagonMovement.PvPBlock = true;
-
+        OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT);
+        
         yield return new WaitForSeconds(0.2f);
-        // avatarDict[PlayerType.PLAYER].SetColor(true);
-        // avatarDict[PlayerType.OPPONENT].SetColor(false);
 
         // START POS TO HEXAGON
         var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
@@ -181,9 +180,8 @@ public class PvPController : SerializedMonoBehaviour
 
     private void PlayerState()
     {
+        OrderOfPlayPanel.Instance.PanelState(PlayerType.PLAYER);
         playerType = PlayerType.PLAYER;
-        // avatarDict[PlayerType.PLAYER].SetColor(false);
-        // avatarDict[PlayerType.OPPONENT].SetColor(true);
         HexagonMovement.PvPBlock = false;
     }
 
@@ -223,7 +221,7 @@ public class PvPController : SerializedMonoBehaviour
                     if (isAllGridsOccupiedStill)
                     {
                         LevelManager.Instance.ReturnGridHolderController().ClearRandomGrids();
-                        yield return new WaitForSeconds(2);
+                        yield return new WaitForSeconds(1);
                     }
                 }
                 
