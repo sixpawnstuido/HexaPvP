@@ -16,21 +16,21 @@ public class GlassHolder : MonoBehaviour
 
     public void InitGlass(HexagonTypes type)
     {
-        var tmpMaterial = fruitSliceMesh.material;
-
-        tmpMaterial = ResourceSystem.ReturnVisualData().Glass3DInfo[type];
-
-        fruitSliceMesh.material = tmpMaterial;
-
-        AudioManager.Instance.Play(AudioManager.AudioEnums.SkillHammer);
-
-        MaterialPropertyBlock mbp = new MaterialPropertyBlock();
-
-        mbp.SetColor("_BaseColor", ResourceSystem.ReturnVisualData().GlassInfos[type].color);
-
-        juiceMesh.SetPropertyBlock(mbp);
-
-        StartCoroutine(EndCor(type));
+        // var tmpMaterial = fruitSliceMesh.material;
+        //
+        // tmpMaterial = ResourceSystem.ReturnVisualData().Glass3DInfo[type];
+        //
+        // fruitSliceMesh.material = tmpMaterial;
+        //
+        // AudioManager.Instance.Play(AudioManager.AudioEnums.SkillHammer);
+        //
+        // MaterialPropertyBlock mbp = new MaterialPropertyBlock();
+        //
+        // mbp.SetColor("_BaseColor", ResourceSystem.ReturnVisualData().GlassInfos[type].color);
+        //
+        // juiceMesh.SetPropertyBlock(mbp);
+        //
+        // StartCoroutine(EndCor(type));
     }
 
     private IEnumerator EndCor(HexagonTypes type)

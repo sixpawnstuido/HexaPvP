@@ -11,13 +11,6 @@ public class VisualData : SerializedScriptableObject
     public Dictionary<VFXType,GameObject> VFXData;
     public Dictionary<PrefabType,GameObject> prefabData;
     public Dictionary<HexagonTypes,HexagonElement> hexagons;
-    public Dictionary<HexagonTypes,Sprite> juiceSprites;
-    public Dictionary<HexagonTypes,GameObject> blenderFruits;
-    public Dictionary<HexagonTypes, Material> Glass3DInfo;
-
-    public Dictionary<HexagonTypes, GlassInfo> GlassInfos;
-
-
 
     public enum VFXType
     {
