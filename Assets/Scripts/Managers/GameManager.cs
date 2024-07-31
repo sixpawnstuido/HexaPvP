@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(InitializeGameCor());
         IEnumerator InitializeGameCor()
         {
+            StartLoadingScreen.Instance.StartAnimCor(4);
             yield return new WaitUntil(() => EventManager.SpawnEvents.LoadAllDatas != null);
             EventManager.SpawnEvents.LoadAllDatas();
-            StartLoadingScreen.Instance.StartAnimCor(4);
             yield return new WaitForSeconds(1);
             LevelManager.Instance.SpawnLevel();
             PvPController.Instance.ResetAvatars();
