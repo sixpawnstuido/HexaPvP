@@ -1581,7 +1581,9 @@ MonoBehaviour:
   slices:
   - {fileID: 3918333912567464536}
   - {fileID: 6866439495676865214}
-  icon: {fileID: 2555284075105661951}
+  icons:
+  - {fileID: 2555284075105661951}
+  - {fileID: 1842793914557640476}
 --- !u!1 &5379075011308815016
 GameObject:
   m_ObjectHideFlags: 0

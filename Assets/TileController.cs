@@ -8,9 +8,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class TileController : MonoBehaviour
+public class TileController : SerializedMonoBehaviour
 {
-
    public static TileController Instance;
    
    [SerializeField] private List<Tile> tiles;
@@ -18,6 +17,8 @@ public class TileController : MonoBehaviour
    [SerializeField] private Button playButton;
    
    [SerializeField] private GameObject holder;
+
+   public Dictionary<int, List<Sprite>> tileSprites;
 
 
    private void Awake()
@@ -100,5 +101,13 @@ public class TileController : MonoBehaviour
             .DOScale(1, .2f)
             .SetEase(Ease.OutBack);
       }
+   }
+
+
+   public int ReturnTileIndex()
+   {
+      var tile = tiles.FirstOrDefault(tile => tile.TileState == 1);
+      var tileIndex=tiles.IndexOf(tile);
+      return tileIndex;
    }
 }

@@ -159,10 +159,10 @@ public class LevelManager : Singleton<LevelManager>
             AudioManager.Instance.PlayBGMusic();
             InGameLoading.Instance.CloseHolder();
             PvPController.Instance.ResetAvatars();
-            PvPController.Instance.SelectFirstPlayer();
+          //  PvPController.Instance.SelectFirstPlayer();
+          TileController.Instance.OpenHolder();
             PvPController.Instance.isLevelEnd = false;
             PvPController.Instance.orderIndex =0;
-            
             HexagonMovement.HexagonClickBlock = false;
         }
     }
@@ -183,7 +183,8 @@ public class LevelManager : Singleton<LevelManager>
             SpawnLevel();
             PvPController.Instance.ResetAvatars();
             PvPController.Instance.isLevelEnd = false;
-            PvPController.Instance.SelectFirstPlayer();
+           // PvPController.Instance.SelectFirstPlayer();
+           TileController.Instance.OpenHolder();
             yield return new WaitForEndOfFrame();
             InGameLoading.Instance.CloseHolder();
             isGameOverPanelOpened = false;

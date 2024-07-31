@@ -42,7 +42,7 @@ public class HexagonSpawner : MonoBehaviour
     void Start()
     {
         AssingReferences();
-        SpawnHexagons();
+       // SpawnHexagons();
     }
 
     private void OnEnable()

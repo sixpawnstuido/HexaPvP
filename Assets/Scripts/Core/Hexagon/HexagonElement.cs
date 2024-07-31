@@ -21,7 +21,7 @@ public class HexagonElement : MonoBehaviour
 
     private Collider _hexagonElementCollider;
 
-    [SerializeField] private SpriteRenderer icon;
+    [SerializeField] private List<SpriteRenderer> icons;
     private void Awake()
     {
         _boneStimulators = GetComponentsInChildren<BonesStimulator>();
@@ -32,6 +32,8 @@ public class HexagonElement : MonoBehaviour
     {
         StimulatorAmount(0f);
         SqueezAmount(0);
+        
+        SetHexagonIcons();
     }
 
     public void StimulatorAmount(float stimulatorAmount)
@@ -93,6 +95,19 @@ public class HexagonElement : MonoBehaviour
             }
             yield return new WaitForSeconds(0.3f);
             Destroy(gameObject);
+        }
+    }
+
+
+    public void SetHexagonIcons()
+    {
+        int tileIndex = TileController.Instance.ReturnTileIndex();
+        var spriteList = TileController.Instance.tileSprites[tileIndex];
+
+        int enumIndex = (int)hexagonType-1;
+        for (int i = 0; i < icons.Count; i++)
+        {
+            icons[i].sprite = spriteList[enumIndex];
         }
     }
 }

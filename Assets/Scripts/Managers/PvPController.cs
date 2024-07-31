@@ -65,6 +65,7 @@ public class PvPController : SerializedMonoBehaviour
             HexagonMovement.PvPBlock = true;
             _arrowRotator.ActivateArrow();
             yield return new WaitUntil(() => _arrowRotator.isRotating);
+            EventManager.SpawnEvents.SpawnHexagonHolder();
             if (_arrowRotator.ReturnPlayerType() == PlayerType.PLAYER)
             {
                 PlayerState();
