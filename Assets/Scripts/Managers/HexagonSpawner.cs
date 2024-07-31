@@ -61,7 +61,6 @@ public class HexagonSpawner : MonoBehaviour
         SpawnOpponentHexagonHolder();
     }
 
-    [Button]
     private void SpawnPlayersHexagonHolder()
     {
         StartCoroutine(SpawnHexagonHolderCor());
@@ -86,7 +85,6 @@ public class HexagonSpawner : MonoBehaviour
         }
     }
 
-    [Button]
     public void SpawnOpponentHexagonHolder()
     {
         StartCoroutine(SpawnHexagonHolderCor());
