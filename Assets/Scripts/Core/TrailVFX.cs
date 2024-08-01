@@ -11,18 +11,15 @@ public class TrailVFX : MonoBehaviour
     
     [SerializeField] private List<AnimationCurve> trailMotionCurveList;
     
-    [SerializeField] private Color32 blueColor;
-    [SerializeField] private Color32 redColor;
-    
 
-    public void TrailMotion(PlayerType playerType,int hexagonElementAmount,Color hexagonColor,int comboStage=1)
+    public void TrailMotion(PlayerType playerType,int hexagonElementAmount,Color hexagonColor,int comboStage=1,int trailCurveIndex=0)
     {
         float time = 0;
         var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
         var avatarTarget = avatarElement.HeartImage;
         trailVFX.transform.localPosition = Vector3.zero;
         ChangeColor(hexagonColor);
-        var animationCurve = trailMotionCurveList[Random.Range(0, trailMotionCurveList.Count)];
+        var animationCurve = trailMotionCurveList[trailCurveIndex];
         trailVFX.transform.DOMove(avatarTarget.transform.position, .45f)
             .OnUpdate(() =>
             {

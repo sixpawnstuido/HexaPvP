@@ -216,13 +216,18 @@ public class HexagonHolder : MonoBehaviour
                 {
                     int hexagonElementAmount = upperHexagonElementList.Count;
                     Vector3 trailPos = tempHexagonElement.transform.position;
-                    var trail = TrailVFXPool.Instance.GetParticle();
+                  
                     
                     Vector3 offset = new Vector3(0, 2.2f, -1.15f) + trailPos;
                     ComboManager.Instance.IncreaseComboStage(offset);
                     int comboStage = ComboManager.Instance.comboStage;
                     var hexagonColor=tempHexagonElement.ReturnColor();
-                    ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount,hexagonColor,comboStage);
+                    for (int j = 0; j < comboStage; j++)
+                    {
+                        var trail = TrailVFXPool.Instance.GetParticle();
+                        ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount,hexagonColor,comboStage,j);
+                        yield return new WaitForSeconds(.01f);
+                    }
                 }
                 yield return new WaitForSeconds(.05f);
             }
@@ -279,11 +284,11 @@ public class HexagonHolder : MonoBehaviour
     }
     
     
-    public void ActivateTrail(PlayerType playerTyp,Vector3 trailPos,TrailVFX trailVFX,int hexagonElementAmount,Color hexagonColor,int comboStage=1)
+    public void ActivateTrail(PlayerType playerTyp,Vector3 trailPos,TrailVFX trailVFX,int hexagonElementAmount,Color hexagonColor,int comboStage=1,int trailCurveIndex=0)
     {
         trailVFX.gameObject.SetActive(true);
         trailVFX.transform.position=trailPos;
-        trailVFX.TrailMotion(playerTyp,hexagonElementAmount,hexagonColor,comboStage);
+        trailVFX.TrailMotion(playerTyp,hexagonElementAmount,hexagonColor,comboStage,trailCurveIndex);
     }
     
     public void SetLayerRecursively(GameObject obj, LayerMask layerMask)

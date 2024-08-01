@@ -22,15 +22,15 @@ public class MinusText : MonoBehaviour
         IEnumerator InitCor()
         {
             int comboMultiplier = comboStage;
-            if (comboMultiplier > 1)
-            {
-                _text.SetText($"-{clearAmount}x{comboMultiplier}");
-            }
-            else
-            {
-              _text.SetText($"-{clearAmount}");
-            }
-            
+            // if (comboMultiplier > 1)
+            // {
+            //     _text.SetText($"-{clearAmount}x{comboMultiplier}");
+            // }
+            // else
+            // {
+            //   _text.SetText($"-{clearAmount}");
+            // }
+            _text.SetText($"-{clearAmount}");
             transform.position = pos;
             _text.DOFade(1, 0f);
 

@@ -42,7 +42,7 @@ public class AvatarElement : MonoBehaviour
     public void DecreaseHealth(int hexagonElementAmount,int comboStage=1)
     {
         comboStage = Mathf.Max(comboStage, 1);
-        currentHealth-= hexagonElementAmount*comboStage;
+        currentHealth-= hexagonElementAmount;
         currentHealth = Mathf.Max(currentHealth, 0);
         SetFillAmount();
         SetHealthText();
