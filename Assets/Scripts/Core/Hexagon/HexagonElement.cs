@@ -13,6 +13,8 @@ public class HexagonElement : MonoBehaviour
 
     [SerializeField] private GameObject _hexagonMesh;
 
+    private MeshRenderer _hexagonMeshRenderer;
+
     private BonesStimulator[] _boneStimulators;
 
     public ParticleSystem fruitSmashVFX;
@@ -26,6 +28,7 @@ public class HexagonElement : MonoBehaviour
     {
         _boneStimulators = GetComponentsInChildren<BonesStimulator>();
         _hexagonElementCollider = GetComponent<Collider>();
+        _hexagonMeshRenderer = _hexagonMesh.GetComponent<MeshRenderer>();
     }
 
     private void Start()
@@ -110,4 +113,10 @@ public class HexagonElement : MonoBehaviour
             icons[i].sprite = spriteList[enumIndex];
         }
     }
+
+    public Color ReturnColor()
+    {
+        return _hexagonMeshRenderer.material.color;
+    }
+    
 }

@@ -15,13 +15,13 @@ public class TrailVFX : MonoBehaviour
     [SerializeField] private Color32 redColor;
     
 
-    public void TrailMotion(PlayerType playerType,int hexagonElementAmount,int comboStage=1)
+    public void TrailMotion(PlayerType playerType,int hexagonElementAmount,Color hexagonColor,int comboStage=1)
     {
         float time = 0;
         var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
         var avatarTarget = avatarElement.HeartImage;
         trailVFX.transform.localPosition = Vector3.zero;
-        ChangeColor(playerType);
+        ChangeColor(hexagonColor);
         var animationCurve = trailMotionCurveList[Random.Range(0, trailMotionCurveList.Count)];
         trailVFX.transform.DOMove(avatarTarget.transform.position, .45f)
             .OnUpdate(() =>
@@ -40,10 +40,9 @@ public class TrailVFX : MonoBehaviour
 
 
 
-    public void ChangeColor(PlayerType playerType)
+    public void ChangeColor(Color color)
     {
         var mainModule = trailVFX.main;
-        Color newColor = playerType==PlayerType.OPPONENT ? redColor : blueColor;
-        mainModule.startColor = newColor;
+        mainModule.startColor = color;
     }
 }

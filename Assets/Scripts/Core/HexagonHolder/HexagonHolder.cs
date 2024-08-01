@@ -221,7 +221,8 @@ public class HexagonHolder : MonoBehaviour
                     Vector3 offset = new Vector3(0, 2.2f, -1.15f) + trailPos;
                     ComboManager.Instance.IncreaseComboStage(offset);
                     int comboStage = ComboManager.Instance.comboStage;
-                    ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount,comboStage);
+                    var hexagonColor=tempHexagonElement.ReturnColor();
+                    ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount,hexagonColor,comboStage);
                 }
                 yield return new WaitForSeconds(.05f);
             }
@@ -278,11 +279,11 @@ public class HexagonHolder : MonoBehaviour
     }
     
     
-    public void ActivateTrail(PlayerType playerTyp,Vector3 trailPos,TrailVFX trailVFX,int hexagonElementAmount,int comboStage=1)
+    public void ActivateTrail(PlayerType playerTyp,Vector3 trailPos,TrailVFX trailVFX,int hexagonElementAmount,Color hexagonColor,int comboStage=1)
     {
         trailVFX.gameObject.SetActive(true);
         trailVFX.transform.position=trailPos;
-        trailVFX.TrailMotion(playerTyp,hexagonElementAmount,comboStage);
+        trailVFX.TrailMotion(playerTyp,hexagonElementAmount,hexagonColor,comboStage);
     }
     
     public void SetLayerRecursively(GameObject obj, LayerMask layerMask)
