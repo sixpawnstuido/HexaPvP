@@ -88,9 +88,9 @@ public class LevelManager : Singleton<LevelManager>
         if (UIManager.Instance.failedPanel.gameObject.activeInHierarchy) return;
         LevelCount++;
         TotalLevelCount++;
-        if (LevelCount > 15)
+        if (LevelCount > 25)
         {
-            LevelCount = 2;
+            LevelCount = 15;
             TotalLevelCount = 16;
         }
         StopAllCoroutines();
