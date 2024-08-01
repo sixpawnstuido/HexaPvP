@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,20 +18,21 @@ public class BarController : SerializedMonoBehaviour
 
     public int targetAmount;
 
+    [SerializeField] private Transform holder;
+
     private void Awake()
     {
         Instance = this;
     }
 
-    [Button]
     public void ChangeProgress(PlayerType playerType,int hexagonAmount)
     {
+        holder.DOPunchScale(new Vector3(-.05f, 0.05f, 0), .3f, 5) .SetId(transform.GetHashCode());
         if (playerType==PlayerType.PLAYER)
         {
             float increaseAmount = Mathf.InverseLerp(0, targetAmount, hexagonAmount);
             var fillAmount= playerImage.fillAmount + increaseAmount;
             var fillAmountOpponent= opponentImage.fillAmount - increaseAmount;
-            // opponentImage.fillAmount -= increaseAmount;
 
             DOVirtual.Float(playerImage.fillAmount, fillAmount, .3f, (v) => playerImage.fillAmount = v);
             DOVirtual.Float(opponentImage.fillAmount, fillAmountOpponent, .3f, (v) => opponentImage.fillAmount = v);
@@ -39,6 +41,8 @@ public class BarController : SerializedMonoBehaviour
             {
                 LevelManager.Instance.OpenNextLevelPanel();
             }
+            targets[PlayerType.PLAYER].splashVFX.Stop();
+            targets[PlayerType.PLAYER].splashVFX.Play();
         }
         else
         {
@@ -53,6 +57,9 @@ public class BarController : SerializedMonoBehaviour
             {
                 LevelManager.Instance.OpenFailedPanel();
             }
+            
+            targets[PlayerType.OPPONENT].splashVFX.Stop();
+            targets[PlayerType.OPPONENT].splashVFX.Play();
         }
 
         if (playerImage.fillAmount>opponentImage.fillAmount)

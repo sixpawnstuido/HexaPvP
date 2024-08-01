@@ -9,4 +9,6 @@ public class NewTarget : MonoBehaviour
 
     public Transform targetTransform;
 
+    public ParticleSystem splashVFX;
+
 }
