@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,14 +22,20 @@ public class BarController : SerializedMonoBehaviour
         Instance = this;
     }
 
+    [Button]
     public void ChangeProgress(PlayerType playerType,int hexagonAmount)
     {
         if (playerType==PlayerType.PLAYER)
         {
             float increaseAmount = Mathf.InverseLerp(0, targetAmount, hexagonAmount);
-            playerImage.fillAmount += increaseAmount;
-            opponentImage.fillAmount -= increaseAmount;
-            if (playerImage.fillAmount>=1)
+            var fillAmount= playerImage.fillAmount + increaseAmount;
+            var fillAmountOpponent= opponentImage.fillAmount - increaseAmount;
+            // opponentImage.fillAmount -= increaseAmount;
+
+            DOVirtual.Float(playerImage.fillAmount, fillAmount, .3f, (v) => playerImage.fillAmount = v);
+            DOVirtual.Float(opponentImage.fillAmount, fillAmountOpponent, .3f, (v) => opponentImage.fillAmount = v);
+            
+            if (fillAmount>=1)
             {
                 LevelManager.Instance.OpenNextLevelPanel();
             }
@@ -36,9 +43,13 @@ public class BarController : SerializedMonoBehaviour
         else
         {
             float increaseAmount = Mathf.InverseLerp(0, targetAmount, hexagonAmount);
-            opponentImage.fillAmount += increaseAmount;
-            playerImage.fillAmount -= increaseAmount;
-            if (opponentImage.fillAmount>=1)
+            
+            var fillAmount= opponentImage.fillAmount + increaseAmount;
+            var fillAmountOpponent= playerImage.fillAmount - increaseAmount;
+            
+            DOVirtual.Float(playerImage.fillAmount, fillAmountOpponent, .2f, (v) => playerImage.fillAmount = v);
+            DOVirtual.Float(opponentImage.fillAmount, fillAmount, .2f, (v) => opponentImage.fillAmount = v);
+            if (fillAmount>=1)
             {
                 LevelManager.Instance.OpenFailedPanel();
             }
