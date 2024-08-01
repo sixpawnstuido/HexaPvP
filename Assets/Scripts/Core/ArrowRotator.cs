@@ -35,6 +35,11 @@ public class ArrowRotator : MonoBehaviour
         float stopAngle = GetRandomStopAngle();
         stopAngle = (stopAngle + 360) % 360;
 
+        if (LevelManager.Instance.LevelCount==1 &&Level1Tut.Level1TutCount==0)
+        {
+            stopAngle = 270;
+        }
+        
         float elapsedTime = 0f;
 
         while (elapsedTime < rotationDuration)

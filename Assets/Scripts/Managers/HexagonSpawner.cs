@@ -42,7 +42,7 @@ public class HexagonSpawner : MonoBehaviour
     void Start()
     {
         AssingReferences();
-       // SpawnHexagons();
+        // SpawnHexagons();
     }
 
     private void OnEnable()
@@ -76,7 +76,7 @@ public class HexagonSpawner : MonoBehaviour
                     Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity)
                         .GetComponent<HexagonHolder>();
                 hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
-                SpawnHexagonElements(hexagonHolderInstantiated);
+                SpawnHexagonElements(hexagonHolderInstantiated,true);
                 hexagonHolderInstantiated.Init(AvailableSlot(PlayerType.PLAYER));
                 hexagonHolderInstantiated.playerType = PlayerType.PLAYER;
                 _spawnCount++;
@@ -111,26 +111,27 @@ public class HexagonSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnHexagonElements(HexagonHolder hexagonHolder)
+    private void SpawnHexagonElements(HexagonHolder hexagonHolder,bool isPlayer=false)
     {
         int hexagonTypeCount = 0;
-        if (LevelManager.Instance.LevelCount == 1 && _spawnCount <= 5 && TutorialManager.TutorialCompleted == 0)
-        {
-            hexagonTypeCount = 2;
-        }
-        else
-        {
-            hexagonTypeCount = Random.Range(1, _maxHexagonTypeCountIndividual + 1);
-        }
+        hexagonTypeCount = Random.Range(1, _maxHexagonTypeCountIndividual + 1);
+
 
         List<HexagonElement> tempHexagons = new();
         for (int i = 0; i < hexagonTypeCount; i++)
         {
             HexagonTypes hexagonType;
             int maxHexagonCountIndividual = 1;
+            
 
             hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
             maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
+
+            if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0 && isPlayer)
+            {
+                hexagonType = HexagonTypes.FLOWER1;
+                maxHexagonCountIndividual = 3;
+            }
             
             for (int j = 0; j < maxHexagonCountIndividual; j++)
             {

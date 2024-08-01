@@ -51,10 +51,21 @@ public class HexagonMovement : MonoBehaviour,IPointerDownHandler,IPointerUpHandl
         if (PvPBlock) return;
         if (_changeSlotHint.isHintActive && _hexagonHolder.gridHolder is null || _clearSlotHint.isHintActive) return;
         if (_hexagonHolder.playerType == PlayerType.OPPONENT) return;
-
+        
         _canMove = true;
         AudioManager.Instance.Play(AudioManager.AudioEnums.Tap, .3f);
         isMoving = true;
+        
+        if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
+        {
+            FindObjectOfType<Level1Tut>().Tut2();
+        }
+        
+        if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0)
+        {
+            FindObjectOfType<Level1Tut>().Tut1Completed();
+        }
+        
     }
 
     private void Update()
@@ -104,12 +115,27 @@ public class HexagonMovement : MonoBehaviour,IPointerDownHandler,IPointerUpHandl
             transform.DOMove(gridHolder.transform.position + gridOffset, .2f)
                 .OnComplete(() => _hexagonHolder.HexagonPlacedState(gridHolder, isHintActive));
             AudioManager.Instance.Play(AudioManager.AudioEnums.HexagonHolderPlaced, .4f);
+            
+            if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
+            {
+                FindObjectOfType<Level1Tut>().StartTut2();
+            }
+            
+            if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==2)
+            {
+                FindObjectOfType<Level1Tut>().Tut2Completed();
+            }
         }
         else
         {
             AudioManager.Instance.Play(AudioManager.AudioEnums.WrongMove, .4f);
             AudioManager.Instance.PlayHaptic(HapticPatterns.PresetType.MediumImpact);
             transform.DOMove(isHintActive ? _hexagonHolder.gridHolder.transform.position + gridOffset : _firstPos, .2f);
+            
+            if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
+            {
+                FindObjectOfType<Level1Tut>().Tut1();
+            }
         }
     }
 

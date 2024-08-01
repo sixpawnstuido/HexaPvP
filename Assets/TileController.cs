@@ -34,6 +34,13 @@ public class TileController : SerializedMonoBehaviour
          AudioManager.Instance.Play(AudioManager.AudioEnums.ButtonTap);
          PvPController.Instance.SelectFirstPlayer();
       });
+      
+      var tile = tiles.FirstOrDefault(tile => tile.TileState == 1);
+      if (tile is null)
+      {
+         tiles[0].TileState=1;
+         SelectTile(tiles[0]);
+      }
    }
 
    public void SelectTile(Tile tile)
