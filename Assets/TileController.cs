@@ -107,7 +107,11 @@ public class TileController : SerializedMonoBehaviour
    public int ReturnTileIndex()
    {
       var tile = tiles.FirstOrDefault(tile => tile.TileState == 1);
-      var tileIndex=tiles.IndexOf(tile);
+      var tileIndex = 0;
+      
+      if (tile is not null) tileIndex = tiles.IndexOf(tile);
+      else tileIndex = 0;
+      
       return tileIndex;
    }
 }
