@@ -35,7 +35,9 @@ MonoBehaviour:
     - LeTai.TrueShadow.Demo
     - Assembly-CSharp
     - ToonyColorsPro.Editor
+    - Coffee.SoftMaskForUGUI.Editor
     - LeTai.TrueShadow
+    - Coffee.SoftMaskForUGUI
     - ToonyColorsPro2.Demo
     - Lofelt.NiceVibrations.Editor
     - Coffee.UIParticle.Editor

@@ -18,8 +18,12 @@ public class TrailVFX : MonoBehaviour
     public void TrailMotion(PlayerType playerType,int hexagonElementAmount,int comboStage=1)
     {
         float time = 0;
+        // var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
+        // var avatarTarget = avatarElement.HeartImage;
+        
         var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
-        var avatarTarget = avatarElement.HeartImage;
+        var avatarTarget = BarController.Instance.targets[playerType].targetTransform;
+        
         trailVFX.transform.localPosition = Vector3.zero;
         ChangeColor(playerType);
         var animationCurve = trailMotionCurveList[Random.Range(0, trailMotionCurveList.Count)];
@@ -32,8 +36,9 @@ public class TrailVFX : MonoBehaviour
             })
             .OnComplete(() =>
             {
-                avatarElement.TrailArrivedState(hexagonElementAmount,comboStage);
-                PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount,comboStage);
+               // avatarElement.TrailArrivedState(hexagonElementAmount,comboStage);
+              //  PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount,comboStage);
+              BarController.Instance.ChangeProgress(playerType,hexagonElementAmount);
                 DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
             });
     }
