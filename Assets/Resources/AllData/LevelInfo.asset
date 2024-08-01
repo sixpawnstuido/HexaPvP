@@ -34,7 +34,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 10
+      Data: 25
     - Name: 
       Entry: 7
       Data: 
@@ -68,31 +68,13 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 8
+      Data: 2
     - Name: 
       Entry: 3
       Data: 1
     - Name: 
       Entry: 3
       Data: 2
-    - Name: 
-      Entry: 3
-      Data: 3
-    - Name: 
-      Entry: 3
-      Data: 4
-    - Name: 
-      Entry: 3
-      Data: 5
-    - Name: 
-      Entry: 3
-      Data: 6
-    - Name: 
-      Entry: 3
-      Data: 7
-    - Name: 
-      Entry: 3
-      Data: 8
     - Name: 
       Entry: 13
       Data: 
@@ -177,7 +159,7 @@ MonoBehaviour:
       Data: 40
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
       Data: 2
@@ -287,10 +269,10 @@ MonoBehaviour:
       Data: 10|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
-      Data: 200
+      Data: 60
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 4
+      Data: 3
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
       Data: 3
@@ -309,10 +291,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 3
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 3
       Data: 3
@@ -348,13 +327,13 @@ MonoBehaviour:
       Data: 12|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
-      Data: 150
+      Data: 70
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 4
+      Data: 3
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
-      Data: 4
+      Data: 3
     - Name: newTypeMinIndex
       Entry: 3
       Data: 0
@@ -370,10 +349,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 3
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 3
       Data: 2
@@ -409,13 +385,13 @@ MonoBehaviour:
       Data: 14|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
-      Data: 200
+      Data: 100
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 5
+      Data: 3
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: newTypeMinIndex
       Entry: 3
       Data: 0
@@ -431,13 +407,10 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 4
     - Name: 
       Entry: 3
       Data: 1
-    - Name: 
-      Entry: 3
-      Data: 2
     - Name: 
       Entry: 3
       Data: 3
@@ -473,10 +446,10 @@ MonoBehaviour:
       Data: 16|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
-      Data: 200
+      Data: 150
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 5
+      Data: 3
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
       Data: 4
@@ -495,16 +468,13 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 4
     - Name: 
       Entry: 3
       Data: 2
     - Name: 
       Entry: 3
       Data: 1
-    - Name: 
-      Entry: 3
-      Data: 3
     - Name: 
       Entry: 3
       Data: 4
@@ -537,13 +507,13 @@ MonoBehaviour:
       Data: 18|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
-      Data: 500
+      Data: 175
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 2
+      Data: 3
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
-      Data: 2
+      Data: 4
     - Name: newTypeMinIndex
       Entry: 3
       Data: 0
@@ -559,13 +529,19 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 3
       Data: 3
     - Name: 
       Entry: 3
       Data: 4
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 7
     - Name: 
       Entry: 13
       Data: 
@@ -592,13 +568,13 @@ MonoBehaviour:
       Data: 20|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
-      Data: 500
+      Data: 200
     - Name: maxHexagonCountIndividual
       Entry: 3
       Data: 3
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
-      Data: 2
+      Data: 4
     - Name: newTypeMinIndex
       Entry: 3
       Data: 0
@@ -614,7 +590,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 3
       Data: 4
@@ -624,6 +600,1011 @@ MonoBehaviour:
     - Name: 
       Entry: 3
       Data: 1
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 11
+    - Name: $v
+      Entry: 7
+      Data: 22|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 250
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 4
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 23|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 12
+    - Name: $v
+      Entry: 7
+      Data: 24|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 300
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 4
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 25|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 13
+    - Name: $v
+      Entry: 7
+      Data: 26|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 325
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 4
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 27|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 14
+    - Name: $v
+      Entry: 7
+      Data: 28|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 350
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 4
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 29|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 15
+    - Name: $v
+      Entry: 7
+      Data: 30|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 400
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 4
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 31|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 16
+    - Name: $v
+      Entry: 7
+      Data: 32|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 425
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 4
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 33|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 17
+    - Name: $v
+      Entry: 7
+      Data: 34|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 450
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 35|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 18
+    - Name: $v
+      Entry: 7
+      Data: 36|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 500
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 37|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 19
+    - Name: $v
+      Entry: 7
+      Data: 38|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 525
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 39|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 20
+    - Name: $v
+      Entry: 7
+      Data: 40|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 550
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 41|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 21
+    - Name: $v
+      Entry: 7
+      Data: 42|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 575
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 43|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 22
+    - Name: $v
+      Entry: 7
+      Data: 44|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 600
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 45|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 23
+    - Name: $v
+      Entry: 7
+      Data: 46|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 650
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 47|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 24
+    - Name: $v
+      Entry: 7
+      Data: 48|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 650
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 49|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 8
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: numberOfHexagonHoldersToDelete
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 25
+    - Name: $v
+      Entry: 7
+      Data: 50|LevelInfo+LevelInfoValues, Assembly-CSharp
+    - Name: desiredHexagonAmount
+      Entry: 3
+      Data: 650
+    - Name: maxHexagonCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: maxHexagonTypeCountIndividual
+      Entry: 3
+      Data: 3
+    - Name: newTypeMinIndex
+      Entry: 3
+      Data: 0
+    - Name: hexagonElementFirstLocalPosY
+      Entry: 4
+      Data: 0.087
+    - Name: hexagonElementYOffset
+      Entry: 4
+      Data: 0.148
+    - Name: hexagonTypes
+      Entry: 7
+      Data: 51|System.Collections.Generic.List`1[[HexagonTypes, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 8
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 8
     - Name: 
       Entry: 13
       Data: 
