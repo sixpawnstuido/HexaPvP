@@ -227,7 +227,7 @@ public class HexagonHolder : MonoBehaviour
                     {
                         var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
                         var orderCheck = playerType == PlayerType.PLAYER ? hexagonSpawner.ArePlayerSlotsEmpty() : hexagonSpawner.AreOpponentSlotsEmpty();
-                         if(orderCheck) PvPController.Instance.isExtraMove= true;
+                        if(orderCheck) PvPController.Instance.isExtraMove= true;
 
                         if (PvPController.Instance.playerType==PlayerType.PLAYER)
                         {
@@ -246,10 +246,6 @@ public class HexagonHolder : MonoBehaviour
                             {
                                 hexagonSpawner.SpawnOpponentHexagonHolder(2);
                                 PvPController.Instance.OpponentState();
-                            }
-                            else
-                            {
-                                hexagonSpawner.SpawnOpponentHexagonHolder(1);
                             }
                         }
                     }

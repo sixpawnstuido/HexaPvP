@@ -18,14 +18,20 @@ public class ComboElement : MonoBehaviour
 
     private void Awake()
     {
-        _comboImageFirstPos = _comboImage.localPosition;
+        _comboImageFirstPos = _comboTextList[0].localPosition;
         _comboAmountFirstPos = _comboAmountList[0].localPosition;
     }
 
     public void ResetComboElement()
     {
-        _comboImage.localPosition = _comboImageFirstPos;
-        _comboImage.localScale = Vector3.zero;
+        //_comboImage.localPosition = _comboImageFirstPos;
+        //_comboImage.localScale = Vector3.zero;
+        for (int i = 0; i < _comboTextList.Count; i++)
+        {
+            _comboTextList[i].localPosition= _comboImageFirstPos;
+            _comboTextList[i].localScale = Vector3.zero;
+        }
+
         for (int i = 0; i < _comboAmountList.Count; i++)
         {
             _comboAmountList[i].localPosition = _comboAmountFirstPos;
@@ -36,23 +42,26 @@ public class ComboElement : MonoBehaviour
     public void ComboAnim(int comboStage, Vector3 startPos)
     {
         ResetComboElement();
-        transform.position = startPos;
-        gameObject.SetActive(true);
+      //  transform.position = startPos;
         AudioManager.Instance.Play(AudioManager.AudioEnums.Combo);
 
+        int comboStageClampted=Math.Min(comboStage, _comboTextList.Count-1);
+
         Sequence seq = DOTween.Sequence();
-        seq.Append(_comboImage.DOScale(Vector3.one, .2f).SetEase(Ease.OutBack));
-        seq.AppendInterval(0.1f);
-        seq.Append(_comboAmountList[comboStage].DOScale(Vector3.one, .2f).SetEase(Ease.OutBack));
+        seq.Append(_comboTextList[comboStageClampted].DOScale(Vector3.one, .2f).SetEase(Ease.OutBack));
+        seq.AppendInterval(0.05f);
+        seq.Append(_comboAmountList[comboStageClampted].DOScale(Vector3.one, .2f).SetEase(Ease.OutBack));
 
-        seq.Append(_comboImage.DOMove(Vector3.up / 2, .2f).SetRelative().SetEase(Ease.Flash));
-        seq.Join(_comboAmountList[comboStage].DOMove(Vector3.down / 2, .2f).SetRelative().SetEase(Ease.Flash));
-        seq.Append(_comboImage.DOMove(Vector3.down / 2, .1f).SetRelative().SetEase(Ease.Linear));
-        seq.Join(_comboAmountList[comboStage].DOMove(Vector3.up / 2, .1f).SetRelative().SetEase(Ease.Linear));
+        //seq.Append(_comboTextList[comboStageClampted].DOMove(Vector3.up / 2, .2f).SetRelative().SetEase(Ease.Flash));
+        //seq.Join(_comboAmountList[comboStageClampted].DOMove(Vector3.down / 2, .2f).SetRelative().SetEase(Ease.Flash));
+        //seq.Append(_comboTextList[comboStageClampted].DOMove(Vector3.down / 2, .1f).SetRelative().SetEase(Ease.Linear));
+        //seq.Join(_comboAmountList[comboStageClampted].DOMove(Vector3.up / 2, .1f).SetRelative().SetEase(Ease.Linear));
 
-        seq.Append(_comboImage.DOScale(0, .1f));
-        seq.Join(_comboAmountList[comboStage].DOScale(Vector3.zero, .1f));
-        seq.Join(SpawnMoneyTween(comboStage));
+        //seq.Append(_comboTextList[comboStageClampted].DOScale(0, .1f));
+        //seq.Join(_comboAmountList[comboStageClampted].DOScale(Vector3.zero, .1f));
+        //  seq.Join(SpawnMoneyTween(comboStageClampted));
+        seq.AppendInterval(.2f);
+        seq.AppendCallback(()=>gameObject.SetActive(false));
     }
 
     private Tween SpawnMoneyTween(int comboStage)
