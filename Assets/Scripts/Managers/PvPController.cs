@@ -34,6 +34,8 @@ public class PvPController : SerializedMonoBehaviour
 
     private IEnumerator _opponentStateCor;
 
+    [ReadOnly] public bool isExtraMove;
+
     private void Awake()
     {
         if (Instance == null)
@@ -77,7 +79,7 @@ public class PvPController : SerializedMonoBehaviour
         }
     }
 
-    private void OpponentState()
+    public void OpponentState()
     {
         StartCoroutine(OpponentStateCor());
     }
@@ -85,9 +87,10 @@ public class PvPController : SerializedMonoBehaviour
     IEnumerator OpponentStateCor()
     {
         if (isLevelEnd) yield break;
+        var playerTypeBefore = playerType;
         playerType = PlayerType.OPPONENT;
         HexagonMovement.PvPBlock = true;
-        OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT);
+       if(playerTypeBefore==PlayerType.PLAYER) OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT);
         
         yield return new WaitForSeconds(0.2f);
 
@@ -191,10 +194,12 @@ public class PvPController : SerializedMonoBehaviour
 
         IEnumerator OrderCheckerCor()
         {
-            orderIndex++;
-            LevelManager.Instance.SpawnCount++;
-            if (orderIndex % 2 == 0)
+
+            var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
+            var orderCheck= playerType==PlayerType.PLAYER ? hexagonSpawner.ArePlayerSlotsEmpty() : hexagonSpawner.AreOpponentSlotsEmpty();
+            if (orderCheck)
             {
+                Debug.Log("OrderCheckIn");
                 yield return new WaitForSeconds(0.1f);
                 var gridController = LevelManager.Instance.ReturnGridHolderController();
                 var hexagonHolderController = LevelManager.Instance.ReturnHexagonSpawnerHexagonHolderController();
@@ -224,9 +229,15 @@ public class PvPController : SerializedMonoBehaviour
                         yield return new WaitForSeconds(1);
                     }
                 }
-                
+                Debug.Log("ExtraMoveUp");
+                if (isExtraMove)
+                {
+                    isExtraMove=false;
+                    yield break;
+                }
                 LevelManager.Instance.HexagonHolderSpawnCheck();
                 ComboManager.Instance.ResetComboStage();
+                Debug.Log("ExtraMoveDown");
                 if (playerType == PlayerType.PLAYER)
                 {
                     OpponentState();

@@ -8,6 +8,7 @@ public class ComboElement : MonoBehaviour
 {
     [SerializeField] private Transform _comboImage;
     [SerializeField] private List<Transform> _comboAmountList;
+    [SerializeField] private List<Transform> _comboTextList;
 
 
     private Vector3 _comboImageFirstPos;

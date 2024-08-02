@@ -225,8 +225,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public void HexagonHolderSpawnCheck()
     {
-        //SpawnCount++;
-        if (SpawnCount % (_levelInfo.spawnAmount*2) == 0)
+        var hexagonSpawner=ReturnHexagonSpawner();
+        if (hexagonSpawner.AllSlotsEmptyCheck())
         {
            if(  EventManager.SpawnEvents.SpawnHexagonHolder is not null) EventManager.SpawnEvents.SpawnHexagonHolder();
            else Debug.LogError("Spawn event is null");

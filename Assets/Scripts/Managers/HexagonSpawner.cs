@@ -62,19 +62,17 @@ public class HexagonSpawner : MonoBehaviour
     }
 
     [Button]
-    private void SpawnPlayersHexagonHolder()
+    public void SpawnPlayersHexagonHolder(int spawnCount=2)
     {
         StartCoroutine(SpawnHexagonHolderCor());
 
         IEnumerator SpawnHexagonHolderCor()
         {
             var hexagonHolder = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.HexagonHolder];
-            int spawnAmount = ResourceSystem.ReturnLevelInfo().spawnAmount;
+            int spawnAmount = spawnCount;
             for (int i = 0; i < spawnAmount; i++)
             {
-                var hexagonHolderInstantiated =
-                    Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity)
-                        .GetComponent<HexagonHolder>();
+                var hexagonHolderInstantiated =  Instantiate(hexagonHolder, _hexagonHolderSpawnPos.position, Quaternion.identity).GetComponent<HexagonHolder>();
                 hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
                 SpawnHexagonElements(hexagonHolderInstantiated,true);
                 hexagonHolderInstantiated.Init(AvailableSlot(PlayerType.PLAYER));
@@ -87,14 +85,14 @@ public class HexagonSpawner : MonoBehaviour
     }
 
     [Button]
-    public void SpawnOpponentHexagonHolder()
+    public void SpawnOpponentHexagonHolder(int spawnCount = 2)
     {
         StartCoroutine(SpawnHexagonHolderCor());
 
         IEnumerator SpawnHexagonHolderCor()
         {
             var hexagonHolder = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.HexagonHolder];
-            int spawnAmount = ResourceSystem.ReturnLevelInfo().spawnAmount;
+            int spawnAmount = spawnCount;
             for (int i = 0; i < spawnAmount; i++)
             {
                 var hexagonHolderInstantiated =
@@ -178,5 +176,29 @@ public class HexagonSpawner : MonoBehaviour
         _hexagonElementFirstLocalPosY = levelInfo.hexagonElementFirstLocalPosY;
         _hexagonElementYOffset = levelInfo.hexagonElementYOffset;
         _hexagonTypesAtTheBeginning = new List<HexagonTypes>(levelInfo.hexagonTypes);
+    }
+
+
+    public bool AllSlotsEmptyCheck()
+    {
+        if (ArePlayerSlotsEmpty() && AreOpponentSlotsEmpty())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ArePlayerSlotsEmpty()
+    {
+        var emptyCheck = hexagonSlotList.All(g=>g.hexagonHolder is null);
+        return emptyCheck;
+    }
+
+    public bool AreOpponentSlotsEmpty()
+    {
+        var emptyCheck = hexagonSlotListOpponent.All(g => g.hexagonHolder is null);
+        return emptyCheck;
     }
 }

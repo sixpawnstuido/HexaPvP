@@ -19,6 +19,7 @@ public class TrailVFX : MonoBehaviour
         var avatarTarget = avatarElement.HeartImage;
         trailVFX.transform.localPosition = Vector3.zero;
         ChangeColor(hexagonColor);
+        int trailCurveIndexClamped=Mathf.Max(trailCurveIndex, trailMotionCurveList.Count - 1);
         var animationCurve = trailMotionCurveList[trailCurveIndex];
         trailVFX.transform.DOMove(avatarTarget.transform.position, .45f)
             .OnUpdate(() =>

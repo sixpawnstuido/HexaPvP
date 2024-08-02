@@ -37,6 +37,7 @@ public class MinusTextPool : MonoBehaviour
 
         var newParticle = Instantiate(particlePrefab,transform);
         poolList.Add(newParticle);
+        newParticle.gameObject.SetActive(true);
         return newParticle;
     }
 }

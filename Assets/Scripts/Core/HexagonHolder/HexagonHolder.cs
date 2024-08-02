@@ -222,11 +222,43 @@ public class HexagonHolder : MonoBehaviour
                     ComboManager.Instance.IncreaseComboStage(offset);
                     int comboStage = ComboManager.Instance.comboStage;
                     var hexagonColor=tempHexagonElement.ReturnColor();
+
+                    if (comboStage==3)
+                    {
+                        var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
+                        var orderCheck = playerType == PlayerType.PLAYER ? hexagonSpawner.ArePlayerSlotsEmpty() : hexagonSpawner.AreOpponentSlotsEmpty();
+                         if(orderCheck) PvPController.Instance.isExtraMove= true;
+
+                        if (PvPController.Instance.playerType==PlayerType.PLAYER)
+                        {
+                            if (hexagonSpawner.ArePlayerSlotsEmpty())
+                            {
+                                hexagonSpawner.SpawnPlayersHexagonHolder(2);
+                            }
+                            else
+                            {
+                                hexagonSpawner.SpawnPlayersHexagonHolder(1);
+                            }
+                        }
+                        else
+                        {
+                            if (hexagonSpawner.AreOpponentSlotsEmpty())
+                            {
+                                hexagonSpawner.SpawnOpponentHexagonHolder(2);
+                                PvPController.Instance.OpponentState();
+                            }
+                            else
+                            {
+                                hexagonSpawner.SpawnOpponentHexagonHolder(1);
+                            }
+                        }
+                    }
+
                     for (int j = 0; j < comboStage; j++)
                     {
                         var trail = TrailVFXPool.Instance.GetParticle();
                         ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount,hexagonColor,comboStage,j);
-                        yield return new WaitForSeconds(.01f);
+                        yield return new WaitForSeconds(.03f);
                     }
                 }
                 yield return new WaitForSeconds(.05f);

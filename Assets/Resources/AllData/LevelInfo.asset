@@ -214,10 +214,10 @@ MonoBehaviour:
       Data: 500
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: newTypeMinIndex
       Entry: 3
       Data: 0
