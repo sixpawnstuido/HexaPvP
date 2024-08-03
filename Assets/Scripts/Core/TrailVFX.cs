@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TrailVFX : MonoBehaviour
 {
-
-    [SerializeField] private ParticleSystem trailVFX;
+    
+    [SerializeField] private SpriteRenderer hexagonSprite;
+    [SerializeField] private TrailRenderer trailRenderer;
     
     [SerializeField] private List<AnimationCurve> trailMotionCurveList;
     
@@ -17,16 +19,16 @@ public class TrailVFX : MonoBehaviour
         float time = 0;
         var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
         var avatarTarget = avatarElement.HeartImage;
-        trailVFX.transform.localPosition = Vector3.zero;
+        hexagonSprite.transform.localPosition = Vector3.zero;
         ChangeColor(hexagonColor);
         int trailCurveIndexClamped=Mathf.Max(trailCurveIndex, trailMotionCurveList.Count - 1);
         var animationCurve = trailMotionCurveList[trailCurveIndex];
-        trailVFX.transform.DOMove(avatarTarget.transform.position, .45f)
+        hexagonSprite.transform.DOMove(avatarTarget.transform.position, .55f)
             .OnUpdate(() =>
             {
-                time += Time.deltaTime * (1 / .45f);
+                time += Time.deltaTime * (1 / .55f);
                 float xOffset = animationCurve.Evaluate(time);
-                trailVFX.transform.position = new Vector3(trailVFX.transform.position.x - xOffset, trailVFX.transform.position.y, trailVFX.transform.position.z);
+                hexagonSprite.transform.position = new Vector3(hexagonSprite.transform.position.x - xOffset, hexagonSprite.transform.position.y, hexagonSprite.transform.position.z);
             })
             .OnComplete(() =>
             {
@@ -40,7 +42,21 @@ public class TrailVFX : MonoBehaviour
 
     public void ChangeColor(Color color)
     {
-        var mainModule = trailVFX.main;
-        mainModule.startColor = color;
+        //var mainModule = trailVFX.main;
+    //    mainModule.startColor = color;
+        hexagonSprite.color = color;
+        var endColor = color;
+        endColor.a = 0;
+        SetTrailColor(color,endColor);
+    }
+    
+    public void SetTrailColor(Color startColor,Color endColor)
+    {
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(startColor, 0.0f), new GradientColorKey(endColor, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(startColor.a, 0.0f), new GradientAlphaKey(endColor.a, 1.0f) }
+        );
+        trailRenderer.colorGradient = gradient;
     }
 }

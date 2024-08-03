@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3444221173294325330}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.8365163, y: 0.4829629, z: -0.12940949, w: 0.22414389}
+  m_LocalRotation: {x: 0.43301266, y: 0.25, z: -0.43301263, w: 0.75}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05882353, y: 0.058823522, z: 0.05882352}
+  m_LocalScale: {x: 0.029411765, y: 0.029411767, z: 0.029411765}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4107145181080221524}
-  m_Father: {fileID: 945528661749124949}
+  m_Father: {fileID: 2080366556965259618}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: -60}
 --- !u!212 &4625978114152789007
 SpriteRenderer:
@@ -117,6 +117,7 @@ Transform:
   m_Children:
   - {fileID: 945528661749124949}
   - {fileID: 6324960472805621028}
+  - {fileID: 6825231237239847131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4123728434190436458
@@ -131,7 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e5b0579c22be7438c863cf9eefb551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trailVFX: {fileID: 945528661768500827}
+  hexagonSprite: {fileID: 4625978114152789007}
+  trailRenderer: {fileID: 9218649984158593421}
   trailMotionCurveList:
   - serializedVersion: 2
     m_Curve:
@@ -486,6 +488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToonFireTrail
       objectReference: {fileID: 0}
+    - target: {fileID: 168812, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400826, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -580,22 +586,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b81de046919fd624c92cbd5b63a4899b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400826, guid: c2d62f2fde0759941be25d8231ae1997,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6825231237239847131}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2d62f2fde0759941be25d8231ae1997, type: 3}
 --- !u!4 &945528661749124949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400826, guid: c2d62f2fde0759941be25d8231ae1997,
-    type: 3}
-  m_PrefabInstance: {fileID: 945528661749519087}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &945528661768500827 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19834036, guid: c2d62f2fde0759941be25d8231ae1997,
     type: 3}
   m_PrefabInstance: {fileID: 945528661749519087}
   m_PrefabAsset: {fileID: 0}
