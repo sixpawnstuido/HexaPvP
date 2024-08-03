@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 638578660806887103
+  lastScan: 638583029162679611
   supportSerializedTypes:
   - TypeName: UnityEngine.AudioClip, UnityEngine.AudioModule
     IsCustom: 0
@@ -44,20 +44,12 @@ MonoBehaviour:
       UnityEngine.CoreModule]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[UnityEngine.GameObject,
-      UnityEngine.CoreModule]], mscorlib
-    IsCustom: 0
-    Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[HexagonElement,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[JuiceTargetUIElement+GlassInfo,
       Assembly-CSharp]], mscorlib
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[UnityEngine.Material,
-      UnityEngine.CoreModule]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[HexagonTypes, Assembly-CSharp],[UnityEngine.Sprite,
@@ -72,8 +64,16 @@ MonoBehaviour:
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Collections.Generic.List`1[[UnityEngine.Sprite,
+      UnityEngine.CoreModule]], mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[PlayerType, Assembly-CSharp],[AvatarElement,
       Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[PlayerType, Assembly-CSharp],[UnityEngine.GameObject,
+      UnityEngine.CoreModule]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[VisualData+PrefabType, Assembly-CSharp],[UnityEngine.GameObject,
@@ -172,7 +172,8 @@ MonoBehaviour:
       mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: UnityEngine.Material, UnityEngine.CoreModule
+  - TypeName: System.Collections.Generic.List`1[[UnityEngine.Sprite, UnityEngine.CoreModule]],
+      mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: PlayerType, Assembly-CSharp

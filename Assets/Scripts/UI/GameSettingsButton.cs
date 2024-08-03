@@ -58,7 +58,7 @@ public class GameSettingsButton : MonoBehaviour
             else if(_toggleType == ToggleType.HAPTIC) AudioManager.Instance.VibroOnOffCheck= 1;
             else if (_toggleType == ToggleType.MUSIC)
             {
-                AudioManager.Instance.VibroOnOffCheck= 1;
+                AudioManager.Instance.MusicOnOffCheck= 1;
                 AudioManager.Instance.StopBGMusic();
             }
         }
@@ -71,7 +71,7 @@ public class GameSettingsButton : MonoBehaviour
             else if (_toggleType == ToggleType.HAPTIC) AudioManager.Instance.VibroOnOffCheck = 0;
             else if (_toggleType == ToggleType.MUSIC)
             {
-                AudioManager.Instance.VibroOnOffCheck= 0;
+                AudioManager.Instance.MusicOnOffCheck= 0;
                 AudioManager.Instance.PlayBGMusic();
             }
         }

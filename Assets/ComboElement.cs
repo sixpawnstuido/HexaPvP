@@ -52,6 +52,11 @@ public class ComboElement : MonoBehaviour
         seq.AppendInterval(0.05f);
         seq.Append(_comboAmountList[comboStageClampted].DOScale(Vector3.one, .2f).SetEase(Ease.OutBack));
 
+        seq.Append(_comboTextList[comboStageClampted].DOScale(Vector3.zero, .2f).SetEase(Ease.InBack));
+        seq.AppendInterval(0.01f);
+        seq.Append(_comboAmountList[comboStageClampted].DOScale(Vector3.zero, .2f).SetEase(Ease.InBack));
+
+
         //seq.Append(_comboTextList[comboStageClampted].DOMove(Vector3.up / 2, .2f).SetRelative().SetEase(Ease.Flash));
         //seq.Join(_comboAmountList[comboStageClampted].DOMove(Vector3.down / 2, .2f).SetRelative().SetEase(Ease.Flash));
         //seq.Append(_comboTextList[comboStageClampted].DOMove(Vector3.down / 2, .1f).SetRelative().SetEase(Ease.Linear));

@@ -52,6 +52,14 @@ public class ComboManager : MonoBehaviour
         int comboStageCount = comboStage - 2;
         comboElement.gameObject.SetActive(true);
         comboElement.ComboAnim(comboStageCount, hexagonHolderPos);
+        for (int i = 0; i < _comboElementList.Count; i++)
+        {
+            if (_comboElementList[i]==comboElement)
+            {
+                continue;
+            }
+            _comboElementList[i].gameObject.SetActive(false);
+        }
     }
 
     private ComboElement ReturnComboElement()

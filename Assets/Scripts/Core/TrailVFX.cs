@@ -20,9 +20,10 @@ public class TrailVFX : MonoBehaviour
         var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
         var avatarTarget = avatarElement.HeartImage;
         hexagonSprite.transform.localPosition = Vector3.zero;
+        hexagonSprite.enabled = true;
         ChangeColor(hexagonColor);
-        int trailCurveIndexClamped=Mathf.Max(trailCurveIndex, trailMotionCurveList.Count - 1);
-        var animationCurve = trailMotionCurveList[trailCurveIndex];
+        int trailCurveIndexClamped=Mathf.Min(trailCurveIndex, trailMotionCurveList.Count - 1);
+        var animationCurve = trailMotionCurveList[trailCurveIndexClamped];
         hexagonSprite.transform.DOMove(avatarTarget.transform.position, .55f)
             .OnUpdate(() =>
             {
@@ -34,6 +35,7 @@ public class TrailVFX : MonoBehaviour
             {
                 avatarElement.TrailArrivedState(hexagonElementAmount,comboStage);
                 PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount,comboStage);
+                hexagonSprite.enabled = false;
                 DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
             });
     }

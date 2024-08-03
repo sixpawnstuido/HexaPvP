@@ -156,7 +156,7 @@ public class LevelManager : Singleton<LevelManager>
             MoveCount = 0;
             SortedFruitLevel++;
             AudioManager.LevelEndSoundCheck = false;
-            AudioManager.Instance.PlayBGMusic();
+          if(AudioManager.Instance.MusicOnOffCheck==0) AudioManager.Instance.PlayBGMusic();
             InGameLoading.Instance.CloseHolder();
             PvPController.Instance.ResetAvatars();
           //  PvPController.Instance.SelectFirstPlayer();

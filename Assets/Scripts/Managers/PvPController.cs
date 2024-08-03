@@ -91,12 +91,17 @@ public class PvPController : SerializedMonoBehaviour
         playerType = PlayerType.OPPONENT;
         HexagonMovement.PvPBlock = true;
        if(playerTypeBefore==PlayerType.PLAYER) OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT);
-        
+       var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
         yield return new WaitForSeconds(0.2f);
 
         // START POS TO HEXAGON
-        var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
+
         var hexagonSlotList = hexagonSpawner.hexagonSlotListOpponent;
+        if (hexagonSlotList[0].hexagonHolder is null)
+        {
+            hexagonSpawner.SpawnOpponentHexagonHolder(2);
+            yield return new WaitUntil(()=>hexagonSlotList[0].hexagonHolder);
+        }
         handHolder.StartPosToHexagonHolder(hexagonSlotList[0]);
 
         yield return new WaitForSeconds(handHolder.startPosToHexagonDuration + .2f);
@@ -230,14 +235,46 @@ public class PvPController : SerializedMonoBehaviour
                     }
                 }
                 Debug.Log("ExtraMoveUp");
+                Debug.Log($"ExtraMove={isExtraMove}");
                 if (isExtraMove)
                 {
                     isExtraMove=false;
+                    SpawnHexagonsIfThereAreNotAny();
                     yield break;
                 }
                 LevelManager.Instance.HexagonHolderSpawnCheck();
                 ComboManager.Instance.ResetComboStage();
                 Debug.Log("ExtraMoveDown");
+                if (playerType == PlayerType.PLAYER)
+                {
+                    OpponentState();
+                }
+                else
+                {
+                    PlayerState();
+                }
+            }
+        }
+    }
+
+    public void SpawnHexagonsIfThereAreNotAny()
+    {
+        StartCoroutine(SpawnHexagonsIfThereAreNotAnyCor());
+        IEnumerator SpawnHexagonsIfThereAreNotAnyCor()
+        {
+            yield return new WaitForSeconds(2);
+            var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
+            bool playerSlotsState = hexagonSpawner.ArePlayerSlotsEmpty();
+            bool opponentSlotsState = hexagonSpawner.AreOpponentSlotsEmpty();
+            
+            if (playerType==PlayerType.PLAYER && playerSlotsState)
+            {
+                Debug.LogError("Player state ended");
+                if (opponentSlotsState)
+                {
+                    LevelManager.Instance.HexagonHolderSpawnCheck();
+                }
+                ComboManager.Instance.ResetComboStage();
                 if (playerType == PlayerType.PLAYER)
                 {
                     OpponentState();
