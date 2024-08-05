@@ -75,6 +75,8 @@ public class LevelManager : Singleton<LevelManager>
     {
         var levelHolder = ResourceSystem.ReturnLevelData().allLevels[LevelCount];
         _currentLevel = Instantiate(levelHolder);
+        
+        AvatarSelect.Instance.Customize();
     }
 
     private void DestroyLevel()

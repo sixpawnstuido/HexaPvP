@@ -223,7 +223,7 @@ public class HexagonHolder : MonoBehaviour
                     int comboStage = ComboManager.Instance.comboStage;
                     var hexagonColor=tempHexagonElement.ReturnColor();
 
-                    if (comboStage==3)
+                    if (comboStage==4)
                     {
                         var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
                         var orderCheck = playerType == PlayerType.PLAYER ? hexagonSpawner.ArePlayerSlotsEmpty() : hexagonSpawner.AreOpponentSlotsEmpty();

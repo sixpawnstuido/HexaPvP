@@ -1,26 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AvatarSelect : MonoBehaviour
 {
+    public static AvatarSelect Instance;
+    
     [SerializeField] private Image icon;
     [SerializeField] private Image flag;
 
-    [SerializeField] private string name;
-    
+    [SerializeField] private TextMeshProUGUI name;
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void Customize()
     {
         var visualInfo = ResourceSystem.ReturnVisualData();
-        var randomValue = Random.Range(0, visualInfo.oppIcons.Count);
-        
-        var oppIcon = visualInfo.oppIcons[randomValue];
-        var oppFlag= visualInfo.oppFlagIcons[randomValue];
-        var oppName= visualInfo.oppNames[randomValue];
+        int levelCount = LevelManager.Instance.LevelCount;
+        var oppIcon = visualInfo.oppIcons[levelCount-1];
+        var oppFlag= visualInfo.oppFlagIcons[levelCount-1];
+        var oppName= visualInfo.oppNames[levelCount-1];
 
         icon.sprite = oppIcon;
         flag.sprite = oppFlag;
-        name = oppName;
+        name.SetText(oppName);
     }
 }
