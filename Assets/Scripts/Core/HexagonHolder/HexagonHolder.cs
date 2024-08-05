@@ -74,6 +74,11 @@ public class HexagonHolder : MonoBehaviour
         SortElementsListByTransformY();
         _hexagonMovement.ChangeFirstTarget(hexagonSlot.transform);
     }
+    public void InitCreative()
+    {
+        SortElementsListByTransformY();
+        _hexagonMovement.ChangeFirstTarget(transform);
+    }
 
     public void CanTouchHexagonHolder(bool colliderState)
     {
@@ -300,10 +305,10 @@ public class HexagonHolder : MonoBehaviour
                 .OnComplete(() =>
                 {
                     CanTouchHexagonHolder(true);
-                    if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0)
-                    {
-                        FindObjectOfType<Level1Tut>().Tut1();
-                    }
+                    // if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0)
+                    // {
+                    //     FindObjectOfType<Level1Tut>().Tut1();
+                    // }
                 });
             transform.DORotate(new Vector3(0, 360, 0), .75f, RotateMode.LocalAxisAdd)
                 .SetEase(Ease.OutCubic);
