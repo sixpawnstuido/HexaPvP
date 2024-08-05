@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
             LevelManager.Instance.SpawnLevel();
             PvPController.Instance.ResetAvatars();
             yield return new WaitForSeconds(3);
-            TileController.Instance.OpenHolder();
+         //   TileController.Instance.OpenHolder();
         }
     }
 

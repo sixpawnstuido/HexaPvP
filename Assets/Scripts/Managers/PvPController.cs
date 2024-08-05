@@ -92,6 +92,8 @@ public class PvPController : SerializedMonoBehaviour
         HexagonMovement.PvPBlock = true;
        if(playerTypeBefore==PlayerType.PLAYER) OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT);
        var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
+       avatarDict[PlayerType.OPPONENT].Focus();
+       avatarDict[PlayerType.PLAYER].Unfocus();
         yield return new WaitForSeconds(0.2f);
 
         // START POS TO HEXAGON
@@ -191,6 +193,8 @@ public class PvPController : SerializedMonoBehaviour
         OrderOfPlayPanel.Instance.PanelState(PlayerType.PLAYER);
         playerType = PlayerType.PLAYER;
         HexagonMovement.PvPBlock = false;
+        avatarDict[PlayerType.PLAYER].Focus();
+        avatarDict[PlayerType.OPPONENT].Unfocus();
     }
 
     public void OrderChecker()
@@ -204,7 +208,6 @@ public class PvPController : SerializedMonoBehaviour
             var orderCheck= playerType==PlayerType.PLAYER ? hexagonSpawner.ArePlayerSlotsEmpty() : hexagonSpawner.AreOpponentSlotsEmpty();
             if (orderCheck)
             {
-                Debug.Log("OrderCheckIn");
                 yield return new WaitForSeconds(0.1f);
                 var gridController = LevelManager.Instance.ReturnGridHolderController();
                 var hexagonHolderController = LevelManager.Instance.ReturnHexagonSpawnerHexagonHolderController();
@@ -235,7 +238,6 @@ public class PvPController : SerializedMonoBehaviour
                     }
                 }
                 Debug.Log("ExtraMoveUp");
-                Debug.Log($"ExtraMove={isExtraMove}");
                 if (isExtraMove)
                 {
                     isExtraMove=false;
@@ -292,9 +294,7 @@ public class PvPController : SerializedMonoBehaviour
     {
         var levelInfo = ResourceSystem.ReturnLevelInfo();
         targetAmount = levelInfo.levelInfoValues[LevelManager.Instance.LevelCount].desiredHexagonAmount;
-        avatarDict.ForEach(avatar => avatar.Value.SetTargetAmount(targetAmount));
-        avatarDict.ForEach(avatar => avatar.Value.SetFillAmount());
-        avatarDict.ForEach(avatar => avatar.Value.SetHealthText());
+        avatarDict.ForEach(avatar => avatar.Value.ResetAvatarElement(targetAmount));
     }
 
     public void DecreaseHealth(PlayerType playerType,int hexagonElementAmount,int comboStage=1)

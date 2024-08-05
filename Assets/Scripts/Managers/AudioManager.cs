@@ -117,6 +117,11 @@ public class AudioManager : SerializedMonoBehaviour
         MetaProgress,
         FingerTap,
         Cut3,
-        ButtonTap2
+        ButtonTap2,
+        OppFound,
+        Three,
+        Two,
+        One,
+        End
     }
 }

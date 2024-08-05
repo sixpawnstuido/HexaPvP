@@ -37,6 +37,7 @@ public class StartLoadingScreen : MonoBehaviour
         yield return new WaitForSeconds(offset);
 
         holder.SetActive(false);
+        InGameLoading.Instance.OpenHolder();
     }
 
     public void LoadingTextAnim()

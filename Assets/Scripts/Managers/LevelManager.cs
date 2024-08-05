@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections;
@@ -75,14 +76,20 @@ public class LevelManager : Singleton<LevelManager>
     {
         var levelHolder = ResourceSystem.ReturnLevelData().allLevels[LevelCount];
         _currentLevel = Instantiate(levelHolder);
-        
-        AvatarSelect.Instance.Customize();
     }
 
     private void DestroyLevel()
     {
         Destroy(_currentLevel.gameObject);
         _currentLevel = null;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            OpenNextLevelPanel();
+        }
     }
 
     public void OpenNextLevelPanel()
@@ -158,14 +165,14 @@ public class LevelManager : Singleton<LevelManager>
             MoveCount = 0;
             SortedFruitLevel++;
             AudioManager.LevelEndSoundCheck = false;
-          if(AudioManager.Instance.MusicOnOffCheck==0) AudioManager.Instance.PlayBGMusic();
-            InGameLoading.Instance.CloseHolder();
+           if(AudioManager.Instance.MusicOnOffCheck==0) AudioManager.Instance.PlayBGMusic();
             PvPController.Instance.ResetAvatars();
-          //  PvPController.Instance.SelectFirstPlayer();
-          TileController.Instance.OpenHolder();
             PvPController.Instance.isLevelEnd = false;
             PvPController.Instance.orderIndex =0;
             HexagonMovement.HexagonClickBlock = false;
+          //  PvPController.Instance.SelectFirstPlayer();
+          //  TileController.Instance.OpenHolder();
+           // InGameLoading.Instance.CloseHolder();
         }
     }
 
@@ -186,9 +193,9 @@ public class LevelManager : Singleton<LevelManager>
             PvPController.Instance.ResetAvatars();
             PvPController.Instance.isLevelEnd = false;
            // PvPController.Instance.SelectFirstPlayer();
-           TileController.Instance.OpenHolder();
+          //  TileController.Instance.OpenHolder();
             yield return new WaitForEndOfFrame();
-            InGameLoading.Instance.CloseHolder();
+          //  InGameLoading.Instance.CloseHolder();
             isGameOverPanelOpened = false;
             PvPController.Instance.orderIndex =0;
             MoveCount = 0;
