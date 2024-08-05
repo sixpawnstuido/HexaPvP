@@ -31,6 +31,7 @@ public class AvatarElement : MonoBehaviour
     private PvPController _pvPController;
 
     [SerializeField] private ParticleSystem trailArrivedVFX;
+    [SerializeField] private ParticleSystem bloodVFX;
 
     private MinusTextPool _minusTextPool;
 
@@ -93,6 +94,8 @@ public class AvatarElement : MonoBehaviour
         if (currentHealth <= 0) return;
         trailArrivedVFX.Stop();
         trailArrivedVFX.Play();
+        bloodVFX.Stop();
+        bloodVFX.Play();
         var minusText = _minusTextPool.GetParticle();
         minusText.Init(amount,minusTextStartPos.position,comboStage);
         if (!DOTween.IsTweening(transform.GetHashCode()))
