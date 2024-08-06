@@ -270,4 +270,68 @@ public class GridHolder : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
     }
+    
+      private HexagonHolderController _hexagonHolderController;
+    
+    [Button]
+    public void SpawnPlayersHexagonHolder(List<HexagonTypes> hexagonTypes,List<int> hexagonAmount)
+    {
+        _hexagonHolderController = FindObjectOfType<HexagonHolderController>();
+        
+        StartCoroutine(SpawnHexagonHolderCor());
+        IEnumerator SpawnHexagonHolderCor()
+        {
+            var hexagonHolder = ResourceSystem.ReturnVisualData().prefabData[VisualData.PrefabType.HexagonHolder];
+            int spawnAmount = ResourceSystem.ReturnLevelInfo().spawnAmount;
+            
+            Vector3 gridOffset = new Vector3(0, .05f, 0);
+            Vector3 _hexagonHolderSpawnPos = transform.position + gridOffset;
+            
+
+                var hexagonHolderInstantiated = Instantiate(hexagonHolder, _hexagonHolderSpawnPos, Quaternion.identity).GetComponent<HexagonHolder>();
+                hexagonHolderInstantiated.transform.SetParent(_hexagonHolderController.transform);
+                SpawnHexagonElements(hexagonHolderInstantiated,hexagonTypes,hexagonAmount);
+                hexagonHolderInstantiated.InitCreative();
+              //  hexagonHolderInstantiated.playerType = PlayerType.PLAYER;
+                _hexagonHolderController.hexagonHolders.Add(hexagonHolderInstantiated);
+                this.hexagonHolder = hexagonHolderInstantiated;
+                hexagonHolderInstantiated.gridHolder = this;
+                yield return new WaitForSeconds(.1f);
+
+        }
+    }
+    
+    private void SpawnHexagonElements(HexagonHolder hexagonHolder,List<HexagonTypes> hexagonTypes,List<int> hexagonAmount)
+    {
+        List<HexagonElement> tempHexagons = new();
+        for (int i = 0; i < hexagonTypes.Count; i++)
+        {
+            HexagonTypes hexagonType;
+            int maxHexagonCountIndividual = 1;
+
+            hexagonType = hexagonTypes[i];
+            maxHexagonCountIndividual = hexagonAmount[i];
+
+            var levelInfo = ResourceSystem.ReturnLevelInfo().levelInfoValues[LevelManager.Instance.LevelCount];
+            
+            var _hexagonElementFirstLocalPosY = levelInfo.hexagonElementFirstLocalPosY;
+           var _hexagonElementYOffset = levelInfo.hexagonElementYOffset;
+            
+            for (int j = 0; j < maxHexagonCountIndividual; j++)
+            {
+                var hexagon = ResourceSystem.ReturnVisualData().hexagons[hexagonType];
+                var hexagonElement = Instantiate(hexagon, hexagonHolder.transform);
+                hexagonHolder.hexagonElements.Add(hexagonElement);
+                tempHexagons.Add(hexagonElement);
+                hexagonElement.transform.localPosition =
+                    new Vector3(
+                        0,
+                        j == 0 && i == 0
+                            ? _hexagonElementFirstLocalPosY
+                            : tempHexagons[tempHexagons.Count - 2].transform.localPosition.y + _hexagonElementYOffset,
+                        0
+                    );
+            }
+        }
+    }
 }
