@@ -35,7 +35,7 @@ public class TrailVFX : MonoBehaviour
             {
                 // avatarElement.TrailArrivedState(hexagonElementAmount,comboStage);
                 //  PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount,comboStage);
-               if(!UIManager.Instance.failedPanel.gameObject.activeInHierarchy) BarController.Instance.ChangeProgress(playerType,hexagonElementAmount);
+               if(!UIManager.Instance.failedPanel.gameObject.activeInHierarchy || !UIManager.Instance.nextLevelPanel.gameObject.activeInHierarchy) BarController.Instance.ChangeProgress(playerType,hexagonElementAmount);
                 //DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
                 gameObject.SetActive(false);
             });

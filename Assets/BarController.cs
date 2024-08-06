@@ -20,6 +20,8 @@ public class BarController : SerializedMonoBehaviour
 
     [SerializeField] private Transform holder;
 
+    public bool isLevelEnd;
+
     private void Awake()
     {
         Instance = this;
@@ -27,6 +29,7 @@ public class BarController : SerializedMonoBehaviour
 
     public void ChangeProgress(PlayerType playerType,int hexagonAmount)
     {
+        if (isLevelEnd) return;
         if (!DOTween.IsTweening(transform.GetHashCode()))
         {
             holder.DOPunchScale(new Vector3(-.05f, 0.05f, 0), .3f, 5) .SetId(transform.GetHashCode());
@@ -41,9 +44,11 @@ public class BarController : SerializedMonoBehaviour
             DOVirtual.Float(playerImage.fillAmount, fillAmount, .3f, (v) => playerImage.fillAmount = v);
             DOVirtual.Float(opponentImage.fillAmount, fillAmountOpponent, .3f, (v) => opponentImage.fillAmount = v);
             
-            if (fillAmount>=1)
+            if (fillAmount>=.9f)
             {
                 LevelManager.Instance.OpenNextLevelPanel();
+                OrderOfPlayPanel.Instance.gameObject.SetActive(false);
+                isLevelEnd = true;
             }
             targets[PlayerType.PLAYER].splashVFX.Stop();
             targets[PlayerType.PLAYER].splashVFX.Play();
@@ -60,6 +65,8 @@ public class BarController : SerializedMonoBehaviour
             if (fillAmount>=.9f)
             {
                 LevelManager.Instance.OpenFailedPanel();
+                OrderOfPlayPanel.Instance.gameObject.SetActive(false);
+                isLevelEnd = true;
             }
             
             targets[PlayerType.OPPONENT].splashVFX.Stop();
