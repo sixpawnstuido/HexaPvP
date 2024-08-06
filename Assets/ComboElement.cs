@@ -15,6 +15,7 @@ public class ComboElement : MonoBehaviour
     private Vector3 _comboAmountFirstPos;
 
     [SerializeField] private ParticleSystem _VFX;
+    [SerializeField] private ParticleSystem _VFX2;
 
     private void Awake()
     {
@@ -46,6 +47,8 @@ public class ComboElement : MonoBehaviour
         AudioManager.Instance.Play(AudioManager.AudioEnums.Combo);
 
         int comboStageClampted=Math.Min(comboStage, _comboTextList.Count-1);
+        _VFX2.Stop();
+        _VFX2.Play();
 
         Sequence seq = DOTween.Sequence();
         seq.Append(_comboTextList[comboStageClampted].DOScale(Vector3.one, .2f).SetEase(Ease.OutBack));
