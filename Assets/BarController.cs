@@ -57,7 +57,7 @@ public class BarController : SerializedMonoBehaviour
             
             DOVirtual.Float(playerImage.fillAmount, fillAmountOpponent, .2f, (v) => playerImage.fillAmount = v);
             DOVirtual.Float(opponentImage.fillAmount, fillAmount, .2f, (v) => opponentImage.fillAmount = v);
-            if (fillAmount>=1)
+            if (fillAmount>=.9f)
             {
                 LevelManager.Instance.OpenFailedPanel();
             }
