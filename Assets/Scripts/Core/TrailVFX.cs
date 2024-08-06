@@ -18,7 +18,7 @@ public class TrailVFX : MonoBehaviour
     {
         float time = 0;
         var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
-        var avatarTarget = avatarElement.HeartImage;
+        var avatarTarget = BarController.Instance.targets[playerType].targetTransform;
         hexagonSprite.transform.localPosition = Vector3.zero;
         hexagonSprite.enabled = true;
         ChangeColor(hexagonColor);
@@ -33,13 +33,42 @@ public class TrailVFX : MonoBehaviour
             })
             .OnComplete(() =>
             {
-                avatarElement.TrailArrivedState(hexagonElementAmount,comboStage);
-                PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount,comboStage);
-                hexagonSprite.enabled = false;
-                DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
+                // avatarElement.TrailArrivedState(hexagonElementAmount,comboStage);
+                //  PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount,comboStage);
+                BarController.Instance.ChangeProgress(playerType,hexagonElementAmount);
+                //DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
+                gameObject.SetActive(false);
             });
     }
 
+    // public void Testt()
+    // {
+    //     float time = 0;
+    //     // var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
+    //     // var avatarTarget = avatarElement.HeartImage;
+    //     
+    //     var avatarElement = PvPController.Instance.ReturnAvatarElement(playerType);
+    //     var avatarTarget = BarController.Instance.targets[playerType].targetTransform;
+    //     
+    //     trailVFX.transform.localPosition = Vector3.zero;
+    //     ChangeColor(playerType);
+    //     var animationCurve = trailMotionCurveList[Random.Range(0, trailMotionCurveList.Count)];
+    //     trailVFX.transform.DOMove(avatarTarget.transform.position, .45f)
+    //         .OnUpdate(() =>
+    //         {
+    //             time += Time.deltaTime * (1 / .45f);
+    //             float xOffset = animationCurve.Evaluate(time);
+    //             trailVFX.transform.position = new Vector3(trailVFX.transform.position.x - xOffset, trailVFX.transform.position.y, trailVFX.transform.position.z);
+    //         })
+    //         .OnComplete(() =>
+    //         {
+    //             // avatarElement.TrailArrivedState(hexagonElementAmount,comboStage);
+    //             //  PvPController.Instance.DecreaseHealth(playerType, hexagonElementAmount,comboStage);
+    //             BarController.Instance.ChangeProgress(playerType,hexagonElementAmount);
+    //             //DOVirtual.DelayedCall(1, () => gameObject.SetActive(false));
+    //             gameObject.SetActive(false);
+    //         });
+    // }
 
 
     public void ChangeColor(Color color)

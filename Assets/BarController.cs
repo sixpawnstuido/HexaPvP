@@ -27,7 +27,11 @@ public class BarController : SerializedMonoBehaviour
 
     public void ChangeProgress(PlayerType playerType,int hexagonAmount)
     {
-        holder.DOPunchScale(new Vector3(-.05f, 0.05f, 0), .3f, 5) .SetId(transform.GetHashCode());
+        if (!DOTween.IsTweening(transform.GetHashCode()))
+        {
+            holder.DOPunchScale(new Vector3(-.05f, 0.05f, 0), .3f, 5) .SetId(transform.GetHashCode());
+        }
+        AudioManager.Instance.Play(AudioManager.AudioEnums.BarSound);
         if (playerType==PlayerType.PLAYER)
         {
             float increaseAmount = Mathf.InverseLerp(0, targetAmount, hexagonAmount);

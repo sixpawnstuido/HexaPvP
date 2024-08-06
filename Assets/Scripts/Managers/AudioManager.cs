@@ -122,6 +122,7 @@ public class AudioManager : SerializedMonoBehaviour
         Three,
         Two,
         One,
-        End
+        End,
+        BarSound
     }
 }
