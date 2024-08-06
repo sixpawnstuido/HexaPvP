@@ -56,15 +56,15 @@ public class HexagonMovement : MonoBehaviour,IPointerDownHandler,IPointerUpHandl
         AudioManager.Instance.Play(AudioManager.AudioEnums.Tap, .3f);
         isMoving = true;
         
-        if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
-        {
-            FindObjectOfType<Level1Tut>().Tut2();
-        }
-        
-        if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0)
-        {
-            FindObjectOfType<Level1Tut>().Tut1Completed();
-        }
+        // if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
+        // {
+        //     FindObjectOfType<Level1Tut>().Tut2();
+        // }
+        //
+        // if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0)
+        // {
+        //     FindObjectOfType<Level1Tut>().Tut1Completed();
+        // }
         
     }
 
@@ -116,15 +116,15 @@ public class HexagonMovement : MonoBehaviour,IPointerDownHandler,IPointerUpHandl
                 .OnComplete(() => _hexagonHolder.HexagonPlacedState(gridHolder, isHintActive));
             AudioManager.Instance.Play(AudioManager.AudioEnums.HexagonHolderPlaced, .4f);
             
-            if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
-            {
-                FindObjectOfType<Level1Tut>().StartTut2();
-            }
-            
-            if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==2)
-            {
-                FindObjectOfType<Level1Tut>().Tut2Completed();
-            }
+            // if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
+            // {
+            //     FindObjectOfType<Level1Tut>().StartTut2();
+            // }
+            //
+            // if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==2)
+            // {
+            //     FindObjectOfType<Level1Tut>().Tut2Completed();
+            // }
         }
         else
         {
@@ -132,10 +132,10 @@ public class HexagonMovement : MonoBehaviour,IPointerDownHandler,IPointerUpHandl
             AudioManager.Instance.PlayHaptic(HapticPatterns.PresetType.MediumImpact);
             transform.DOMove(isHintActive ? _hexagonHolder.gridHolder.transform.position + gridOffset : _firstPos, .2f);
             
-            if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
-            {
-                FindObjectOfType<Level1Tut>().Tut1();
-            }
+            // if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==1)
+            // {
+            //     FindObjectOfType<Level1Tut>().Tut1();
+            // }
         }
     }
 

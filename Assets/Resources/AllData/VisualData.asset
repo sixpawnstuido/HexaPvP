@@ -264,22 +264,10 @@ MonoBehaviour:
   oppFlagIcons:
   - {fileID: 21300000, guid: d65bef91df8d1804581a81ec6c6485ec, type: 3}
   - {fileID: 21300000, guid: debe434d90842c444b9012a766b2350f, type: 3}
-  - {fileID: 21300000, guid: 7f29425c608c8674ba8e583cbe400370, type: 3}
   - {fileID: 21300000, guid: d39ef1b14359fc24fa0032753b7a2f9f, type: 3}
-  - {fileID: 21300000, guid: 858b2a43ac8aabf4db5d1d2b4903e511, type: 3}
+  - {fileID: 21300000, guid: 2ce3ea6148ecc2044bbea19c7d3f54d9, type: 3}
+  - {fileID: 21300000, guid: 4138654cb7545ab4b884400410f4c59c, type: 3}
   oppNames:
-  - LOUIS
-  - EMMA
-  - RYAN
-  - MILA
-  - KIM
-  - ALEX
-  - ASH
-  - ARYA
-  - CAREY
-  - FRANKIE
-  - GLEN
-  - HENRY
   - JACKIE
-  - JESSIE
-  - KAI
+  - AMY
+  - CASIE

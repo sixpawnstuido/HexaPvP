@@ -74,6 +74,12 @@ public class HexagonHolder : MonoBehaviour
         SortElementsListByTransformY();
         _hexagonMovement.ChangeFirstTarget(hexagonSlot.transform);
     }
+    
+    public void InitCreative()
+    {
+        SortElementsListByTransformY();
+        _hexagonMovement.ChangeFirstTarget(transform);
+    }
 
     public void CanTouchHexagonHolder(bool colliderState)
     {
