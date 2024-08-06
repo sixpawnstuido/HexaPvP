@@ -90,7 +90,11 @@ public class PvPController : SerializedMonoBehaviour
         var playerTypeBefore = playerType;
         playerType = PlayerType.OPPONENT;
         HexagonMovement.PvPBlock = true;
-       if(playerTypeBefore==PlayerType.PLAYER) OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT);
+        if (playerTypeBefore == PlayerType.PLAYER) {
+
+            DOVirtual.DelayedCall(1.5f, ()=> OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT));
+             
+        } 
        var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
        avatarDict[PlayerType.OPPONENT].Focus();
        avatarDict[PlayerType.PLAYER].Unfocus();
@@ -190,7 +194,8 @@ public class PvPController : SerializedMonoBehaviour
 
     private void PlayerState()
     {
-        OrderOfPlayPanel.Instance.PanelState(PlayerType.PLAYER);
+
+        DOVirtual.DelayedCall(1.5f, () => OrderOfPlayPanel.Instance.PanelState(PlayerType.PLAYER));
         playerType = PlayerType.PLAYER;
         HexagonMovement.PvPBlock = false;
         avatarDict[PlayerType.PLAYER].Focus();
@@ -312,13 +317,17 @@ public class PvPController : SerializedMonoBehaviour
         StopOpponentStateCor();
         if (playerTypeCurrent == PlayerType.PLAYER)
         {
-            FailState();
+
+            Invoke(nameof(FailState), 2);
+          ;
         }
         else
         {
             SuccessState();
         }
     }
+
+  
 
     public void SuccessState()
     {
