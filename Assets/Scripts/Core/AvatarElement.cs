@@ -40,10 +40,13 @@ public class AvatarElement : MonoBehaviour
 
     [SerializeField] private Transform holderFirstPos;
     [SerializeField] private Transform holderTargetPos;
+
+    private ExtraMovePool _extraMovePool;
     private void Awake()
     {
         _pvPController = GetComponentInParent<PvPController>();
         _minusTextPool = GetComponentInChildren<MinusTextPool>();
+        _extraMovePool = GetComponentInChildren<ExtraMovePool>();
     }
 
     public void DecreaseHealth(int hexagonElementAmount,int comboStage=1)
@@ -136,5 +139,11 @@ public class AvatarElement : MonoBehaviour
         SetFillAmount();
         SetHealthText();
         Unfocus();
+    }
+
+    [Button]
+    public void ExtraMove()
+    {
+        _extraMovePool.GetParticle().Init();
     }
 }

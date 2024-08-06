@@ -1577,7 +1577,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 8
+      Data: 3
     - Name: 
       Entry: 3
       Data: 1
@@ -1587,21 +1587,6 @@ MonoBehaviour:
     - Name: 
       Entry: 3
       Data: 3
-    - Name: 
-      Entry: 3
-      Data: 4
-    - Name: 
-      Entry: 3
-      Data: 5
-    - Name: 
-      Entry: 3
-      Data: 6
-    - Name: 
-      Entry: 3
-      Data: 7
-    - Name: 
-      Entry: 3
-      Data: 8
     - Name: 
       Entry: 13
       Data: 
