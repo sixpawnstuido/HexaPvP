@@ -267,6 +267,8 @@ public class HexagonHolder : MonoBehaviour
                         ActivateTrail(PlayerTypeGlobal, trailPos,trail,hexagonElementAmount,hexagonColor,comboStage,j);
                         yield return new WaitForSeconds(.03f);
                     }
+
+                    if (comboStage == 2) yield return new WaitForSeconds(0.5f);
                 }
                 yield return new WaitForSeconds(.05f);
             }

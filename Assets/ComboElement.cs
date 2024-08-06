@@ -15,6 +15,7 @@ public class ComboElement : MonoBehaviour
     private Vector3 _comboAmountFirstPos;
 
     [SerializeField] private ParticleSystem _VFX;
+    [SerializeField] private ParticleSystem _VFX2;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class ComboElement : MonoBehaviour
         //_comboImage.localScale = Vector3.zero;
         for (int i = 0; i < _comboTextList.Count; i++)
         {
-            _comboTextList[i].localPosition= _comboImageFirstPos;
+            _comboTextList[i].localPosition = _comboImageFirstPos;
             _comboTextList[i].localScale = Vector3.zero;
         }
 
@@ -42,11 +43,12 @@ public class ComboElement : MonoBehaviour
     public void ComboAnim(int comboStage, Vector3 startPos)
     {
         ResetComboElement();
-      //  transform.position = startPos;
+        //  transform.position = startPos;
         AudioManager.Instance.Play(AudioManager.AudioEnums.Combo);
 
-        int comboStageClampted=Math.Min(comboStage, _comboTextList.Count-1);
-
+        int comboStageClampted = Math.Min(comboStage, _comboTextList.Count - 1);
+        _VFX2.Stop();
+        _VFX2.Play();
         Sequence seq = DOTween.Sequence();
         seq.Append(_comboTextList[comboStageClampted].DOScale(Vector3.one, .2f).SetEase(Ease.OutBack));
         seq.AppendInterval(0.05f);
@@ -66,7 +68,7 @@ public class ComboElement : MonoBehaviour
         //seq.Join(_comboAmountList[comboStageClampted].DOScale(Vector3.zero, .1f));
         //  seq.Join(SpawnMoneyTween(comboStageClampted));
         seq.AppendInterval(.2f);
-        seq.AppendCallback(()=>gameObject.SetActive(false));
+        seq.AppendCallback(() => gameObject.SetActive(false));
     }
 
     private Tween SpawnMoneyTween(int comboStage)
@@ -75,7 +77,7 @@ public class ComboElement : MonoBehaviour
         {
             _VFX.Stop();
             _VFX.Play();
-           // GoldPanel.Instance.ActivateGoldAnim(_VFX.transform.position - Vector3.up*1.5f, comboStage + 2);
+            // GoldPanel.Instance.ActivateGoldAnim(_VFX.transform.position - Vector3.up*1.5f, comboStage + 2);
         });
     }
 }

@@ -76,6 +76,8 @@ public class LevelManager : Singleton<LevelManager>
     {
         var levelHolder = ResourceSystem.ReturnLevelData().allLevels[LevelCount];
         _currentLevel = Instantiate(levelHolder);
+        
+        BarController.Instance.ResetBar();
     }
 
     private void DestroyLevel()
@@ -104,6 +106,23 @@ public class LevelManager : Singleton<LevelManager>
         }
         StopAllCoroutines();
         StartCoroutine(LevelEndPanelCor());
+
+        for (int i = 0; i < _currentLevel.hexagonSpawner.hexagonSlotListOpponent.Count; i++)
+        {
+            if (_currentLevel.hexagonSpawner.hexagonSlotListOpponent[i].hexagonHolder is not null)
+            {
+                _currentLevel.hexagonSpawner.hexagonSlotListOpponent[i].hexagonHolder.gameObject.SetActive(false);
+            }
+        }
+        
+        for (int i = 0; i < _currentLevel.hexagonSpawner.hexagonSlotList.Count; i++)
+        {
+            if (_currentLevel.hexagonSpawner.hexagonSlotList[i].hexagonHolder is not null)
+            {
+                _currentLevel.hexagonSpawner.hexagonSlotList[i].hexagonHolder.gameObject.SetActive(false);
+            }
+        }
+
     }
 
     private IEnumerator LevelEndPanelCor()

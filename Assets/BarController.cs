@@ -35,8 +35,8 @@ public class BarController : SerializedMonoBehaviour
         if (playerType==PlayerType.PLAYER)
         {
             float increaseAmount = Mathf.InverseLerp(0, targetAmount, hexagonAmount);
-            var fillAmount= playerImage.fillAmount + increaseAmount;
-            var fillAmountOpponent= opponentImage.fillAmount - increaseAmount;
+            var fillAmount= playerImage.fillAmount + (increaseAmount*2);
+            var fillAmountOpponent= opponentImage.fillAmount - (increaseAmount*2);
 
             DOVirtual.Float(playerImage.fillAmount, fillAmount, .3f, (v) => playerImage.fillAmount = v);
             DOVirtual.Float(opponentImage.fillAmount, fillAmountOpponent, .3f, (v) => opponentImage.fillAmount = v);
@@ -52,8 +52,8 @@ public class BarController : SerializedMonoBehaviour
         {
             float increaseAmount = Mathf.InverseLerp(0, targetAmount, hexagonAmount);
             
-            var fillAmount= opponentImage.fillAmount + increaseAmount;
-            var fillAmountOpponent= playerImage.fillAmount - increaseAmount;
+            var fillAmount= opponentImage.fillAmount +(increaseAmount*2);
+            var fillAmountOpponent= playerImage.fillAmount -(increaseAmount*2);
             
             DOVirtual.Float(playerImage.fillAmount, fillAmountOpponent, .2f, (v) => playerImage.fillAmount = v);
             DOVirtual.Float(opponentImage.fillAmount, fillAmount, .2f, (v) => opponentImage.fillAmount = v);
@@ -74,6 +74,12 @@ public class BarController : SerializedMonoBehaviour
         {
             opponentImage.transform.SetSiblingIndex(0);
         }
+    }
+
+    public void ResetBar()
+    {
+        opponentImage.fillAmount = .5f;
+        playerImage.fillAmount = .5f;
     }
     
 }

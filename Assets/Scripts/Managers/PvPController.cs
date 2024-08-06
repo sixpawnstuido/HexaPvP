@@ -203,18 +203,21 @@ public class PvPController : SerializedMonoBehaviour
 
         IEnumerator OrderCheckerCor()
         {
-
             var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
             var orderCheck= playerType==PlayerType.PLAYER ? hexagonSpawner.ArePlayerSlotsEmpty() : hexagonSpawner.AreOpponentSlotsEmpty();
             if (orderCheck)
             {
+                if (isLevelEnd) yield break;
+
                 yield return new WaitForSeconds(0.1f);
                 var gridController = LevelManager.Instance.ReturnGridHolderController();
                 var hexagonHolderController = LevelManager.Instance.ReturnHexagonSpawnerHexagonHolderController();
+                if (isLevelEnd) yield break;
 
                 yield return new WaitUntil(() => !gridController.AreThereAnyHexagonBouncing());
                 yield return new WaitUntil(() => !hexagonHolderController.CheckHexagonClearState());
 
+                if (isLevelEnd) yield break;
                 yield return new WaitForSeconds(0.1f);
                 for (int i = 0; i < 5; i++)
                 {
@@ -237,6 +240,8 @@ public class PvPController : SerializedMonoBehaviour
                         yield return new WaitForSeconds(1);
                     }
                 }
+                if (isLevelEnd) yield break;
+
                 Debug.Log("ExtraMoveUp");
                 if (isExtraMove)
                 {
@@ -244,6 +249,8 @@ public class PvPController : SerializedMonoBehaviour
                     SpawnHexagonsIfThereAreNotAny();
                     yield break;
                 }
+                if (isLevelEnd) yield break;
+
                 LevelManager.Instance.HexagonHolderSpawnCheck();
                 ComboManager.Instance.ResetComboStage();
                 Debug.Log("ExtraMoveDown");

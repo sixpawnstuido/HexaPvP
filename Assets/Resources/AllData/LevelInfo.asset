@@ -46,10 +46,10 @@ MonoBehaviour:
       Data: 2|LevelInfo+LevelInfoValues, Assembly-CSharp
     - Name: desiredHexagonAmount
       Entry: 3
-      Data: 50
+      Data: 10
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
       Data: 2
@@ -68,7 +68,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 3
     - Name: 
       Entry: 3
       Data: 1
@@ -78,9 +78,6 @@ MonoBehaviour:
     - Name: 
       Entry: 3
       Data: 3
-    - Name: 
-      Entry: 3
-      Data: 4
     - Name: 
       Entry: 13
       Data: 
@@ -110,10 +107,10 @@ MonoBehaviour:
       Data: 30
     - Name: maxHexagonCountIndividual
       Entry: 3
-      Data: 2
+      Data: 3
     - Name: maxHexagonTypeCountIndividual
       Entry: 3
-      Data: 2
+      Data: 3
     - Name: newTypeMinIndex
       Entry: 3
       Data: 0
