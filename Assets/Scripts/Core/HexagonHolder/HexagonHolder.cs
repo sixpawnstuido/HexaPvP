@@ -311,7 +311,7 @@ public class HexagonHolder : MonoBehaviour
                 .SetEase(Ease.OutCubic)
                 .OnComplete(() =>
                 {
-                    // CanTouchHexagonHolder(true);
+                     CanTouchHexagonHolder(true);
                     // if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0)
                     // {
                     //     FindObjectOfType<Level1Tut>().Tut1();

@@ -108,6 +108,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private IEnumerator LevelEndPanelCor()
     {
+        yield return new WaitForSeconds(2f);
 
         EventManager.CoreEvents.HexagonHolderColliderState(false);
         AudioManager.Instance.Play(AudioManager.AudioEnums.LevelEnd2, .6f);
