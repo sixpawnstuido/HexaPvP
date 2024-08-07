@@ -44,7 +44,7 @@ public class BarController : SerializedMonoBehaviour
             DOVirtual.Float(playerImage.fillAmount, fillAmount, .3f, (v) => playerImage.fillAmount = v);
             DOVirtual.Float(opponentImage.fillAmount, fillAmountOpponent, .3f, (v) => opponentImage.fillAmount = v);
             
-            if (fillAmount>=.9f)
+            if (fillAmount>=.95f)
             {
                 LevelManager.Instance.OpenNextLevelPanel();
                 OrderOfPlayPanel.Instance.gameObject.SetActive(false);
@@ -62,7 +62,7 @@ public class BarController : SerializedMonoBehaviour
             
             DOVirtual.Float(playerImage.fillAmount, fillAmountOpponent, .2f, (v) => playerImage.fillAmount = v);
             DOVirtual.Float(opponentImage.fillAmount, fillAmount, .2f, (v) => opponentImage.fillAmount = v);
-            if (fillAmount>=.9f)
+            if (fillAmount>=.95f)
             {
                 LevelManager.Instance.OpenFailedPanel();
                 OrderOfPlayPanel.Instance.gameObject.SetActive(false);
