@@ -78,14 +78,14 @@ public class OppSearcingAnim : MonoBehaviour
             yield return new WaitForSeconds(1f);
             holderAnimator.gameObject.SetActive(false);
             
-            if (LevelManager.Instance.LevelCount % 2 != 0)
-            {
+            // if (LevelManager.Instance.LevelCount % 2 != 0)
+            // {
                 TileController.Instance.OpenHolder();
-            }
-            else
-            {
-                PvPController.Instance.SelectFirstPlayer();
-            }
+            // }
+            // else
+            // {
+            //     PvPController.Instance.SelectFirstPlayer();
+            // }
         }
     }
     
