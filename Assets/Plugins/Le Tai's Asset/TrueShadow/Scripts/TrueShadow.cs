@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+
+[assembly: InternalsVisibleTo("LeTai.TrueShadow.Editor")]
 
 namespace LeTai.TrueShadow
 {
@@ -51,8 +54,10 @@ public partial class TrueShadow : UIBehaviour, IMeshModifier, ICanvasElement
     [Tooltip("Ignore the shadow caster's color, so you can choose specific color for your shadow")]
     [SerializeField] bool ignoreCasterColor = false;
 
-    [Tooltip("How to obtain the color of the area outside of the source image. " +
-             "Automatically set based on Blend Mode. You should only change this setting if you are using some very custom UI that require it")]
+    [Tooltip(
+        "How to obtain the color of the area outside of the source image. " +
+        "Automatically set based on Blend Mode. You should only change this setting if you are using some very custom UI that require it"
+    )]
     [SerializeField] ColorBleedMode colorBleedMode;
 
     [Tooltip("Improve shadow fit on some sprites")]
@@ -66,7 +71,8 @@ public partial class TrueShadow : UIBehaviour, IMeshModifier, ICanvasElement
 
 #pragma warning disable 0649
     [Tooltip(
-        "Bake the shadow to a sprite to reduce CPU and GPU usage at runtime, at the cost of storage, memory and flexibility")]
+        "Bake the shadow to a sprite to reduce CPU and GPU usage at runtime, at the cost of storage, memory and flexibility"
+    )]
     [SerializeField] bool baked;
 #pragma warning restore 0649
 
@@ -458,9 +464,9 @@ public partial class TrueShadow : UIBehaviour, IMeshModifier, ICanvasElement
 
     bool textureDirty;
     bool layoutDirty;
+    int  shadowIndex = -1;
 
-    internal bool HierachyDirty   { get; private set; }
-    internal int  TextureRevision { get; private set; }
+    internal bool HierachyDirty { get; private set; }
 
     void OnGlobalAngleChanged(float angle)
     {
@@ -480,7 +486,18 @@ public partial class TrueShadow : UIBehaviour, IMeshModifier, ICanvasElement
 
     protected override void OnEnable()
     {
-        base.OnEnable();
+        var shadows     = GetComponents<TrueShadow>();
+        var shadowCount = 0;
+        for (var i = 0; i < shadows.Length; i++)
+        {
+            if (shadows[i] == this || shadows[i].shadowRenderer)
+            {
+                // Debug.Log(Color + "\t" + shadows[i].Color + "\t" + shadowCount);
+                shadows[i].shadowIndex = shadowCount++;
+            }
+        }
+
+        Debug.Assert(shadowIndex >= 0, "shadowIndex < 0. Please make a bug report");
 
         RectTransform  = GetComponent<RectTransform>();
         Graphic        = GetComponent<Graphic>();
@@ -505,7 +522,7 @@ public partial class TrueShadow : UIBehaviour, IMeshModifier, ICanvasElement
         }
 
         // Ensure sprite mesh is acquired.
-        if(Graphic)
+        if (Graphic)
             Graphic.SetVerticesDirty();
 
 #if UNITY_EDITOR
@@ -556,6 +573,8 @@ public partial class TrueShadow : UIBehaviour, IMeshModifier, ICanvasElement
         if (shadowRenderer) shadowRenderer.Dispose();
 
         ShadowFactory.Instance.ReleaseContainer(ref shadowContainer);
+
+        StopAllCoroutines();
     }
 
     bool ShouldPerformWorks()
@@ -567,6 +586,8 @@ public partial class TrueShadow : UIBehaviour, IMeshModifier, ICanvasElement
 
     void LateUpdate()
     {
+        shadowRenderer.gameObject.SetActive(Graphic && Graphic.isActiveAndEnabled);
+
         if (!ShouldPerformWorks())
             return;
 
@@ -611,13 +632,14 @@ public partial class TrueShadow : UIBehaviour, IMeshModifier, ICanvasElement
             if (shadowRenderer.transform.parent != RectTransform)
                 shadowRenderer.transform.SetParent(RectTransform, true);
 
-            if (shadowRenderer.transform.GetSiblingIndex() != 0)
-                shadowRenderer.transform.SetSiblingIndex(0);
+            if (shadowRenderer.transform.GetSiblingIndex() != shadowIndex)
+                shadowRenderer.transform.SetSiblingIndex(shadowIndex);
 
             UnSetHierachyDirty();
 
             if (layoutDirty)
             {
+                // Debug.Log($"{Time.frameCount}\tOnWillRenderCanvas\t{color}");
                 shadowRenderer.ReLayout();
                 layoutDirty = false;
             }

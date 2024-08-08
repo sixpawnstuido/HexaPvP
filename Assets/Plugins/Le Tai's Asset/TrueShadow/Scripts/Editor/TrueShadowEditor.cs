@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using LeTai.TrueShadow.PluginInterfaces;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -85,17 +87,26 @@ public class TrueShadowEditor : UnityEditor.Editor
     {
         serializedObject.Update();
 
-        var ts = (TrueShadow)target;
+        var tss = targets.Cast<TrueShadow>().ToList();
 
-        DrawPresetButtons(ts);
+        if (tss.Select(s => s.Graphic).OfType<TextMeshProUGUI>().Any(tmp => tmp.fontSharedMaterials?.Length > 1))
+        {
+            HelpBox("TextMeshPro with multiple fonts are not supported. Only text with the first font will have shadow.\n" +
+                    "Multiple fonts are used automatically when characters used are not supported by the main font.", MessageType.Error, true);
+        }
+
+        DrawPresetButtons(tss);
 
         Space();
 
         insetProp.Draw();
         sizeProp.Draw();
         spreadProp.Draw();
-        useGlobalAngleProp.Draw(GUILayout.ExpandWidth(!ts.UseGlobalAngle));
-        if (ts.UseGlobalAngle)
+
+        var useGlobalAngle = tss.Any(s => s.UseGlobalAngle);
+        var useLocalAngle  = tss.Any(s => !s.UseGlobalAngle);
+        useGlobalAngleProp.Draw(GUILayout.ExpandWidth(!useGlobalAngle));
+        if (useGlobalAngle)
         {
             var settingRect = GUILayoutUtility.GetLastRect();
             settingRect.xMin  += EditorGUIUtility.labelWidth + EditorGUIUtility.singleLineHeight;
@@ -105,21 +116,28 @@ public class TrueShadowEditor : UnityEditor.Editor
                 SettingsService.OpenProjectSettings("Project/True Shadow");
             }
         }
-        else
+
+        if (useLocalAngle)
         {
             angleProp.Draw();
+            if (useGlobalAngle)
+                HelpBox("Some selected object(s) use global angle instead", MessageType.Info);
         }
 
         distanceProp.Draw();
         colorProp.Draw();
-        if (ts.UsingRendererMaterialProvider)
+        var hasCustomMaterialProvider = tss.Any(s => s.UsingRendererMaterialProvider);
+        if (hasCustomMaterialProvider)
         {
             using (new EditorGUI.DisabledScope(true))
                 LabelField(blendModeProp.serializedProperty.displayName, "Custom Material");
         }
-        else
+
+        if (tss.Any(s => !s.UsingRendererMaterialProvider))
         {
             blendModeProp.Draw();
+            if (hasCustomMaterialProvider)
+                HelpBox("Some selected object(s) use a custom material instead", MessageType.Info);
         }
 
         DrawAdvancedSettings();
@@ -129,7 +147,7 @@ public class TrueShadowEditor : UnityEditor.Editor
         serializedObject.ApplyModifiedProperties();
     }
 
-    void DrawPresetButtons(TrueShadow ts)
+    void DrawPresetButtons(IEnumerable<TrueShadow> tss)
     {
         if (!ProjectSettings.Instance.ShowQuickPresetsButtons) return;
 
@@ -139,8 +157,12 @@ public class TrueShadowEditor : UnityEditor.Editor
             var selected = GUILayout.Toolbar(-1, presets.Select(p => p.name).ToArray());
             if (selected != -1)
             {
-                Undo.RecordObject(ts, "Apply Quick Preset on " + ts.name);
-                presets[selected].Apply(ts);
+                foreach (var ts in tss)
+                {
+                    Undo.RecordObject(ts, "Apply Quick Preset on " + ts.name);
+                    presets[selected].Apply(ts);
+                }
+
                 EditorApplication.QueuePlayerLoopUpdate();
             }
 
@@ -200,13 +222,16 @@ public class TrueShadowEditor : UnityEditor.Editor
 
     void DrawHashWarning()
     {
-        var ts = (TrueShadow)target;
+        var tss = targets.Cast<TrueShadow>().ToList();
 
-        if (ts.GetComponent<ITrueShadowCustomHashProvider>() != null)
+        if (tss.Select(s => s.GetComponent<ITrueShadowCustomHashProvider>()).Any(s => s != null))
             return;
 
-        var casterType = ts.GetComponent<Graphic>().GetType();
-        if (KNOWN_TYPES.Contains(casterType.FullName))
+        var casterTypes = tss.Select(s => s.GetComponent<Graphic>().GetType())
+                             .Where(t => !KNOWN_TYPES.Contains(t.FullName))
+                             .ToList();
+
+        if (casterTypes.Count == 0)
             return;
 
         hashWarningLabel.text = "Shadow may not update with changes";
@@ -214,8 +239,8 @@ public class TrueShadowEditor : UnityEditor.Editor
         using (var _ = new VerticalScope(EditorStyles.helpBox))
         {
             GUILayout.Label(hashWarningLabel);
-            GUILayout.Label($"True Shadow can't tell 2 <i>{casterType.Name}</i> apart." +
-                            $" The shadow may not update when the <i>{casterType.Name}</i> changes.\n" +
+            GUILayout.Label($"True Shadow can't tell 2 <i>{casterTypes[0].Name}</i> apart." +
+                            $" The shadow may not update when the <i>{casterTypes[0].Name}</i> changes.\n" +
                             $"To fix this, set the shadow CustomHash, or disable shadow caching for this element.",
                             hashWarningStyle);
 
@@ -226,7 +251,10 @@ public class TrueShadowEditor : UnityEditor.Editor
 
             if (GUILayout.Button("Disable Shadow Cache for this element", EditorStyles.linkLabel))
             {
-                Undo.AddComponent<DisableShadowCache>(ts.gameObject);
+                foreach (var ts in tss)
+                {
+                    Undo.AddComponent<DisableShadowCache>(ts.gameObject);
+                }
             }
         }
     }

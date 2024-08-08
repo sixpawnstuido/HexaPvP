@@ -1,3 +1,30 @@
+v1.5.2:
+ - Improved TMP compatibility.
+
+v1.5.1:
+ - Improved multi-object editing experience.
+
+v1.5.0:
+ - Ensure stable shadow order when there are multiples shadows on a single UI.
+ - Make it more clear when unsupported configurations are used.
+ - Improve compatibility with Unity 2023.
+
+v1.4.7:
+ - Fix shadow on TMP with very small scale
+
+v1.4.6:
+ - Handle the case when Text Mesh Pro text is set to null.
+
+v1.4.5:
+ - Fix applying Preset doesn't update shadows.
+ - Fix a few files with missing namespace.
+
+v1.4.4:
+ - Shadows now disappear when the caster Graphic is disabled.
+
+v1.4.3:
+ - Some bug fixes
+
 v1.4.2:
  - Fix shadow does not appear immediately on creation.
 

@@ -1,0 +1,17 @@
+{
+  "store": "apple",
+  "gameEngine": "unity",
+  "audienceModeBuildOnly": "non-children",
+  "orientation": "portrait",
+  "geoLocationServer": "ttplugins.ttpsdk.info",
+  "bundleId": "com.crazylabs.demo",
+  "testMode": false,
+  "askForTracking": true,
+  "appId": "000000000",
+  "isAdMob": true,
+  "appBuildConfig": {
+    "admob": {
+      "application": ""
+    }
+  }
+}

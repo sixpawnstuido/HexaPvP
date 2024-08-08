@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+namespace LeTai.TrueShadow.Demo
+{
 public class OpenUrl : MonoBehaviour
 {
     public string buttonURL;
-    Button                                      button;
+    Button        button;
 
     void Start()
     {
@@ -17,4 +19,5 @@ public class OpenUrl : MonoBehaviour
     {
         Application.OpenURL(url);
     }
+}
 }

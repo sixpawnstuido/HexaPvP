@@ -83,7 +83,6 @@ class ShadowSettingSnapshot
         var spreadHash = Mathf.CeilToInt(shadow.Spread * 100);
 
         var commonHash = HashUtils.CombineHashCodes(
-            shadow.TextureRevision,
             graphic.materialForRendering.ComputeCRC(),
             canvasScaleHash,
             insetHash,
@@ -151,7 +150,8 @@ class ShadowSettingSnapshot
 
             hash = HashUtils.CombineHashCodes(
                 commonHash,
-                tmp.text.GetHashCode(),
+                tmp.text?.GetHashCode() ?? 0,
+                Mathf.CeilToInt(tmp.transform.lossyScale.y * 100),
                 tmp.font.GetHashCode(),
                 tmp.fontSize.GetHashCode(),
                 tmpColorHash,

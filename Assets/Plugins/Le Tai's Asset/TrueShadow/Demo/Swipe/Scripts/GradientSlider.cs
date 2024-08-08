@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+namespace LeTai.TrueShadow.Demo
+{
 [RequireComponent(typeof(Image))]
 public class GradientSlider : MonoBehaviour
 {
@@ -20,4 +22,5 @@ public class GradientSlider : MonoBehaviour
         image.fillAmount = value;
         image.color      = gradient.Evaluate(value);
     }
+}
 }

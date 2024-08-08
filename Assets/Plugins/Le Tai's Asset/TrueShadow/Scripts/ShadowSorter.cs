@@ -69,7 +69,7 @@ public class ShadowSorter : MonoBehaviour
         {
             if (!instance)
             {
-                var existings = FindObjectsOfType<ShadowSorter>();
+                var existings = Shims.FindObjectsOfType<ShadowSorter>();
                 for (int i = existings.Length - 1; i > 0; i--)
                 {
                     Destroy(existings[i]);

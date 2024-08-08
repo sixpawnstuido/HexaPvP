@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tabtale.TTPlugins;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     private const int _vSyncCount = 0;
     private const int _refreshRate = 60;
+
+    private void Awake()
+    {
+        TTPCore.Setup();
+    }
+
 
     private void Start()
     {

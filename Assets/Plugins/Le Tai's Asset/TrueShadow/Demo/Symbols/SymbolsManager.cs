@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+namespace LeTai.TrueShadow.Demo
+{
 public class SymbolsManager : MonoBehaviour
 {
 #pragma warning disable 0649
@@ -137,4 +139,5 @@ public class SymbolsManager : MonoBehaviour
             samples[i].Color = sampleColor;
         }
     }
+}
 }

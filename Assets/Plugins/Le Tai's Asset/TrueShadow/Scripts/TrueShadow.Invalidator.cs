@@ -196,6 +196,11 @@ public partial class TrueShadow
             UseGlobalAngle = true;
         }
     }
+
+    protected override void OnValidate()
+    {
+        SetLayoutTextureDirty();
+    }
 #endif
 
     protected override void OnTransformParentChanged()
@@ -251,10 +256,7 @@ public partial class TrueShadow
 #if TMP_PRESENT
         if (Graphic is TMPro.TextMeshProUGUI tmp)
         {
-            if (tmp.text.Length == 0)
-                SpriteMesh = null;
-            else
-                SpriteMesh = tmp.mesh;
+            SpriteMesh = string.IsNullOrEmpty(tmp.text) ? null : tmp.mesh;
         }
 #endif
         SetLayoutDirty();
