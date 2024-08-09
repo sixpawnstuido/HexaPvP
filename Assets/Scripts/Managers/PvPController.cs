@@ -5,6 +5,7 @@ using System.Data;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -65,10 +66,11 @@ public class PvPController : SerializedMonoBehaviour
         {
             handHolder.gameObject.SetActive(true);
             HexagonMovement.PvPBlock = true;
-            _arrowRotator.ActivateArrow();
-            yield return new WaitUntil(() => _arrowRotator.isRotating);
+           // _arrowRotator.ActivateArrow();
+           // yield return new WaitUntil(() => _arrowRotator.isRotating);
+           yield return null;
             EventManager.SpawnEvents.SpawnHexagonHolder();
-            if (_arrowRotator.ReturnPlayerType() == PlayerType.PLAYER)
+            if (playerType == PlayerType.PLAYER)
             {
                 PlayerState();
             }
@@ -92,7 +94,7 @@ public class PvPController : SerializedMonoBehaviour
         HexagonMovement.PvPBlock = true;
         if (playerTypeBefore == PlayerType.PLAYER) {
 
-            DOVirtual.DelayedCall(1.5f, ()=> OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT));
+            DOVirtual.DelayedCall(0f, ()=> OrderOfPlayPanel.Instance.PanelState(PlayerType.OPPONENT));
              
         } 
        var hexagonSpawner = LevelManager.Instance.ReturnHexagonSpawner();
@@ -195,7 +197,7 @@ public class PvPController : SerializedMonoBehaviour
     private void PlayerState()
     {
 
-        DOVirtual.DelayedCall(1.5f, () => OrderOfPlayPanel.Instance.PanelState(PlayerType.PLAYER));
+        DOVirtual.DelayedCall(0f, () => OrderOfPlayPanel.Instance.PanelState(PlayerType.PLAYER));
         playerType = PlayerType.PLAYER;
         HexagonMovement.PvPBlock = false;
         avatarDict[PlayerType.PLAYER].Focus();
@@ -318,8 +320,7 @@ public class PvPController : SerializedMonoBehaviour
         if (playerTypeCurrent == PlayerType.PLAYER)
         {
 
-            Invoke(nameof(FailState), 2);
-          ;
+            Invoke(nameof(FailState), .5f); 
         }
         else
         {

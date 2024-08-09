@@ -76,6 +76,8 @@ public class LevelManager : Singleton<LevelManager>
     {
         var levelHolder = ResourceSystem.ReturnLevelData().allLevels[LevelCount];
         _currentLevel = Instantiate(levelHolder);
+        
+        PvPController.Instance.SelectFirstPlayer();
     }
 
     private void DestroyLevel()
@@ -150,7 +152,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             HexagonMovement.HexagonClickBlock = true;
 
-            InGameLoading.Instance.OpenHolder();
+          //  InGameLoading.Instance.OpenHolder();
 
             UIManager.Instance.nextLevelPanel.gameObject.SetActive(false);
             DestroyLevel();
@@ -159,7 +161,7 @@ public class LevelManager : Singleton<LevelManager>
             SpawnLevel();
             MainSceneCamera.Instance.ResetCam();
             yield return new WaitForEndOfFrame();
-            yield return new WaitForSeconds(1.5f);
+         //   yield return new WaitForSeconds(1.5f);
             yield return new WaitForEndOfFrame();
             UIManager.Instance.levelProgressUIController.ChangeLevelProgressText(TotalLevelCount);;
             isGameOverPanelOpened = false;
@@ -183,13 +185,13 @@ public class LevelManager : Singleton<LevelManager>
         StartCoroutine(NextLevelButtonCor());
         IEnumerator NextLevelButtonCor()
         {
-            InGameLoading.Instance.OpenHolder();
+           // InGameLoading.Instance.OpenHolder();
             UIManager.Instance.failedPanel.gameObject.SetActive(false);
             DestroyLevel();
             SpawnCount = 0;
             CollectedHexagonCount = 0;
             AudioManager.Instance.Play(AudioManager.AudioEnums.Button, .6f);
-            yield return new WaitForSeconds(2);
+         //   yield return new WaitForSeconds(2);
             SpawnLevel();
             PvPController.Instance.ResetAvatars();
             PvPController.Instance.isLevelEnd = false;
