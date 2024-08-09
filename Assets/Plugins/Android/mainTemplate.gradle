@@ -3,30 +3,8 @@ apply plugin: 'com.android.library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-// Android Resolver Dependencies Start
-    implementation 'com.tabtale.tt_plugins.android:TT_Plugins_Analytics:0.0.0.0.493' // Assets/Editor/TTPDependencies.xml:21
-    implementation 'com.tabtale.tt_plugins.android:TT_Plugins_AppsFlyer:4.7.0.0.3' // Assets/Editor/TTPDependencies.xml:18
-    implementation 'com.tabtale.tt_plugins.android:TT_Plugins_Core:4.7.0.1.4' // Assets/Editor/TTPDependencies.xml:16
-    implementation 'com.tabtale.tt_plugins.android:TT_Plugins_CrashTool:4.4.0.3.1' // Assets/Editor/TTPDependencies.xml:19
-    implementation 'com.tabtale.tt_plugins.android:TT_Plugins_FirebaseAgent:0.0.0.0.493' // Assets/Editor/TTPDependencies.xml:22
-    implementation 'com.tabtale.tt_plugins.android:TT_Plugins_Privacy_Settings:4.7.0.1.4' // Assets/Editor/TTPDependencies.xml:20
-    implementation 'com.tabtale.tt_plugins.android:TT_Plugins_Remote_Config:4.4.0.3.1' // Assets/Editor/TTPDependencies.xml:23
-    implementation 'com.tabtale.tt_plugins.android:TT_Plugins_Unity:4.4.0.3.1' // Assets/Editor/TTPDependencies.xml:17
-    implementation 'com.tenjin:android-sdk:1.16.1' // Assets/Editor/Dependencies.xml:4
-// Android Resolver Dependencies End
 **DEPS**}
 
-// Android Resolver Exclusions Start
-android {
-  packagingOptions {
-      exclude ('/lib/armeabi/*' + '*')
-      exclude ('/lib/mips/*' + '*')
-      exclude ('/lib/mips64/*' + '*')
-      exclude ('/lib/x86/*' + '*')
-      exclude ('/lib/x86_64/*' + '*')
-  }
-}
-// Android Resolver Exclusions End
 android {
     ndkPath "**NDKPATH**"
 

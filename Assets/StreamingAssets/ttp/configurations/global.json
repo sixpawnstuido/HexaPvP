@@ -4,7 +4,7 @@
   "audienceModeBuildOnly": "non-children",
   "orientation": "portrait",
   "geoLocationServer": "ttplugins.ttpsdk.info",
-  "bundleId": "com.sixpawns.hexaduel",
+  "bundleId": "com.goca.hexagon",
   "testMode": false,
   "askForTracking": true,
   "isAdMob": true,

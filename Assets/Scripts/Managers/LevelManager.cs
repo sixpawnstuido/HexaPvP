@@ -76,6 +76,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         var levelHolder = ResourceSystem.ReturnLevelData().allLevels[LevelCount];
         _currentLevel = Instantiate(levelHolder);
+        DataTracker.Instance.LevelStart(LevelCount);
     }
 
     private void DestroyLevel()
@@ -134,6 +135,7 @@ public class LevelManager : Singleton<LevelManager>
         UIManager.Instance.failedPanel.NormalFailOrTimerFail(isTimer);
         AudioManager.Instance.Play(AudioManager.AudioEnums.LevelFail, .6f);
         isGameOverPanelOpened = true;
+        DataTracker.Instance.LevelFail(LevelCount);
     }
 
     public void FailedEvent()
