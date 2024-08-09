@@ -80,7 +80,7 @@ public class OppSearcingAnim : MonoBehaviour
             
             // if (LevelManager.Instance.LevelCount % 2 != 0)
             // {
-                TileController.Instance.OpenHolder();
+               // TileController.Instance.OpenHolder();
             // }
             // else
             // {

@@ -5,6 +5,7 @@ using System.Data;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -65,10 +66,11 @@ public class PvPController : SerializedMonoBehaviour
         {
             handHolder.gameObject.SetActive(true);
             HexagonMovement.PvPBlock = true;
-            _arrowRotator.ActivateArrow();
-            yield return new WaitUntil(() => _arrowRotator.isRotating);
+           // _arrowRotator.ActivateArrow();
+       //     yield return new WaitUntil(() => _arrowRotator.isRotating);
+            yield return null;
             EventManager.SpawnEvents.SpawnHexagonHolder();
-            if (_arrowRotator.ReturnPlayerType() == PlayerType.PLAYER)
+            if (playerType == PlayerType.PLAYER)
             {
                 PlayerState();
             }
@@ -188,7 +190,7 @@ public class PvPController : SerializedMonoBehaviour
         }
     }
 
-    private void PlayerState()
+    public void PlayerState()
     {
         OrderOfPlayPanel.Instance.PanelState(PlayerType.PLAYER);
         playerType = PlayerType.PLAYER;
@@ -324,6 +326,13 @@ public class PvPController : SerializedMonoBehaviour
         else
         {
             SuccessState();
+            var hexas = FindObjectsOfType<HexagonHolder>();
+            for (int i = 0; i < hexas.Length; i++)
+            {
+                hexas[i].transform
+                    .DOScale(0, .1f)
+                    .SetEase(Ease.InBack);
+            }
         }
     }
 
