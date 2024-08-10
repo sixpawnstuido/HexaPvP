@@ -151,7 +151,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             HexagonMovement.HexagonClickBlock = true;
 
-            InGameLoading.Instance.OpenHolder();
+         //   InGameLoading.Instance.OpenHolder();
 
             UIManager.Instance.nextLevelPanel.gameObject.SetActive(false);
             DestroyLevel();
@@ -184,7 +184,7 @@ public class LevelManager : Singleton<LevelManager>
         StartCoroutine(NextLevelButtonCor());
         IEnumerator NextLevelButtonCor()
         {
-            InGameLoading.Instance.OpenHolder();
+           // InGameLoading.Instance.OpenHolder();
             UIManager.Instance.failedPanel.gameObject.SetActive(false);
             DestroyLevel();
             SpawnCount = 0;

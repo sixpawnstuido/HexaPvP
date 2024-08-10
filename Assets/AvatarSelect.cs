@@ -31,14 +31,14 @@ public class AvatarSelect : MonoBehaviour
         int randomNameIndex = Random.Range(0, visualInfo.oppNames.Count - 1);
         
         var oppIcon = visualInfo.oppIcons[randomIndex];
-        var oppFlag= visualInfo.oppFlagIcons[randomIndex];
-        var oppName= visualInfo.oppNames[randomNameIndex];
+        //var oppFlag= visualInfo.oppFlagIcons[randomIndex];
+        //var oppName= visualInfo.oppNames[randomNameIndex];
 
         icon.sprite = oppIcon;
-        flag.sprite = oppFlag;
-        name.SetText(oppName);
+        //flag.sprite = oppFlag;
+        //name.SetText(oppName);
         
 
-        AvatarSelectInGame.Instance.Customize(oppIcon,oppFlag,oppName);
+       // AvatarSelectInGame.Instance.Customize(oppIcon,oppFlag,oppName);
     }
 }
