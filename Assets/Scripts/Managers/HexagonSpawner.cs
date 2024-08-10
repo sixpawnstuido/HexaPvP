@@ -125,11 +125,11 @@ public class HexagonSpawner : MonoBehaviour
             hexagonType = _hexagonTypesAtTheBeginning[Random.Range(0, _hexagonTypesAtTheBeginning.Count)];
             maxHexagonCountIndividual = Random.Range(2, _maxHexagonCountIndividual + 1);
 
-            if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0 && isPlayer)
-            {
-                hexagonType = HexagonTypes.FLOWER1;
-                maxHexagonCountIndividual = 3;
-            }
+            //if (LevelManager.Instance.LevelCount==1 && Level1Tut.Level1TutCount==0 && isPlayer)
+            //{
+            //    hexagonType = HexagonTypes.FLOWER1;
+            //    maxHexagonCountIndividual = 3;
+            //}
             
             for (int j = 0; j < maxHexagonCountIndividual; j++)
             {

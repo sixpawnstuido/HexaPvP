@@ -68,7 +68,7 @@ public class PvPController : SerializedMonoBehaviour
             HexagonMovement.PvPBlock = true;
            // _arrowRotator.ActivateArrow();
            // yield return new WaitUntil(() => _arrowRotator.isRotating);
-           yield return null;
+            yield return null;
             EventManager.SpawnEvents.SpawnHexagonHolder();
             if (playerType == PlayerType.PLAYER)
             {
@@ -320,7 +320,7 @@ public class PvPController : SerializedMonoBehaviour
         if (playerTypeCurrent == PlayerType.PLAYER)
         {
 
-            Invoke(nameof(FailState), .5f); 
+            Invoke(nameof(FailState), .2f); 
         }
         else
         {
