@@ -202,6 +202,7 @@ public class LevelManager : Singleton<LevelManager>
             isGameOverPanelOpened = false;
             PvPController.Instance.orderIndex =0;
             MoveCount = 0;
+            AvatarSelectInGame.Instance.Customize();
         }
     }
 
