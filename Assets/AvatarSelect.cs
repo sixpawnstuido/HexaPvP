@@ -19,10 +19,10 @@ public class AvatarSelect : MonoBehaviour
         Instance = this;
     }
 
-    private void OnEnable()
-    {
-        Customize();
-    }
+    //private void OnEnable()
+    //{
+    //    Customize();
+    //}
 
     public void Customize()
     {

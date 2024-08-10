@@ -76,7 +76,9 @@ public class LevelManager : Singleton<LevelManager>
     {
         var levelHolder = ResourceSystem.ReturnLevelData().allLevels[LevelCount];
         _currentLevel = Instantiate(levelHolder);
-       // DataTracker.Instance.LevelStart(LevelCount);
+        // DataTracker.Instance.LevelStart(LevelCount);
+
+        AvatarSelect.Instance.Customize();
     }
 
     private void DestroyLevel()
@@ -151,7 +153,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             HexagonMovement.HexagonClickBlock = true;
 
-         //   InGameLoading.Instance.OpenHolder();
+            InGameLoading.Instance.OpenHolder();
 
             UIManager.Instance.nextLevelPanel.gameObject.SetActive(false);
             DestroyLevel();
@@ -172,9 +174,20 @@ public class LevelManager : Singleton<LevelManager>
             PvPController.Instance.isLevelEnd = false;
             PvPController.Instance.orderIndex =0;
             HexagonMovement.HexagonClickBlock = false;
-          //  PvPController.Instance.SelectFirstPlayer();
-          //  TileController.Instance.OpenHolder();
-           // InGameLoading.Instance.CloseHolder();
+
+            if (LevelManager.Instance.LevelCount % 2 != 0)
+            {
+                TileController.Instance.OpenHolder();
+            }
+            else
+            {
+                PvPController.Instance.SelectFirstPlayer();
+            }
+            InGameLoading.Instance.CloseHolder();
+
+            //PvPController.Instance.SelectFirstPlayer();
+            //  TileController.Instance.OpenHolder();
+            // InGameLoading.Instance.CloseHolder();
         }
     }
 
@@ -184,7 +197,7 @@ public class LevelManager : Singleton<LevelManager>
         StartCoroutine(NextLevelButtonCor());
         IEnumerator NextLevelButtonCor()
         {
-           // InGameLoading.Instance.OpenHolder();
+            InGameLoading.Instance.OpenHolder();
             UIManager.Instance.failedPanel.gameObject.SetActive(false);
             DestroyLevel();
             SpawnCount = 0;
@@ -194,13 +207,19 @@ public class LevelManager : Singleton<LevelManager>
             SpawnLevel();
             PvPController.Instance.ResetAvatars();
             PvPController.Instance.isLevelEnd = false;
-           // PvPController.Instance.SelectFirstPlayer();
-          //  TileController.Instance.OpenHolder();
-            yield return new WaitForEndOfFrame();
-          //  InGameLoading.Instance.CloseHolder();
+
+            if (LevelManager.Instance.LevelCount % 2 != 0)
+            {
+                TileController.Instance.OpenHolder();
+            }
+            else
+            {
+                PvPController.Instance.SelectFirstPlayer();
+            }
             isGameOverPanelOpened = false;
             PvPController.Instance.orderIndex =0;
             MoveCount = 0;
+            InGameLoading.Instance.CloseHolder();
         }
     }
 

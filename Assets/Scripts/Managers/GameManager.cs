@@ -31,7 +31,15 @@ public class GameManager : MonoBehaviour
             LevelManager.Instance.SpawnLevel();
             PvPController.Instance.ResetAvatars();
             yield return new WaitForSeconds(3);
-         //   TileController.Instance.OpenHolder();
+
+            if (LevelManager.Instance.LevelCount % 2 != 0)
+            {
+                TileController.Instance.OpenHolder();
+            }
+            else
+            {
+                PvPController.Instance.SelectFirstPlayer();
+            }
         }
     }
 
