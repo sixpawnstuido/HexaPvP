@@ -30,21 +30,21 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Assembly-CSharp-firstpass
-    - Assembly-CSharp
-    - PPv2URPConverters
-    - Lofelt.NiceVibrations.Demo
-    - LeTai.TrueShadow.Demo
     - ToonyColorsPro.Editor
+    - Lofelt.NiceVibrations.Demo
+    - Assembly-CSharp
     - LeTai.TrueShadow
+    - PPv2URPConverters
     - ToonyColorsPro2.Demo
-    - Lofelt.NiceVibrations.Editor
-    - Coffee.UIParticle.Editor
+    - LeTai.TrueShadow.Demo
+    - Lofelt.NiceVibrations
     - LeTai.TrueShadow.Editor
     - Coffee.UIParticle
-    - Lofelt.NiceVibrations
+    - Coffee.UIParticle.Editor
+    - Sirenix.OdinInspector.Modules.UnityMathematics
+    - Lofelt.NiceVibrations.Editor
     - ToonyColorsPro.Runtime
     - ToonyColorsPro.Demo.Editor
-    - Sirenix.OdinInspector.Modules.UnityMathematics
     - KinoBloom.Runtime
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
