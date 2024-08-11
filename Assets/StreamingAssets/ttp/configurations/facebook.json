@@ -1,5 +1,5 @@
 {
-  "included": false,
+  "included": true,
   "fbAppID": "APP-ID",
   "fbAppName": "APP-NAME",
   "fbClientID": "CLIENT-ID"

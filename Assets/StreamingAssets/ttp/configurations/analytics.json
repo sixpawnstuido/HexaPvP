@@ -1,10 +1,10 @@
 {
   "included": true,
   "firebase": {
-    "googleAppId": "1:354335664855:android:ab172f0927bd56d73d1e92",
-    "apiKey": "AIzaSyCUavOhopn4nbUIKy1smlbgNDFBzRNNejc",
+    "googleAppId": "1:354335664855:ios:7fb49729fff869723d1e92",
+    "apiKey": "AIzaSyAEnrivuLI0qyZCHf2_nnT6tlJPlMm4wd0",
     "projectId": "cl-clikcpi",
-    "clientId": "354335664855-67ji5cp2dfvar0fsps9v04aul36a232r.apps.googleusercontent.com",
+    "clientId": "354335664855-odugf5c3nhmitripc2rr2it5iavq3uv3.apps.googleusercontent.com",
     "senderId": "354335664855",
     "storageBucket": "cl-clikcpi.appspot.com",
     "databaseURL": ""

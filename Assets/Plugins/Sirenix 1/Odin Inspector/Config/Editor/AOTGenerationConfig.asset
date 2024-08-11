@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 638588054725569572
+  lastScan: 638589883615095240
   supportSerializedTypes:
   - TypeName: UnityEngine.AudioClip, UnityEngine.AudioModule
     IsCustom: 0
@@ -106,10 +106,6 @@ MonoBehaviour:
     Emit: 1
   - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[VisualData+VFXType,
       Assembly-CSharp]], mscorlib
-    IsCustom: 0
-    Emit: 1
-  - TypeName: Unity.VisualScripting.FlexibleDictionary`2[[HexagonTypes, Assembly-CSharp],[JuiceTargetUIElement+GlassInfo,
-      Assembly-CSharp]], Unity.VisualScripting.Core
     IsCustom: 0
     Emit: 1
   - TypeName: System.Single, mscorlib
