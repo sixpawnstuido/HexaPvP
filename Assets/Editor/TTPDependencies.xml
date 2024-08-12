@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <dependencies xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <androidPackages>
     <repositories>
@@ -27,13 +27,13 @@
       <source>https://codecommit-ro-at-054024759590:RN1EkdaAskf1elwTA5rfWuSJtYvRvwHqRkdJN0bIfVo=@git-codecommit.us-east-1.amazonaws.com/v1/repos/CocoaPods</source>
       <source>https://github.com/Vungle/ios-sdk-beta.git</source>
     </sources>
-    <iosPod name="TT_Plugins_Facebook_Pod" version="4.4.0.3.1" bitcodeEnabled="false" minTargetSdk="10" addToAllTargets="false" />
-    <iosPod name="TT_Plugins_AppsFlyer_Pod" version="4.7.0.0.3" bitcodeEnabled="false" minTargetSdk="10" addToAllTargets="false" />
-    <iosPod name="TT_Plugins_Core_Pod" version="4.7.0.1.4" bitcodeEnabled="false" minTargetSdk="10" addToAllTargets="false" />
-    <iosPod name="TT_Plugins_CrashTool_Pod" version="4.4.0.3.1" bitcodeEnabled="false" minTargetSdk="10" addToAllTargets="false" />
-    <iosPod name="TT_Plugins_Privacy_Settings_Pod" version="4.7.0.1.4" bitcodeEnabled="false" minTargetSdk="10" addToAllTargets="false" />
-    <iosPod name="TT_Plugins_Remote_Config_Pod" version="4.4.0.3.1" bitcodeEnabled="false" minTargetSdk="10" addToAllTargets="false" />
-    <iosPod name="TT_Plugins_Analytics_Pod" version="0.0.0.0.493" bitcodeEnabled="false" minTargetSdk="10" addToAllTargets="false" />
-    <iosPod name="TT_Plugins_FirebaseAgent_Pod" version="0.0.0.0.493" bitcodeEnabled="false" minTargetSdk="10" addToAllTargets="false" />
+    <iosPod bitcodeEnabled="false" addToAllTargets="false" name="TT_Plugins_Facebook_Pod" version="4.4.0.3.1" minTargetSdk="10.0" />
+    <iosPod bitcodeEnabled="false" addToAllTargets="false" name="TT_Plugins_AppsFlyer_Pod" version="4.7.0.0.3" minTargetSdk="10.0" />
+    <iosPod bitcodeEnabled="false" addToAllTargets="false" name="TT_Plugins_Core_Pod" version="4.7.0.1.4" minTargetSdk="10.0" />
+    <iosPod bitcodeEnabled="false" addToAllTargets="false" name="TT_Plugins_CrashTool_Pod" version="4.4.0.3.1" minTargetSdk="10.0" />
+    <iosPod bitcodeEnabled="false" addToAllTargets="false" name="TT_Plugins_Privacy_Settings_Pod" version="4.7.0.1.4" minTargetSdk="10.0" />
+    <iosPod bitcodeEnabled="false" addToAllTargets="false" name="TT_Plugins_Remote_Config_Pod" version="4.4.0.3.1" minTargetSdk="10.0" />
+    <iosPod bitcodeEnabled="false" addToAllTargets="false" name="TT_Plugins_Analytics_Pod" version="0.0.0.0.493" minTargetSdk="10.0" />
+    <iosPod bitcodeEnabled="false" addToAllTargets="false" name="TT_Plugins_FirebaseAgent_Pod" version="0.0.0.0.493" minTargetSdk="10.0" />
   </iosPods>
 </dependencies>

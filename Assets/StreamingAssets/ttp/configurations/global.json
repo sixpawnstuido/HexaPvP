@@ -4,10 +4,10 @@
   "audienceModeBuildOnly": "non-children",
   "orientation": "portrait",
   "geoLocationServer": "ttplugins.ttpsdk.info",
-  "bundleId": "com.crazylabs.demo",
+  "bundleId": "com.sixpawns.hexaduel",
   "testMode": false,
   "askForTracking": true,
-  "appId": "000000000",
+  "appId": "6618139774",
   "isAdMob": true,
   "appBuildConfig": {
     "admob": {
